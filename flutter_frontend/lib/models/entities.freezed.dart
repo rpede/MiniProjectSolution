@@ -21,7 +21,7 @@ Message _$MessageFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Message {
   int get sender => throw _privateConstructorUsedError;
-  String get timestamp => throw _privateConstructorUsedError;
+  DateTime get timestamp => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   String get messageContent => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
@@ -38,7 +38,7 @@ abstract class $MessageCopyWith<$Res> {
   @useResult
   $Res call(
       {int sender,
-      String timestamp,
+      DateTime timestamp,
       int id,
       String messageContent,
       String email});
@@ -71,7 +71,7 @@ class _$MessageCopyWithImpl<$Res, $Val extends Message>
       timestamp: null == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -98,7 +98,7 @@ abstract class _$$ChatMessageImplCopyWith<$Res>
   @useResult
   $Res call(
       {int sender,
-      String timestamp,
+      DateTime timestamp,
       int id,
       String messageContent,
       String email});
@@ -129,7 +129,7 @@ class __$$ChatMessageImplCopyWithImpl<$Res>
       timestamp: null == timestamp
           ? _value.timestamp
           : timestamp // ignore: cast_nullable_to_non_nullable
-              as String,
+              as DateTime,
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ class _$ChatMessageImpl with DiagnosticableTreeMixin implements _ChatMessage {
   @override
   final int sender;
   @override
-  final String timestamp;
+  final DateTime timestamp;
   @override
   final int id;
   @override
@@ -223,7 +223,7 @@ class _$ChatMessageImpl with DiagnosticableTreeMixin implements _ChatMessage {
 abstract class _ChatMessage implements Message {
   const factory _ChatMessage(
       {required final int sender,
-      required final String timestamp,
+      required final DateTime timestamp,
       required final int id,
       required final String messageContent,
       required final String email}) = _$ChatMessageImpl;
@@ -234,7 +234,7 @@ abstract class _ChatMessage implements Message {
   @override
   int get sender;
   @override
-  String get timestamp;
+  DateTime get timestamp;
   @override
   int get id;
   @override

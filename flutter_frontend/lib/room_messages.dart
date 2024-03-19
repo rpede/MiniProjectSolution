@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 import 'bloc/chat_bloc.dart';
 import 'main.dart';
@@ -46,12 +47,15 @@ class _RoomMessagesState extends State<RoomMessages> {
           controller: _messageController,
         ),
         const SizedBox(height: 8),
-        FilledButton(onPressed: _onSend, child: const Text("Send message"))
+        OutlinedButton(onPressed: _onSend, child: const Text("Send message"))
       ],
     );
   }
 }
 
 extension ChatMessageX on Message {
-  format() => "$email said: $messageContent at $timestamp";
+  format() {
+    final formatter = DateFormat('dd/MM/yy, hh.mm.ss');
+    return "$email said: $messageContent at ${formatter.format(timestamp)}";
+  }
 }

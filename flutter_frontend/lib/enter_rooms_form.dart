@@ -22,7 +22,8 @@ class _EnterRoomFormState extends State<EnterRoomForm> {
 
   _onEnterRoom() {
     if (!_roomsFormKey.currentState!.validate()) return;
-    final roomId = int.parse(_roomsController.text);
+    final roomId = int.tryParse(_roomsController.text);
+    if (roomId == null) return;
     context.read<ChatBloc>().enterRoom(roomId: roomId);
   }
 
@@ -34,6 +35,7 @@ class _EnterRoomFormState extends State<EnterRoomForm> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           TextFormField(
+            controller: _roomsController,
             decoration: const InputDecoration(border: OutlineInputBorder()),
             keyboardType: TextInputType.number,
             validator: (value) => (int.tryParse(value ?? "0") ?? 0) > 0

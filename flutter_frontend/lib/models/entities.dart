@@ -8,7 +8,7 @@ part 'entities.g.dart';
 class Message with _$Message {
   const factory Message({
     required int sender,
-    required String timestamp,
+    required DateTime timestamp,
     required int id,
     required String messageContent,
     required String email,

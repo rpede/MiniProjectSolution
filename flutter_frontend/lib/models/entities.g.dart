@@ -9,7 +9,7 @@ part of 'entities.dart';
 _$ChatMessageImpl _$$ChatMessageImplFromJson(Map<String, dynamic> json) =>
     _$ChatMessageImpl(
       sender: json['sender'] as int,
-      timestamp: json['timestamp'] as String,
+      timestamp: DateTime.parse(json['timestamp'] as String),
       id: json['id'] as int,
       messageContent: json['messageContent'] as String,
       email: json['email'] as String,
@@ -18,7 +18,7 @@ _$ChatMessageImpl _$$ChatMessageImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$ChatMessageImplToJson(_$ChatMessageImpl instance) =>
     <String, dynamic>{
       'sender': instance.sender,
-      'timestamp': instance.timestamp,
+      'timestamp': instance.timestamp.toIso8601String(),
       'id': instance.id,
       'messageContent': instance.messageContent,
       'email': instance.email,
