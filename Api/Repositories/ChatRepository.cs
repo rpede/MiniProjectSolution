@@ -8,16 +8,13 @@ namespace Api.Repositories;
 
 public class ChatRepository(NpgsqlDataSource source)
 {
-    private static readonly Uri Uri = new(Environment.GetEnvironmentVariable(ENV_VAR_KEYS.PG_CONN.ToString())!);
-
-    public static readonly string
-        ProperlyFormattedConnectionString = string.Format(
-            "Server={0};Database={1};User Id={2};Password={3};Port={4};Pooling=false;",
-            Uri.Host,
-            Uri.AbsolutePath.Trim('/'),
-            Uri.UserInfo.Split(':')[0],
-            Uri.UserInfo.Split(':')[1],
-            Uri.Port > 0 ? Uri.Port : 5432);
+    public static string ProperlyFormattedConnectionString(Uri uri) => string.Format(
+        "Server={0};Database={1};User Id={2};Password={3};Port={4};Pooling=false;",
+        uri.Host,
+        uri.AbsolutePath.Trim('/'),
+        uri.UserInfo.Split(':')[0],
+        uri.UserInfo.Split(':')[1],
+        uri.Port > 0 ? uri.Port : 5432);
 
     // pgSQL: SELECT email, messagecontent, sender, messages.id as id, timestamp, room FROM chat.messages join chat.enduser on chat.messages.sender = chat.enduser.id where chat.messages.id<1 and room=1 ORDER BY timestamp DESC LIMIT 5;
     public IEnumerable<MessageWithSenderEmail> GetPastMessages(GetPastMessagesParams getPastMessagesParams)
@@ -98,7 +95,7 @@ select count(*) from chat.enduser where email = @{nameof(findByEmailParams.email
                throw new KeyNotFoundException("Could not find user with email " + findByEmailParams.email);
     }
 
-  
+
     public void ExecuteRebuildFromSqlScript(string? alternativeConnectionString = null)
     {
         using (var conn = source.OpenConnection())

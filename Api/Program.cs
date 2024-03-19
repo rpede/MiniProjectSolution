@@ -20,7 +20,7 @@ public static class Startup
         var webApp = Start(args);
         webApp.Run();
     }
-    
+
     public static WebApplication Start(string[] args)
     {
         Log.Logger = new LoggerConfiguration()
@@ -33,7 +33,8 @@ public static class Startup
         builder.Services.AddSingleton<CredentialService>();
         builder.Services.AddSingleton<TokenService>();
 
-        builder.Services.AddNpgsqlDataSource(ChatRepository.ProperlyFormattedConnectionString,
+        Uri uri = builder.Configuration.GetValue<Uri>("PG_CONN")!;
+        builder.Services.AddNpgsqlDataSource(ChatRepository.ProperlyFormattedConnectionString(uri),
             sourceBuilder => { sourceBuilder.EnableParameterLogging(); });
         builder.Services.AddSingleton<ChatRepository>();
         var services = builder.FindAndInjectClientEventHandlers(Assembly.GetExecutingAssembly());
@@ -41,8 +42,7 @@ public static class Startup
         builder.WebHost.UseUrls("http://*:9999");
         var app = builder.Build();
         app.Services.GetService<ChatRepository>()!.ExecuteRebuildFromSqlScript();
-        var port = Environment.GetEnvironmentVariable(ENV_VAR_KEYS.PORT.ToString()) ?? "8181";
-        var server = new WebSocketServer("ws://0.0.0.0:"+port);
+        var server = new WebSocketServer("ws://0.0.0.0:8181");
         server.RestartAfterListenError = true;
         server.Start(socket =>
         {
@@ -68,7 +68,7 @@ public static class Startup
                     else
                     {
                         socket.SendDto(new ServerSendsErrorMessageToClient
-                            { errorMessage = e.Message, receivedMessage = message });
+                        { errorMessage = e.Message, receivedMessage = message });
                     }
                 }
             };

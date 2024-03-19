@@ -9,8 +9,10 @@ using Serilog;
 
 namespace Api.Security;
 
-public class TokenService
+public class TokenService(IConfiguration configuration)
 {
+    private readonly string jwtKey = configuration.GetValue<string>("JWT_KEY")!;
+
     public string IssueJwt(EndUser user)
     {
         try
@@ -19,7 +21,7 @@ public class TokenService
             IJsonSerializer serializer = new JsonNetSerializer();
             IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
             IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
-            return encoder.Encode(user, Environment.GetEnvironmentVariable(ENV_VAR_KEYS.JWT_KEY.ToString()));
+            return encoder.Encode(user, jwtKey);
         }
         catch (Exception e)
         {
@@ -37,7 +39,7 @@ public class TokenService
             IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
             IJwtValidator validator = new JwtValidator(serializer, provider);
             IJwtDecoder decoder = new JwtDecoder(serializer, validator, urlEncoder, new HMACSHA512Algorithm());
-            var json = decoder.Decode(jwt, Environment.GetEnvironmentVariable(ENV_VAR_KEYS.JWT_KEY.ToString()));
+            var json = decoder.Decode(jwt, jwtKey);
             return JsonConvert.DeserializeObject<Dictionary<string, string>>(json)!;
         }
         catch (Exception e)
