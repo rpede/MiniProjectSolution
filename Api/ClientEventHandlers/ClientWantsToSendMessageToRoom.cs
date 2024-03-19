@@ -17,7 +17,7 @@ namespace Api.ClientEventHandlers;
 
 public class ClientWantsToSendMessageToRoomDto : BaseDto
 {
-    [Required] [MinLength(1)] public string? messageContent { get; set; }
+    [Required][MinLength(1)] public string? messageContent { get; set; }
 
     [Range(1, int.MaxValue)] public int roomId { get; set; }
 }
@@ -30,8 +30,7 @@ public class ClientWantsToSendMessageToRoom(
 {
     public override async Task Handle(ClientWantsToSendMessageToRoomDto dto, IWebSocketConnection socket)
     {
-        await isMessageToxic(dto.messageContent);
-        var topic = WebSocketStateService.GetRoomsForClient(socket.ConnectionInfo.Id).Contains(dto.roomId );
+        var topic = WebSocketStateService.GetRoomsForClient(socket.ConnectionInfo.Id).Contains(dto.roomId);
         if (!topic)
             throw new Exception("You are not in this room");
 
@@ -62,31 +61,6 @@ public class ClientWantsToSendMessageToRoom(
             return $"{{ text = {text}, categories = {categories}, outputType = {outputType} }}";
         }
     }
-
-    private async Task isMessageToxic(string message)
-    {
-        HttpClient client = new HttpClient();
-
-        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, "https://toxicityfilter.cognitiveservices.azure.com/contentsafety/text:analyze?api-version=2023-10-01");
-
-        request.Headers.Add("accept", "application/json");
-        request.Headers.Add("Ocp-Apim-Subscription-Key", Environment.GetEnvironmentVariable(ENV_VAR_KEYS.AZ_CONTENT_FILTER.ToString()));
-
-        var req = new RequestModel(message, new List<string>() { "Hate", "Violence" }, "FourSeverityLevels");
-
-        request.Content = new StringContent(JsonSerializer.Serialize(req));
-        request.Content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-
-        HttpResponseMessage response = await client.SendAsync(request);
-        if(!response.IsSuccessStatusCode)
-            throw new Exception("Wait a moment - we've used all the free requests for this minute");
-        string responseBody = await response.Content.ReadAsStringAsync();
-        var obj = JsonSerializer.Deserialize<ContentFilterResponse>(responseBody);
-        var isToxic = obj.categoriesAnalysis.Count(e => e.severity > 1) >= 1;
-        if (isToxic)
-            throw new ValidationException(" Such speech is not allowed!");
-    }
-    
 }
 
 public class ServerBroadcastsMessageWithUsername : BaseDto

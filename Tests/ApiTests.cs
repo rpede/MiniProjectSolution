@@ -13,7 +13,7 @@ namespace Tests;
 public class Tests
 {
     [SetUp]
-    public async Task Setup()
+    public void Setup()
     {
         Startup.Start(null);
     }
