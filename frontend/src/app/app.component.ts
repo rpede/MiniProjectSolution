@@ -1,11 +1,10 @@
-import {Component, inject} from '@angular/core';
-import {WebSocketClientService} from "../ws.client.service";
-import {FormControl} from "@angular/forms";
-import {ClientWantsToEnterRoom} from "../models/clientWantsToEnterRoom";
-import {ClientWantsToSignIn} from "../models/clientWantsToSignIn";
-import {ClientWantsToRegister} from "../models/clientWantsToRegister";
-import {ClientWantsToSendMessageToRoom} from "../models/clientWantsToSendMessageToRoom";
-import {ClientWantsToDetectImageObjects} from "../models/clientWantsToDetectImageObjects";
+import { Component, inject } from '@angular/core';
+import { WebSocketClientService } from "../ws.client.service";
+import { FormControl } from "@angular/forms";
+import { ClientWantsToEnterRoom } from "../models/clientWantsToEnterRoom";
+import { ClientWantsToSignIn } from "../models/clientWantsToSignIn";
+import { ClientWantsToRegister } from "../models/clientWantsToRegister";
+import { ClientWantsToSendMessageToRoom } from "../models/clientWantsToSendMessageToRoom";
 
 @Component({
   selector: 'app-root',
@@ -28,9 +27,6 @@ import {ClientWantsToDetectImageObjects} from "../models/clientWantsToDetectImag
       </div>
       <input [formControl]="messageContent"><button (click)="sendMessageToRoom(m.key)">Send message</button>
     </div>
-
-<app-image-detection></app-image-detection>
-
   `,
 })
 export class AppComponent {
@@ -40,30 +36,24 @@ export class AppComponent {
   email = new FormControl("");
   password = new FormControl("");
   messageContent = new FormControl("");
-  imgUrl = new FormControl("https://variety.com/wp-content/uploads/2021/07/Rick-Astley-Never-Gonna-Give-You-Up.png");
-
 
   enterRoom() {
-    this.ws.socketConnection.sendDto(new ClientWantsToEnterRoom({roomId: this.roomIdToEnter.value!}))
+    this.ws.socketConnection.sendDto(new ClientWantsToEnterRoom({ roomId: this.roomIdToEnter.value! }))
   }
 
   SignIn() {
-    this.ws.socketConnection.sendDto(new ClientWantsToSignIn({password: this.password.value!, email: this.email.value!}))
+    this.ws.socketConnection.sendDto(new ClientWantsToSignIn({ password: this.password.value!, email: this.email.value! }))
   }
 
   Register() {
-    this.ws.socketConnection.sendDto(new ClientWantsToRegister({password: this.password.value!, email: this.email.value!}))
+    this.ws.socketConnection.sendDto(new ClientWantsToRegister({ password: this.password.value!, email: this.email.value! }))
   }
 
   sendMessageToRoom(key: number) {
-    this.ws.socketConnection.sendDto(new ClientWantsToSendMessageToRoom({roomId: key, messageContent: this.messageContent.value!}))
+    this.ws.socketConnection.sendDto(new ClientWantsToSendMessageToRoom({ roomId: key, messageContent: this.messageContent.value! }))
   }
 
   dateFromStr(timestamp: string | undefined) {
     return new Date(timestamp!).toLocaleString();
-  }
-
-  analyzeImage() {
-    this.ws.socketConnection.sendDto(new ClientWantsToDetectImageObjects({url: this.imgUrl.value!}))
   }
 }

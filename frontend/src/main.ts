@@ -1,15 +1,14 @@
-import {BrowserModule} from '@angular/platform-browser';
+import { BrowserModule } from '@angular/platform-browser';
 
-import {enableProdMode, ErrorHandler, NgModule} from "@angular/core";
+import { NgModule } from "@angular/core";
 
-import {ToastModule} from "primeng/toast";
-import {MessageModule} from "primeng/message";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {CommonModule} from "@angular/common";
-import {platformBrowserDynamic} from "@angular/platform-browser-dynamic";
-import {MessageService} from "primeng/api";import {AppComponent} from "./app/app.component";
-import {ImageDetectionComponent} from "./app/image.detection.component";
+import { ToastModule } from "primeng/toast";
+import { MessageModule } from "primeng/message";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { CommonModule } from "@angular/common";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
+import { MessageService } from "primeng/api"; import { AppComponent } from "./app/app.component";
 
 
 @NgModule({
@@ -24,10 +23,9 @@ import {ImageDetectionComponent} from "./app/image.detection.component";
 
   ],
   declarations: [
-    ImageDetectionComponent,
     AppComponent
   ],
-  providers: [MessageService, ],
+  providers: [MessageService,],
   bootstrap: [AppComponent]
 })
 export class AppModule {

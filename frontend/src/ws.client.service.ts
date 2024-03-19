@@ -1,19 +1,19 @@
-import {EventEmitter, Injectable} from "@angular/core";
-import {WebsocketSuperclass} from "./models/WebsocketSuperclass";
-import {Router} from "@angular/router";
-import {BaseDto} from "./models/baseDto";
-import {MessageService} from "primeng/api";
-import {ServerAuthenticatesUser} from "./models/serverAuthenticatesUser";
-import {ServerAddsClientToRoom} from "./models/serverAddsClientToRoom";
-import {ServerBroadcastsMessageToClientsInRoom} from "./models/serverBroadcastsMessageToClientsInRoom";
-import {ServerSendsErrorMessageToClient} from "./models/serverSendsErrorMessageToClient";
-import {ServerNotifiesClientsInRoomSomeoneHasJoinedRoom} from "./models/serverNotifiesClientsInRoomSomeoneHasJoinedRoom";
-import {Message, Room} from "./models/entities";
-import {ServerSendsImageAnalysisToClient} from "./models/imageDetectionModels";
-import {environment} from "./environments/environment";
-import {AnalysisResult} from "./models/imageDetectionModels";
+import { EventEmitter, Injectable } from "@angular/core";
+import { WebsocketSuperclass } from "./models/WebsocketSuperclass";
+import { Router } from "@angular/router";
+import { BaseDto } from "./models/baseDto";
+import { MessageService } from "primeng/api";
+import { ServerAuthenticatesUser } from "./models/serverAuthenticatesUser";
+import { ServerAddsClientToRoom } from "./models/serverAddsClientToRoom";
+import { ServerBroadcastsMessageToClientsInRoom } from "./models/serverBroadcastsMessageToClientsInRoom";
+import { ServerSendsErrorMessageToClient } from "./models/serverSendsErrorMessageToClient";
+import { ServerNotifiesClientsInRoomSomeoneHasJoinedRoom } from "./models/serverNotifiesClientsInRoomSomeoneHasJoinedRoom";
+import { Message, Room } from "./models/entities";
+import { ServerSendsImageAnalysisToClient } from "./models/imageDetectionModels";
+import { environment } from "./environments/environment";
+import { AnalysisResult } from "./models/imageDetectionModels";
 
-@Injectable({providedIn: 'root'})
+@Injectable({ providedIn: 'root' })
 export class WebSocketClientService {
 
 
@@ -36,7 +36,7 @@ export class WebSocketClientService {
       this[data.eventType].call(this, data);
     }
     this.socketConnection.onerror = (err) => {
-      this.messageService.add( {life: 5000, severity: 'error', summary: '⚠️', detail: 'The websocket API is currently not running (only the client app hosted on Firebase id running)'});
+      this.messageService.add({ life: 5000, severity: 'error', summary: '⚠️', detail: 'The websocket API is currently not running (only the client app hosted on Firebase id running)' });
     }
   }
 
@@ -47,17 +47,17 @@ export class WebSocketClientService {
   }
 
   ServerAuthenticatesUser(dto: ServerAuthenticatesUser) {
-    this.messageService.add({life: 2000, detail: 'Authentication successful!'});
+    this.messageService.add({ life: 2000, detail: 'Authentication successful!' });
     localStorage.setItem("jwt", dto.jwt!);
   }
 
   ServerAuthenticatesUserFromJwt(dto: ServerAuthenticatesUser) {
-    this.messageService.add({life: 2000, summary: 'success', detail: 'Authentication successful!'});
+    this.messageService.add({ life: 2000, summary: 'success', detail: 'Authentication successful!' });
   }
 
   ServerBroadcastsMessageToClientsInRoom(dto: ServerBroadcastsMessageToClientsInRoom) {
     this.roomsWithMessages.get(dto.roomId!)!.push(dto.message!);
-    this.messageService.add({life: 2000, summary: '📬', detail: 'New message!'});
+    this.messageService.add({ life: 2000, summary: '📬', detail: 'New message!' });
   }
 
   ServerNotifiesClientsInRoomSomeoneHasJoinedRoom(dto: ServerNotifiesClientsInRoomSomeoneHasJoinedRoom) {
@@ -71,12 +71,6 @@ export class WebSocketClientService {
 
 
   ServerSendsErrorMessageToClient(dto: ServerSendsErrorMessageToClient) {
-    this.messageService.add({life: 2000, severity: 'error', summary: '⚠️', detail: dto.errorMessage}); //todo implement with err handler
+    this.messageService.add({ life: 2000, severity: 'error', summary: '⚠️', detail: dto.errorMessage }); //todo implement with err handler
   }
-
-  public onImageAnalysisReceived: EventEmitter<AnalysisResult> = new EventEmitter();
-  ServerSendsImageAnalysisToClient(dto: ServerSendsImageAnalysisToClient) {
-    this.onImageAnalysisReceived.emit(dto.result!);
-  }
-
 }
