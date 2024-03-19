@@ -1,5 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
+
 part 'entities.freezed.dart';
+part 'entities.g.dart';
 
 @freezed
 class Message with _$Message {
@@ -9,7 +12,8 @@ class Message with _$Message {
     required int id,
     required String messageContent,
     required String email,
-  }) = _Message;
+  }) = _ChatMessage;
+  
   factory Message.fromJson(Map<String, Object?> json) =>
       _$MessageFromJson(json);
 }
@@ -20,6 +24,7 @@ class EndUser with _$EndUser {
     required int id,
     required String email,
   }) = _EndUser;
+
   factory EndUser.fromJson(Map<String, Object?> json) =>
       _$EndUserFromJson(json);
 }
@@ -30,17 +35,7 @@ class Room with _$Room {
     required int id,
     required String title,
   }) = _Room;
+
   factory Room.fromJson(Map<String, Object?> json) =>
       _$RoomFromJson(json);
-}
-
-@freezed
-class TimeSeries with _$TimeSeries {
-  const factory TimeSeries({
-    required String timestamp,
-    required num datapoint,
-    required int id,
-  }) = _TimeSeries;
-  factory TimeSeries.fromJson(Map<String, Object?> json) =>
-      _$TimeSeriesFromJson(json);
 }

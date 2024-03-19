@@ -1,15 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_frontend/authenticate_form.dart';
-import 'package:flutter_frontend/room_form.dart';
+import 'package:flutter_frontend/bloc/chat_bloc.dart';
+import 'package:flutter_frontend/bloc/chat_state.dart';
+import 'package:flutter_frontend/logger_bloc_observer.dart';
+import 'package:flutter_frontend/enter_rooms_form.dart';
+import 'package:flutter_frontend/room_messages.dart';
+import 'package:logging_appenders/logging_appenders.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+
+import 'package:logging/logging.dart';
 
 void main() {
-  runApp(const MyApp());
+  PrintAppender(formatter: const ColorFormatter()).attachToLogger(Logger.root);
+  Bloc.observer = LoggerBlocObserver();
+
+  final wsUri = Uri.parse('ws://localhost:8181');
+  final channel = WebSocketChannel.connect(wsUri);
+
+  runApp(BlocProvider(
+    create: (context) => ChatBloc(channel: channel),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,24 +45,43 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Container(
-            constraints: const BoxConstraints(maxWidth: 400),
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Header("Authenticate"),
-                AuthenticateForm(),
-                Header("Pick a room to enter"),
-                RoomForm(),
-              ],
+      body: BlocConsumer<ChatBloc, ChatState>(
+        listenWhen: (previous, current) => current.headsUp != null,
+        listener: (context, state) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.headsUp!)));
+        },
+        builder: (context, state) => SingleChildScrollView(
+          child: Center(
+            child: Container(
+              constraints: const BoxConstraints(maxWidth: 400),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Header("Authenticate"),
+                  const AuthenticateForm(),
+                  const Header("Pick a room to enter"),
+                  const EnterRoomForm(),
+                  for (final room in state.roomsWithMessages.entries)
+                    RoomMessages(
+                      room: room,
+                      liveConnections:
+                          state.roomsWithNumberOfConnections[room.key],
+                    ),
+                  const SizedBox(height: 50)
+                ],
+              ),
             ),
           ),
         ),

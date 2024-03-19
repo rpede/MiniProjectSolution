@@ -21,6 +21,7 @@ mixin _$ChatState {
       throw _privateConstructorUsedError;
   Map<int, int> get roomsWithNumberOfConnections =>
       throw _privateConstructorUsedError;
+  String? get headsUp => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $ChatStateCopyWith<ChatState> get copyWith =>
@@ -35,7 +36,8 @@ abstract class $ChatStateCopyWith<$Res> {
   $Res call(
       {String? jwt,
       Map<int, List<Message>> roomsWithMessages,
-      Map<int, int> roomsWithNumberOfConnections});
+      Map<int, int> roomsWithNumberOfConnections,
+      String? headsUp});
 }
 
 /// @nodoc
@@ -54,6 +56,7 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
     Object? jwt = freezed,
     Object? roomsWithMessages = null,
     Object? roomsWithNumberOfConnections = null,
+    Object? headsUp = freezed,
   }) {
     return _then(_value.copyWith(
       jwt: freezed == jwt
@@ -68,6 +71,10 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
           ? _value.roomsWithNumberOfConnections
           : roomsWithNumberOfConnections // ignore: cast_nullable_to_non_nullable
               as Map<int, int>,
+      headsUp: freezed == headsUp
+          ? _value.headsUp
+          : headsUp // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -83,7 +90,8 @@ abstract class _$$ChatStateImplCopyWith<$Res>
   $Res call(
       {String? jwt,
       Map<int, List<Message>> roomsWithMessages,
-      Map<int, int> roomsWithNumberOfConnections});
+      Map<int, int> roomsWithNumberOfConnections,
+      String? headsUp});
 }
 
 /// @nodoc
@@ -100,6 +108,7 @@ class __$$ChatStateImplCopyWithImpl<$Res>
     Object? jwt = freezed,
     Object? roomsWithMessages = null,
     Object? roomsWithNumberOfConnections = null,
+    Object? headsUp = freezed,
   }) {
     return _then(_$ChatStateImpl(
       jwt: freezed == jwt
@@ -114,17 +123,22 @@ class __$$ChatStateImplCopyWithImpl<$Res>
           ? _value._roomsWithNumberOfConnections
           : roomsWithNumberOfConnections // ignore: cast_nullable_to_non_nullable
               as Map<int, int>,
+      headsUp: freezed == headsUp
+          ? _value.headsUp
+          : headsUp // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ChatStateImpl implements _ChatState {
+class _$ChatStateImpl with DiagnosticableTreeMixin implements _ChatState {
   const _$ChatStateImpl(
-      {this.jwt,
+      {required this.jwt,
       required final Map<int, List<Message>> roomsWithMessages,
-      required final Map<int, int> roomsWithNumberOfConnections})
+      required final Map<int, int> roomsWithNumberOfConnections,
+      required this.headsUp})
       : _roomsWithMessages = roomsWithMessages,
         _roomsWithNumberOfConnections = roomsWithNumberOfConnections;
 
@@ -149,8 +163,23 @@ class _$ChatStateImpl implements _ChatState {
   }
 
   @override
-  String toString() {
-    return 'ChatState(jwt: $jwt, roomsWithMessages: $roomsWithMessages, roomsWithNumberOfConnections: $roomsWithNumberOfConnections)';
+  final String? headsUp;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ChatState(jwt: $jwt, roomsWithMessages: $roomsWithMessages, roomsWithNumberOfConnections: $roomsWithNumberOfConnections, headsUp: $headsUp)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ChatState'))
+      ..add(DiagnosticsProperty('jwt', jwt))
+      ..add(DiagnosticsProperty('roomsWithMessages', roomsWithMessages))
+      ..add(DiagnosticsProperty(
+          'roomsWithNumberOfConnections', roomsWithNumberOfConnections))
+      ..add(DiagnosticsProperty('headsUp', headsUp));
   }
 
   @override
@@ -163,7 +192,8 @@ class _$ChatStateImpl implements _ChatState {
                 .equals(other._roomsWithMessages, _roomsWithMessages) &&
             const DeepCollectionEquality().equals(
                 other._roomsWithNumberOfConnections,
-                _roomsWithNumberOfConnections));
+                _roomsWithNumberOfConnections) &&
+            (identical(other.headsUp, headsUp) || other.headsUp == headsUp));
   }
 
   @override
@@ -171,7 +201,8 @@ class _$ChatStateImpl implements _ChatState {
       runtimeType,
       jwt,
       const DeepCollectionEquality().hash(_roomsWithMessages),
-      const DeepCollectionEquality().hash(_roomsWithNumberOfConnections));
+      const DeepCollectionEquality().hash(_roomsWithNumberOfConnections),
+      headsUp);
 
   @JsonKey(ignore: true)
   @override
@@ -182,10 +213,10 @@ class _$ChatStateImpl implements _ChatState {
 
 abstract class _ChatState implements ChatState {
   const factory _ChatState(
-          {final String? jwt,
-          required final Map<int, List<Message>> roomsWithMessages,
-          required final Map<int, int> roomsWithNumberOfConnections}) =
-      _$ChatStateImpl;
+      {required final String? jwt,
+      required final Map<int, List<Message>> roomsWithMessages,
+      required final Map<int, int> roomsWithNumberOfConnections,
+      required final String? headsUp}) = _$ChatStateImpl;
 
   @override
   String? get jwt;
@@ -193,6 +224,8 @@ abstract class _ChatState implements ChatState {
   Map<int, List<Message>> get roomsWithMessages;
   @override
   Map<int, int> get roomsWithNumberOfConnections;
+  @override
+  String? get headsUp;
   @override
   @JsonKey(ignore: true)
   _$$ChatStateImplCopyWith<_$ChatStateImpl> get copyWith =>

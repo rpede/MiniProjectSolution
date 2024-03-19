@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'websocket_events.dart';
+part of 'events.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -21,6 +21,7 @@ ClientWantsToAuthenticateWithJwt _$ClientWantsToAuthenticateWithJwtFromJson(
 
 /// @nodoc
 mixin _$ClientWantsToAuthenticateWithJwt {
+  String get eventType => throw _privateConstructorUsedError;
   String get jwt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +38,7 @@ abstract class $ClientWantsToAuthenticateWithJwtCopyWith<$Res> {
       _$ClientWantsToAuthenticateWithJwtCopyWithImpl<$Res,
           ClientWantsToAuthenticateWithJwt>;
   @useResult
-  $Res call({String jwt});
+  $Res call({String eventType, String jwt});
 }
 
 /// @nodoc
@@ -54,9 +55,14 @@ class _$ClientWantsToAuthenticateWithJwtCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? jwt = null,
   }) {
     return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       jwt: null == jwt
           ? _value.jwt
           : jwt // ignore: cast_nullable_to_non_nullable
@@ -74,7 +80,7 @@ abstract class _$$ClientWantsToAuthenticateWithJwtImplCopyWith<$Res>
       __$$ClientWantsToAuthenticateWithJwtImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String jwt});
+  $Res call({String eventType, String jwt});
 }
 
 /// @nodoc
@@ -90,9 +96,14 @@ class __$$ClientWantsToAuthenticateWithJwtImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? jwt = null,
   }) {
     return _then(_$ClientWantsToAuthenticateWithJwtImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       jwt: null == jwt
           ? _value.jwt
           : jwt // ignore: cast_nullable_to_non_nullable
@@ -106,18 +117,21 @@ class __$$ClientWantsToAuthenticateWithJwtImplCopyWithImpl<$Res>
 class _$ClientWantsToAuthenticateWithJwtImpl
     with DiagnosticableTreeMixin
     implements _ClientWantsToAuthenticateWithJwt {
-  const _$ClientWantsToAuthenticateWithJwtImpl({required this.jwt});
+  const _$ClientWantsToAuthenticateWithJwtImpl(
+      {required this.eventType, required this.jwt});
 
   factory _$ClientWantsToAuthenticateWithJwtImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ClientWantsToAuthenticateWithJwtImplFromJson(json);
 
   @override
+  final String eventType;
+  @override
   final String jwt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToAuthenticateWithJwt(jwt: $jwt)';
+    return 'ClientWantsToAuthenticateWithJwt(eventType: $eventType, jwt: $jwt)';
   }
 
   @override
@@ -125,6 +139,7 @@ class _$ClientWantsToAuthenticateWithJwtImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ClientWantsToAuthenticateWithJwt'))
+      ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('jwt', jwt));
   }
 
@@ -133,12 +148,14 @@ class _$ClientWantsToAuthenticateWithJwtImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToAuthenticateWithJwtImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
             (identical(other.jwt, jwt) || other.jwt == jwt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, jwt);
+  int get hashCode => Object.hash(runtimeType, eventType, jwt);
 
   @JsonKey(ignore: true)
   @override
@@ -158,13 +175,16 @@ class _$ClientWantsToAuthenticateWithJwtImpl
 
 abstract class _ClientWantsToAuthenticateWithJwt
     implements ClientWantsToAuthenticateWithJwt {
-  const factory _ClientWantsToAuthenticateWithJwt({required final String jwt}) =
-      _$ClientWantsToAuthenticateWithJwtImpl;
+  const factory _ClientWantsToAuthenticateWithJwt(
+      {required final String eventType,
+      required final String jwt}) = _$ClientWantsToAuthenticateWithJwtImpl;
 
   factory _ClientWantsToAuthenticateWithJwt.fromJson(
           Map<String, dynamic> json) =
       _$ClientWantsToAuthenticateWithJwtImpl.fromJson;
 
+  @override
+  String get eventType;
   @override
   String get jwt;
   @override
@@ -181,6 +201,7 @@ ClientWantsToDetectImageObjects _$ClientWantsToDetectImageObjectsFromJson(
 
 /// @nodoc
 mixin _$ClientWantsToDetectImageObjects {
+  String get eventType => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -197,7 +218,7 @@ abstract class $ClientWantsToDetectImageObjectsCopyWith<$Res> {
       _$ClientWantsToDetectImageObjectsCopyWithImpl<$Res,
           ClientWantsToDetectImageObjects>;
   @useResult
-  $Res call({String url});
+  $Res call({String eventType, String url});
 }
 
 /// @nodoc
@@ -214,9 +235,14 @@ class _$ClientWantsToDetectImageObjectsCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? url = null,
   }) {
     return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -234,7 +260,7 @@ abstract class _$$ClientWantsToDetectImageObjectsImplCopyWith<$Res>
       __$$ClientWantsToDetectImageObjectsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String url});
+  $Res call({String eventType, String url});
 }
 
 /// @nodoc
@@ -250,9 +276,14 @@ class __$$ClientWantsToDetectImageObjectsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? url = null,
   }) {
     return _then(_$ClientWantsToDetectImageObjectsImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -266,18 +297,21 @@ class __$$ClientWantsToDetectImageObjectsImplCopyWithImpl<$Res>
 class _$ClientWantsToDetectImageObjectsImpl
     with DiagnosticableTreeMixin
     implements _ClientWantsToDetectImageObjects {
-  const _$ClientWantsToDetectImageObjectsImpl({required this.url});
+  const _$ClientWantsToDetectImageObjectsImpl(
+      {required this.eventType, required this.url});
 
   factory _$ClientWantsToDetectImageObjectsImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ClientWantsToDetectImageObjectsImplFromJson(json);
 
   @override
+  final String eventType;
+  @override
   final String url;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToDetectImageObjects(url: $url)';
+    return 'ClientWantsToDetectImageObjects(eventType: $eventType, url: $url)';
   }
 
   @override
@@ -285,6 +319,7 @@ class _$ClientWantsToDetectImageObjectsImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ClientWantsToDetectImageObjects'))
+      ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('url', url));
   }
 
@@ -293,12 +328,14 @@ class _$ClientWantsToDetectImageObjectsImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToDetectImageObjectsImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
             (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, url);
+  int get hashCode => Object.hash(runtimeType, eventType, url);
 
   @JsonKey(ignore: true)
   @override
@@ -318,12 +355,15 @@ class _$ClientWantsToDetectImageObjectsImpl
 
 abstract class _ClientWantsToDetectImageObjects
     implements ClientWantsToDetectImageObjects {
-  const factory _ClientWantsToDetectImageObjects({required final String url}) =
-      _$ClientWantsToDetectImageObjectsImpl;
+  const factory _ClientWantsToDetectImageObjects(
+      {required final String eventType,
+      required final String url}) = _$ClientWantsToDetectImageObjectsImpl;
 
   factory _ClientWantsToDetectImageObjects.fromJson(Map<String, dynamic> json) =
       _$ClientWantsToDetectImageObjectsImpl.fromJson;
 
+  @override
+  String get eventType;
   @override
   String get url;
   @override
@@ -340,6 +380,7 @@ ClientWantsToEnterRoom _$ClientWantsToEnterRoomFromJson(
 
 /// @nodoc
 mixin _$ClientWantsToEnterRoom {
+  String get eventType => throw _privateConstructorUsedError;
   int get roomId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -354,7 +395,7 @@ abstract class $ClientWantsToEnterRoomCopyWith<$Res> {
           $Res Function(ClientWantsToEnterRoom) then) =
       _$ClientWantsToEnterRoomCopyWithImpl<$Res, ClientWantsToEnterRoom>;
   @useResult
-  $Res call({int roomId});
+  $Res call({String eventType, int roomId});
 }
 
 /// @nodoc
@@ -371,9 +412,14 @@ class _$ClientWantsToEnterRoomCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? roomId = null,
   }) {
     return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -391,7 +437,7 @@ abstract class _$$ClientWantsToEnterRoomImplCopyWith<$Res>
       __$$ClientWantsToEnterRoomImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int roomId});
+  $Res call({String eventType, int roomId});
 }
 
 /// @nodoc
@@ -407,9 +453,14 @@ class __$$ClientWantsToEnterRoomImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? roomId = null,
   }) {
     return _then(_$ClientWantsToEnterRoomImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -423,17 +474,20 @@ class __$$ClientWantsToEnterRoomImplCopyWithImpl<$Res>
 class _$ClientWantsToEnterRoomImpl
     with DiagnosticableTreeMixin
     implements _ClientWantsToEnterRoom {
-  const _$ClientWantsToEnterRoomImpl({required this.roomId});
+  const _$ClientWantsToEnterRoomImpl(
+      {required this.eventType, required this.roomId});
 
   factory _$ClientWantsToEnterRoomImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClientWantsToEnterRoomImplFromJson(json);
 
   @override
+  final String eventType;
+  @override
   final int roomId;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToEnterRoom(roomId: $roomId)';
+    return 'ClientWantsToEnterRoom(eventType: $eventType, roomId: $roomId)';
   }
 
   @override
@@ -441,6 +495,7 @@ class _$ClientWantsToEnterRoomImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ClientWantsToEnterRoom'))
+      ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('roomId', roomId));
   }
 
@@ -449,12 +504,14 @@ class _$ClientWantsToEnterRoomImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToEnterRoomImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
             (identical(other.roomId, roomId) || other.roomId == roomId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, roomId);
+  int get hashCode => Object.hash(runtimeType, eventType, roomId);
 
   @JsonKey(ignore: true)
   @override
@@ -472,12 +529,15 @@ class _$ClientWantsToEnterRoomImpl
 }
 
 abstract class _ClientWantsToEnterRoom implements ClientWantsToEnterRoom {
-  const factory _ClientWantsToEnterRoom({required final int roomId}) =
-      _$ClientWantsToEnterRoomImpl;
+  const factory _ClientWantsToEnterRoom(
+      {required final String eventType,
+      required final int roomId}) = _$ClientWantsToEnterRoomImpl;
 
   factory _ClientWantsToEnterRoom.fromJson(Map<String, dynamic> json) =
       _$ClientWantsToEnterRoomImpl.fromJson;
 
+  @override
+  String get eventType;
   @override
   int get roomId;
   @override
@@ -493,6 +553,7 @@ ClientWantsToRegister _$ClientWantsToRegisterFromJson(
 
 /// @nodoc
 mixin _$ClientWantsToRegister {
+  String get eventType => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
@@ -508,7 +569,7 @@ abstract class $ClientWantsToRegisterCopyWith<$Res> {
           $Res Function(ClientWantsToRegister) then) =
       _$ClientWantsToRegisterCopyWithImpl<$Res, ClientWantsToRegister>;
   @useResult
-  $Res call({String email, String password});
+  $Res call({String eventType, String email, String password});
 }
 
 /// @nodoc
@@ -525,10 +586,15 @@ class _$ClientWantsToRegisterCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -550,7 +616,7 @@ abstract class _$$ClientWantsToRegisterImplCopyWith<$Res>
       __$$ClientWantsToRegisterImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password});
+  $Res call({String eventType, String email, String password});
 }
 
 /// @nodoc
@@ -565,10 +631,15 @@ class __$$ClientWantsToRegisterImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_$ClientWantsToRegisterImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -587,11 +658,13 @@ class _$ClientWantsToRegisterImpl
     with DiagnosticableTreeMixin
     implements _ClientWantsToRegister {
   const _$ClientWantsToRegisterImpl(
-      {required this.email, required this.password});
+      {required this.eventType, required this.email, required this.password});
 
   factory _$ClientWantsToRegisterImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClientWantsToRegisterImplFromJson(json);
 
+  @override
+  final String eventType;
   @override
   final String email;
   @override
@@ -599,7 +672,7 @@ class _$ClientWantsToRegisterImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToRegister(email: $email, password: $password)';
+    return 'ClientWantsToRegister(eventType: $eventType, email: $email, password: $password)';
   }
 
   @override
@@ -607,6 +680,7 @@ class _$ClientWantsToRegisterImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ClientWantsToRegister'))
+      ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('password', password));
   }
@@ -616,6 +690,8 @@ class _$ClientWantsToRegisterImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToRegisterImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -623,7 +699,7 @@ class _$ClientWantsToRegisterImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode => Object.hash(runtimeType, eventType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -642,12 +718,15 @@ class _$ClientWantsToRegisterImpl
 
 abstract class _ClientWantsToRegister implements ClientWantsToRegister {
   const factory _ClientWantsToRegister(
-      {required final String email,
+      {required final String eventType,
+      required final String email,
       required final String password}) = _$ClientWantsToRegisterImpl;
 
   factory _ClientWantsToRegister.fromJson(Map<String, dynamic> json) =
       _$ClientWantsToRegisterImpl.fromJson;
 
+  @override
+  String get eventType;
   @override
   String get email;
   @override
@@ -665,6 +744,7 @@ ClientWantsToSendMessageToRoom _$ClientWantsToSendMessageToRoomFromJson(
 
 /// @nodoc
 mixin _$ClientWantsToSendMessageToRoom {
+  String get eventType => throw _privateConstructorUsedError;
   int get roomId => throw _privateConstructorUsedError;
   String get messageContent => throw _privateConstructorUsedError;
 
@@ -682,7 +762,7 @@ abstract class $ClientWantsToSendMessageToRoomCopyWith<$Res> {
       _$ClientWantsToSendMessageToRoomCopyWithImpl<$Res,
           ClientWantsToSendMessageToRoom>;
   @useResult
-  $Res call({int roomId, String messageContent});
+  $Res call({String eventType, int roomId, String messageContent});
 }
 
 /// @nodoc
@@ -699,10 +779,15 @@ class _$ClientWantsToSendMessageToRoomCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? roomId = null,
     Object? messageContent = null,
   }) {
     return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -724,7 +809,7 @@ abstract class _$$ClientWantsToSendMessageToRoomImplCopyWith<$Res>
       __$$ClientWantsToSendMessageToRoomImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int roomId, String messageContent});
+  $Res call({String eventType, int roomId, String messageContent});
 }
 
 /// @nodoc
@@ -740,10 +825,15 @@ class __$$ClientWantsToSendMessageToRoomImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? roomId = null,
     Object? messageContent = null,
   }) {
     return _then(_$ClientWantsToSendMessageToRoomImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -762,12 +852,16 @@ class _$ClientWantsToSendMessageToRoomImpl
     with DiagnosticableTreeMixin
     implements _ClientWantsToSendMessageToRoom {
   const _$ClientWantsToSendMessageToRoomImpl(
-      {required this.roomId, required this.messageContent});
+      {required this.eventType,
+      required this.roomId,
+      required this.messageContent});
 
   factory _$ClientWantsToSendMessageToRoomImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ClientWantsToSendMessageToRoomImplFromJson(json);
 
+  @override
+  final String eventType;
   @override
   final int roomId;
   @override
@@ -775,7 +869,7 @@ class _$ClientWantsToSendMessageToRoomImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToSendMessageToRoom(roomId: $roomId, messageContent: $messageContent)';
+    return 'ClientWantsToSendMessageToRoom(eventType: $eventType, roomId: $roomId, messageContent: $messageContent)';
   }
 
   @override
@@ -783,6 +877,7 @@ class _$ClientWantsToSendMessageToRoomImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ClientWantsToSendMessageToRoom'))
+      ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('roomId', roomId))
       ..add(DiagnosticsProperty('messageContent', messageContent));
   }
@@ -792,6 +887,8 @@ class _$ClientWantsToSendMessageToRoomImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToSendMessageToRoomImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
             (identical(other.roomId, roomId) || other.roomId == roomId) &&
             (identical(other.messageContent, messageContent) ||
                 other.messageContent == messageContent));
@@ -799,7 +896,8 @@ class _$ClientWantsToSendMessageToRoomImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, roomId, messageContent);
+  int get hashCode =>
+      Object.hash(runtimeType, eventType, roomId, messageContent);
 
   @JsonKey(ignore: true)
   @override
@@ -820,12 +918,16 @@ class _$ClientWantsToSendMessageToRoomImpl
 abstract class _ClientWantsToSendMessageToRoom
     implements ClientWantsToSendMessageToRoom {
   const factory _ClientWantsToSendMessageToRoom(
-          {required final int roomId, required final String messageContent}) =
+          {required final String eventType,
+          required final int roomId,
+          required final String messageContent}) =
       _$ClientWantsToSendMessageToRoomImpl;
 
   factory _ClientWantsToSendMessageToRoom.fromJson(Map<String, dynamic> json) =
       _$ClientWantsToSendMessageToRoomImpl.fromJson;
 
+  @override
+  String get eventType;
   @override
   int get roomId;
   @override
@@ -843,6 +945,7 @@ ClientWantsToSignIn _$ClientWantsToSignInFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ClientWantsToSignIn {
+  String get eventType => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
 
@@ -858,7 +961,7 @@ abstract class $ClientWantsToSignInCopyWith<$Res> {
           ClientWantsToSignIn value, $Res Function(ClientWantsToSignIn) then) =
       _$ClientWantsToSignInCopyWithImpl<$Res, ClientWantsToSignIn>;
   @useResult
-  $Res call({String email, String password});
+  $Res call({String eventType, String email, String password});
 }
 
 /// @nodoc
@@ -874,10 +977,15 @@ class _$ClientWantsToSignInCopyWithImpl<$Res, $Val extends ClientWantsToSignIn>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -898,7 +1006,7 @@ abstract class _$$ClientWantsToSignInImplCopyWith<$Res>
       __$$ClientWantsToSignInImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String email, String password});
+  $Res call({String eventType, String email, String password});
 }
 
 /// @nodoc
@@ -912,10 +1020,15 @@ class __$$ClientWantsToSignInImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_$ClientWantsToSignInImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -934,11 +1047,13 @@ class _$ClientWantsToSignInImpl
     with DiagnosticableTreeMixin
     implements _ClientWantsToSignIn {
   const _$ClientWantsToSignInImpl(
-      {required this.email, required this.password});
+      {required this.eventType, required this.email, required this.password});
 
   factory _$ClientWantsToSignInImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClientWantsToSignInImplFromJson(json);
 
+  @override
+  final String eventType;
   @override
   final String email;
   @override
@@ -946,7 +1061,7 @@ class _$ClientWantsToSignInImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToSignIn(email: $email, password: $password)';
+    return 'ClientWantsToSignIn(eventType: $eventType, email: $email, password: $password)';
   }
 
   @override
@@ -954,6 +1069,7 @@ class _$ClientWantsToSignInImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ClientWantsToSignIn'))
+      ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('password', password));
   }
@@ -963,6 +1079,8 @@ class _$ClientWantsToSignInImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToSignInImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -970,7 +1088,7 @@ class _$ClientWantsToSignInImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, email, password);
+  int get hashCode => Object.hash(runtimeType, eventType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -989,12 +1107,15 @@ class _$ClientWantsToSignInImpl
 
 abstract class _ClientWantsToSignIn implements ClientWantsToSignIn {
   const factory _ClientWantsToSignIn(
-      {required final String email,
+      {required final String eventType,
+      required final String email,
       required final String password}) = _$ClientWantsToSignInImpl;
 
   factory _ClientWantsToSignIn.fromJson(Map<String, dynamic> json) =
       _$ClientWantsToSignInImpl.fromJson;
 
+  @override
+  String get eventType;
   @override
   String get email;
   @override
@@ -1012,6 +1133,7 @@ ServerAddsClientToRoom _$ServerAddsClientToRoomFromJson(
 
 /// @nodoc
 mixin _$ServerAddsClientToRoom {
+  String get eventType => throw _privateConstructorUsedError;
   int get roomId => throw _privateConstructorUsedError;
   int get liveConnections => throw _privateConstructorUsedError;
   List<Message> get messages => throw _privateConstructorUsedError;
@@ -1028,7 +1150,11 @@ abstract class $ServerAddsClientToRoomCopyWith<$Res> {
           $Res Function(ServerAddsClientToRoom) then) =
       _$ServerAddsClientToRoomCopyWithImpl<$Res, ServerAddsClientToRoom>;
   @useResult
-  $Res call({int roomId, int liveConnections, List<Message> messages});
+  $Res call(
+      {String eventType,
+      int roomId,
+      int liveConnections,
+      List<Message> messages});
 }
 
 /// @nodoc
@@ -1045,11 +1171,16 @@ class _$ServerAddsClientToRoomCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? roomId = null,
     Object? liveConnections = null,
     Object? messages = null,
   }) {
     return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -1075,7 +1206,11 @@ abstract class _$$ServerAddsClientToRoomImplCopyWith<$Res>
       __$$ServerAddsClientToRoomImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int roomId, int liveConnections, List<Message> messages});
+  $Res call(
+      {String eventType,
+      int roomId,
+      int liveConnections,
+      List<Message> messages});
 }
 
 /// @nodoc
@@ -1091,11 +1226,16 @@ class __$$ServerAddsClientToRoomImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? roomId = null,
     Object? liveConnections = null,
     Object? messages = null,
   }) {
     return _then(_$ServerAddsClientToRoomImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -1118,7 +1258,8 @@ class _$ServerAddsClientToRoomImpl
     with DiagnosticableTreeMixin
     implements _ServerAddsClientToRoom {
   const _$ServerAddsClientToRoomImpl(
-      {required this.roomId,
+      {required this.eventType,
+      required this.roomId,
       required this.liveConnections,
       required final List<Message> messages})
       : _messages = messages;
@@ -1126,6 +1267,8 @@ class _$ServerAddsClientToRoomImpl
   factory _$ServerAddsClientToRoomImpl.fromJson(Map<String, dynamic> json) =>
       _$$ServerAddsClientToRoomImplFromJson(json);
 
+  @override
+  final String eventType;
   @override
   final int roomId;
   @override
@@ -1140,7 +1283,7 @@ class _$ServerAddsClientToRoomImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerAddsClientToRoom(roomId: $roomId, liveConnections: $liveConnections, messages: $messages)';
+    return 'ServerAddsClientToRoom(eventType: $eventType, roomId: $roomId, liveConnections: $liveConnections, messages: $messages)';
   }
 
   @override
@@ -1148,6 +1291,7 @@ class _$ServerAddsClientToRoomImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ServerAddsClientToRoom'))
+      ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('roomId', roomId))
       ..add(DiagnosticsProperty('liveConnections', liveConnections))
       ..add(DiagnosticsProperty('messages', messages));
@@ -1158,6 +1302,8 @@ class _$ServerAddsClientToRoomImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerAddsClientToRoomImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
             (identical(other.roomId, roomId) || other.roomId == roomId) &&
             (identical(other.liveConnections, liveConnections) ||
                 other.liveConnections == liveConnections) &&
@@ -1166,8 +1312,8 @@ class _$ServerAddsClientToRoomImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, roomId, liveConnections,
-      const DeepCollectionEquality().hash(_messages));
+  int get hashCode => Object.hash(runtimeType, eventType, roomId,
+      liveConnections, const DeepCollectionEquality().hash(_messages));
 
   @JsonKey(ignore: true)
   @override
@@ -1186,13 +1332,16 @@ class _$ServerAddsClientToRoomImpl
 
 abstract class _ServerAddsClientToRoom implements ServerAddsClientToRoom {
   const factory _ServerAddsClientToRoom(
-      {required final int roomId,
+      {required final String eventType,
+      required final int roomId,
       required final int liveConnections,
       required final List<Message> messages}) = _$ServerAddsClientToRoomImpl;
 
   factory _ServerAddsClientToRoom.fromJson(Map<String, dynamic> json) =
       _$ServerAddsClientToRoomImpl.fromJson;
 
+  @override
+  String get eventType;
   @override
   int get roomId;
   @override
@@ -1212,6 +1361,7 @@ ServerAuthenticatesUser _$ServerAuthenticatesUserFromJson(
 
 /// @nodoc
 mixin _$ServerAuthenticatesUser {
+  String get eventType => throw _privateConstructorUsedError;
   String get jwt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1226,7 +1376,7 @@ abstract class $ServerAuthenticatesUserCopyWith<$Res> {
           $Res Function(ServerAuthenticatesUser) then) =
       _$ServerAuthenticatesUserCopyWithImpl<$Res, ServerAuthenticatesUser>;
   @useResult
-  $Res call({String jwt});
+  $Res call({String eventType, String jwt});
 }
 
 /// @nodoc
@@ -1243,9 +1393,14 @@ class _$ServerAuthenticatesUserCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? jwt = null,
   }) {
     return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       jwt: null == jwt
           ? _value.jwt
           : jwt // ignore: cast_nullable_to_non_nullable
@@ -1263,7 +1418,7 @@ abstract class _$$ServerAuthenticatesUserImplCopyWith<$Res>
       __$$ServerAuthenticatesUserImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String jwt});
+  $Res call({String eventType, String jwt});
 }
 
 /// @nodoc
@@ -1279,9 +1434,14 @@ class __$$ServerAuthenticatesUserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? jwt = null,
   }) {
     return _then(_$ServerAuthenticatesUserImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       jwt: null == jwt
           ? _value.jwt
           : jwt // ignore: cast_nullable_to_non_nullable
@@ -1295,17 +1455,20 @@ class __$$ServerAuthenticatesUserImplCopyWithImpl<$Res>
 class _$ServerAuthenticatesUserImpl
     with DiagnosticableTreeMixin
     implements _ServerAuthenticatesUser {
-  const _$ServerAuthenticatesUserImpl({required this.jwt});
+  const _$ServerAuthenticatesUserImpl(
+      {required this.eventType, required this.jwt});
 
   factory _$ServerAuthenticatesUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$ServerAuthenticatesUserImplFromJson(json);
 
   @override
+  final String eventType;
+  @override
   final String jwt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerAuthenticatesUser(jwt: $jwt)';
+    return 'ServerAuthenticatesUser(eventType: $eventType, jwt: $jwt)';
   }
 
   @override
@@ -1313,6 +1476,7 @@ class _$ServerAuthenticatesUserImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ServerAuthenticatesUser'))
+      ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('jwt', jwt));
   }
 
@@ -1321,12 +1485,14 @@ class _$ServerAuthenticatesUserImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerAuthenticatesUserImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
             (identical(other.jwt, jwt) || other.jwt == jwt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, jwt);
+  int get hashCode => Object.hash(runtimeType, eventType, jwt);
 
   @JsonKey(ignore: true)
   @override
@@ -1344,12 +1510,15 @@ class _$ServerAuthenticatesUserImpl
 }
 
 abstract class _ServerAuthenticatesUser implements ServerAuthenticatesUser {
-  const factory _ServerAuthenticatesUser({required final String jwt}) =
-      _$ServerAuthenticatesUserImpl;
+  const factory _ServerAuthenticatesUser(
+      {required final String eventType,
+      required final String jwt}) = _$ServerAuthenticatesUserImpl;
 
   factory _ServerAuthenticatesUser.fromJson(Map<String, dynamic> json) =
       _$ServerAuthenticatesUserImpl.fromJson;
 
+  @override
+  String get eventType;
   @override
   String get jwt;
   @override
@@ -1366,8 +1535,9 @@ ServerBroadcastsMessageToClientsInRoom
 
 /// @nodoc
 mixin _$ServerBroadcastsMessageToClientsInRoom {
+  String get eventType => throw _privateConstructorUsedError;
   int get roomId => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
+  Message get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1384,7 +1554,9 @@ abstract class $ServerBroadcastsMessageToClientsInRoomCopyWith<$Res> {
       _$ServerBroadcastsMessageToClientsInRoomCopyWithImpl<$Res,
           ServerBroadcastsMessageToClientsInRoom>;
   @useResult
-  $Res call({int roomId, String message});
+  $Res call({String eventType, int roomId, Message message});
+
+  $MessageCopyWith<$Res> get message;
 }
 
 /// @nodoc
@@ -1401,10 +1573,15 @@ class _$ServerBroadcastsMessageToClientsInRoomCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? roomId = null,
     Object? message = null,
   }) {
     return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -1412,8 +1589,16 @@ class _$ServerBroadcastsMessageToClientsInRoomCopyWithImpl<$Res,
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Message,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MessageCopyWith<$Res> get message {
+    return $MessageCopyWith<$Res>(_value.message, (value) {
+      return _then(_value.copyWith(message: value) as $Val);
+    });
   }
 }
 
@@ -1426,7 +1611,10 @@ abstract class _$$ServerBroadcastsMessageToClientsInRoomImplCopyWith<$Res>
       __$$ServerBroadcastsMessageToClientsInRoomImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int roomId, String message});
+  $Res call({String eventType, int roomId, Message message});
+
+  @override
+  $MessageCopyWith<$Res> get message;
 }
 
 /// @nodoc
@@ -1442,10 +1630,15 @@ class __$$ServerBroadcastsMessageToClientsInRoomImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? roomId = null,
     Object? message = null,
   }) {
     return _then(_$ServerBroadcastsMessageToClientsInRoomImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -1453,7 +1646,7 @@ class __$$ServerBroadcastsMessageToClientsInRoomImplCopyWithImpl<$Res>
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as String,
+              as Message,
     ));
   }
 }
@@ -1464,20 +1657,22 @@ class _$ServerBroadcastsMessageToClientsInRoomImpl
     with DiagnosticableTreeMixin
     implements _ServerBroadcastsMessageToClientsInRoom {
   const _$ServerBroadcastsMessageToClientsInRoomImpl(
-      {required this.roomId, required this.message});
+      {required this.eventType, required this.roomId, required this.message});
 
   factory _$ServerBroadcastsMessageToClientsInRoomImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ServerBroadcastsMessageToClientsInRoomImplFromJson(json);
 
   @override
+  final String eventType;
+  @override
   final int roomId;
   @override
-  final String message;
+  final Message message;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerBroadcastsMessageToClientsInRoom(roomId: $roomId, message: $message)';
+    return 'ServerBroadcastsMessageToClientsInRoom(eventType: $eventType, roomId: $roomId, message: $message)';
   }
 
   @override
@@ -1486,6 +1681,7 @@ class _$ServerBroadcastsMessageToClientsInRoomImpl
     properties
       ..add(
           DiagnosticsProperty('type', 'ServerBroadcastsMessageToClientsInRoom'))
+      ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('roomId', roomId))
       ..add(DiagnosticsProperty('message', message));
   }
@@ -1495,13 +1691,15 @@ class _$ServerBroadcastsMessageToClientsInRoomImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerBroadcastsMessageToClientsInRoomImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
             (identical(other.roomId, roomId) || other.roomId == roomId) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, roomId, message);
+  int get hashCode => Object.hash(runtimeType, eventType, roomId, message);
 
   @JsonKey(ignore: true)
   @override
@@ -1523,7 +1721,9 @@ class _$ServerBroadcastsMessageToClientsInRoomImpl
 abstract class _ServerBroadcastsMessageToClientsInRoom
     implements ServerBroadcastsMessageToClientsInRoom {
   const factory _ServerBroadcastsMessageToClientsInRoom(
-          {required final int roomId, required final String message}) =
+          {required final String eventType,
+          required final int roomId,
+          required final Message message}) =
       _$ServerBroadcastsMessageToClientsInRoomImpl;
 
   factory _ServerBroadcastsMessageToClientsInRoom.fromJson(
@@ -1531,9 +1731,11 @@ abstract class _ServerBroadcastsMessageToClientsInRoom
       _$ServerBroadcastsMessageToClientsInRoomImpl.fromJson;
 
   @override
+  String get eventType;
+  @override
   int get roomId;
   @override
-  String get message;
+  Message get message;
   @override
   @JsonKey(ignore: true)
   _$$ServerBroadcastsMessageToClientsInRoomImplCopyWith<
@@ -1549,7 +1751,8 @@ ServerNotifiesClientsInRoomSomeoneHasJoinedRoom
 
 /// @nodoc
 mixin _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoom {
-  EndUser get userEmail => throw _privateConstructorUsedError;
+  String get eventType => throw _privateConstructorUsedError;
+  String get userEmail => throw _privateConstructorUsedError;
   int get roomId => throw _privateConstructorUsedError;
   String get message => throw _privateConstructorUsedError;
 
@@ -1568,9 +1771,7 @@ abstract class $ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWith<$Res> {
       _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWithImpl<$Res,
           ServerNotifiesClientsInRoomSomeoneHasJoinedRoom>;
   @useResult
-  $Res call({EndUser userEmail, int roomId, String message});
-
-  $EndUserCopyWith<$Res> get userEmail;
+  $Res call({String eventType, String userEmail, int roomId, String message});
 }
 
 /// @nodoc
@@ -1588,15 +1789,20 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? userEmail = null,
     Object? roomId = null,
     Object? message = null,
   }) {
     return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       userEmail: null == userEmail
           ? _value.userEmail
           : userEmail // ignore: cast_nullable_to_non_nullable
-              as EndUser,
+              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -1606,14 +1812,6 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWithImpl<$Res,
           : message // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $EndUserCopyWith<$Res> get userEmail {
-    return $EndUserCopyWith<$Res>(_value.userEmail, (value) {
-      return _then(_value.copyWith(userEmail: value) as $Val);
-    });
   }
 }
 
@@ -1628,10 +1826,7 @@ abstract class _$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplCopyWith<
       __$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({EndUser userEmail, int roomId, String message});
-
-  @override
-  $EndUserCopyWith<$Res> get userEmail;
+  $Res call({String eventType, String userEmail, int roomId, String message});
 }
 
 /// @nodoc
@@ -1649,15 +1844,20 @@ class __$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? userEmail = null,
     Object? roomId = null,
     Object? message = null,
   }) {
     return _then(_$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       userEmail: null == userEmail
           ? _value.userEmail
           : userEmail // ignore: cast_nullable_to_non_nullable
-              as EndUser,
+              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -1676,14 +1876,19 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
     with DiagnosticableTreeMixin
     implements _ServerNotifiesClientsInRoomSomeoneHasJoinedRoom {
   const _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl(
-      {required this.userEmail, required this.roomId, required this.message});
+      {required this.eventType,
+      required this.userEmail,
+      required this.roomId,
+      required this.message});
 
   factory _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplFromJson(json);
 
   @override
-  final EndUser userEmail;
+  final String eventType;
+  @override
+  final String userEmail;
   @override
   final int roomId;
   @override
@@ -1691,7 +1896,7 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerNotifiesClientsInRoomSomeoneHasJoinedRoom(userEmail: $userEmail, roomId: $roomId, message: $message)';
+    return 'ServerNotifiesClientsInRoomSomeoneHasJoinedRoom(eventType: $eventType, userEmail: $userEmail, roomId: $roomId, message: $message)';
   }
 
   @override
@@ -1700,6 +1905,7 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
     properties
       ..add(DiagnosticsProperty(
           'type', 'ServerNotifiesClientsInRoomSomeoneHasJoinedRoom'))
+      ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('userEmail', userEmail))
       ..add(DiagnosticsProperty('roomId', roomId))
       ..add(DiagnosticsProperty('message', message));
@@ -1710,6 +1916,8 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
             (identical(other.userEmail, userEmail) ||
                 other.userEmail == userEmail) &&
             (identical(other.roomId, roomId) || other.roomId == roomId) &&
@@ -1718,7 +1926,8 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userEmail, roomId, message);
+  int get hashCode =>
+      Object.hash(runtimeType, eventType, userEmail, roomId, message);
 
   @JsonKey(ignore: true)
   @override
@@ -1741,7 +1950,8 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
 abstract class _ServerNotifiesClientsInRoomSomeoneHasJoinedRoom
     implements ServerNotifiesClientsInRoomSomeoneHasJoinedRoom {
   const factory _ServerNotifiesClientsInRoomSomeoneHasJoinedRoom(
-          {required final EndUser userEmail,
+          {required final String eventType,
+          required final String userEmail,
           required final int roomId,
           required final String message}) =
       _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl;
@@ -1751,7 +1961,9 @@ abstract class _ServerNotifiesClientsInRoomSomeoneHasJoinedRoom
       _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl.fromJson;
 
   @override
-  EndUser get userEmail;
+  String get eventType;
+  @override
+  String get userEmail;
   @override
   int get roomId;
   @override
@@ -1770,6 +1982,7 @@ ServerSendsErrorMessageToClient _$ServerSendsErrorMessageToClientFromJson(
 
 /// @nodoc
 mixin _$ServerSendsErrorMessageToClient {
+  String get eventType => throw _privateConstructorUsedError;
   String get errorMessage => throw _privateConstructorUsedError;
   String get receivedMessage => throw _privateConstructorUsedError;
 
@@ -1787,7 +2000,7 @@ abstract class $ServerSendsErrorMessageToClientCopyWith<$Res> {
       _$ServerSendsErrorMessageToClientCopyWithImpl<$Res,
           ServerSendsErrorMessageToClient>;
   @useResult
-  $Res call({String errorMessage, String receivedMessage});
+  $Res call({String eventType, String errorMessage, String receivedMessage});
 }
 
 /// @nodoc
@@ -1804,10 +2017,15 @@ class _$ServerSendsErrorMessageToClientCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? errorMessage = null,
     Object? receivedMessage = null,
   }) {
     return _then(_value.copyWith(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -1829,7 +2047,7 @@ abstract class _$$ServerSendsErrorMessageToClientImplCopyWith<$Res>
       __$$ServerSendsErrorMessageToClientImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String errorMessage, String receivedMessage});
+  $Res call({String eventType, String errorMessage, String receivedMessage});
 }
 
 /// @nodoc
@@ -1845,10 +2063,15 @@ class __$$ServerSendsErrorMessageToClientImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? eventType = null,
     Object? errorMessage = null,
     Object? receivedMessage = null,
   }) {
     return _then(_$ServerSendsErrorMessageToClientImpl(
+      eventType: null == eventType
+          ? _value.eventType
+          : eventType // ignore: cast_nullable_to_non_nullable
+              as String,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -1867,12 +2090,16 @@ class _$ServerSendsErrorMessageToClientImpl
     with DiagnosticableTreeMixin
     implements _ServerSendsErrorMessageToClient {
   const _$ServerSendsErrorMessageToClientImpl(
-      {required this.errorMessage, required this.receivedMessage});
+      {required this.eventType,
+      required this.errorMessage,
+      required this.receivedMessage});
 
   factory _$ServerSendsErrorMessageToClientImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ServerSendsErrorMessageToClientImplFromJson(json);
 
+  @override
+  final String eventType;
   @override
   final String errorMessage;
   @override
@@ -1880,7 +2107,7 @@ class _$ServerSendsErrorMessageToClientImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerSendsErrorMessageToClient(errorMessage: $errorMessage, receivedMessage: $receivedMessage)';
+    return 'ServerSendsErrorMessageToClient(eventType: $eventType, errorMessage: $errorMessage, receivedMessage: $receivedMessage)';
   }
 
   @override
@@ -1888,6 +2115,7 @@ class _$ServerSendsErrorMessageToClientImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ServerSendsErrorMessageToClient'))
+      ..add(DiagnosticsProperty('eventType', eventType))
       ..add(DiagnosticsProperty('errorMessage', errorMessage))
       ..add(DiagnosticsProperty('receivedMessage', receivedMessage));
   }
@@ -1897,6 +2125,8 @@ class _$ServerSendsErrorMessageToClientImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerSendsErrorMessageToClientImpl &&
+            (identical(other.eventType, eventType) ||
+                other.eventType == eventType) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
             (identical(other.receivedMessage, receivedMessage) ||
@@ -1905,7 +2135,8 @@ class _$ServerSendsErrorMessageToClientImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, errorMessage, receivedMessage);
+  int get hashCode =>
+      Object.hash(runtimeType, eventType, errorMessage, receivedMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -1926,13 +2157,16 @@ class _$ServerSendsErrorMessageToClientImpl
 abstract class _ServerSendsErrorMessageToClient
     implements ServerSendsErrorMessageToClient {
   const factory _ServerSendsErrorMessageToClient(
-          {required final String errorMessage,
+          {required final String eventType,
+          required final String errorMessage,
           required final String receivedMessage}) =
       _$ServerSendsErrorMessageToClientImpl;
 
   factory _ServerSendsErrorMessageToClient.fromJson(Map<String, dynamic> json) =
       _$ServerSendsErrorMessageToClientImpl.fromJson;
 
+  @override
+  String get eventType;
   @override
   String get errorMessage;
   @override

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'bloc/chat_bloc.dart';
 
 class AuthenticateForm extends StatefulWidget {
   const AuthenticateForm({super.key});
@@ -8,7 +11,7 @@ class AuthenticateForm extends StatefulWidget {
 }
 
 class _AuthenticateFormState extends State<AuthenticateForm> {
-  final _formKey = GlobalKey<FormState>();
+  final _authFormKey = GlobalKey<FormState>();
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
 
@@ -20,41 +23,48 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
   }
 
   _onSignIn() {
-    if (!_formKey.currentState!.validate()) return;
+    if (!_authFormKey.currentState!.validate()) return;
+    context.read<ChatBloc>().signIn(
+        password: _passwordController.text, email: _usernameController.text);
   }
 
   _onRegister() {
-    if (!_formKey.currentState!.validate()) return;
+    if (!_authFormKey.currentState!.validate()) return;
+    context.read<ChatBloc>().register(
+        password: _passwordController.text, email: _usernameController.text);
   }
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: _formKey,
+      key: _authFormKey,
       child: Column(
         children: [
           TextFormField(
-            decoration: InputDecoration(border: OutlineInputBorder()),
+            decoration: const InputDecoration(border: OutlineInputBorder()),
             controller: _usernameController,
             validator: (value) =>
                 (value ?? "").contains("@") ? null : "Must be a valid email",
-            onChanged: (value) => _formKey.currentState!.validate(),
+            onChanged: (value) => _authFormKey.currentState!.validate(),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           TextFormField(
-            decoration: InputDecoration(border: OutlineInputBorder()),
+            decoration: const InputDecoration(border: OutlineInputBorder()),
             controller: _passwordController,
+            obscureText: true,
             validator: (value) => (value ?? "").length >= 6
                 ? null
                 : "Must be at least 6 in length",
-            onChanged: (value) => _formKey.currentState!.validate(),
+            onChanged: (value) => _authFormKey.currentState!.validate(),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Row(
             children: [
-              OutlinedButton(onPressed: _onSignIn, child: Text("Sign in")),
-              SizedBox(width: 8),
-              OutlinedButton(onPressed: _onRegister, child: Text("Register")),
+              OutlinedButton(
+                  onPressed: _onSignIn, child: const Text("Sign in")),
+              const SizedBox(width: 8),
+              OutlinedButton(
+                  onPressed: _onRegister, child: const Text("Register")),
             ],
           )
         ],
