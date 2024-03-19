@@ -5,21 +5,28 @@ import 'package:flutter_frontend/bloc/chat_bloc.dart';
 import 'package:flutter_frontend/bloc/chat_state.dart';
 import 'package:flutter_frontend/logger_bloc_observer.dart';
 import 'package:flutter_frontend/enter_rooms_form.dart';
+import 'package:flutter_frontend/notification_helper.dart';
 import 'package:flutter_frontend/room_messages.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:logging_appenders/logging_appenders.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'package:logging/logging.dart';
 
-void main() {
+void main() async {
   PrintAppender(formatter: const ColorFormatter()).attachToLogger(Logger.root);
   Bloc.observer = LoggerBlocObserver();
 
   final wsUri = Uri.parse('ws://localhost:8181');
   final channel = WebSocketChannel.connect(wsUri);
 
+  WidgetsFlutterBinding.ensureInitialized();
+  final notifications = NotificationHelper();
+  await notifications.initializeNotification();
+
   runApp(BlocProvider(
-    create: (context) => ChatBloc(channel: channel),
+    create: (context) =>
+        ChatBloc(channel: channel, notifications: notifications),
     child: const MyApp(),
   ));
 }
@@ -53,6 +60,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

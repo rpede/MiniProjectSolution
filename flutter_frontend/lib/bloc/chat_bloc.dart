@@ -3,16 +3,22 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_frontend/bloc/chat_state.dart';
+import 'package:flutter_frontend/notification_helper.dart';
+import 'package:flutter_frontend/room_messages.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../models/events.dart';
 
 class ChatBloc extends Bloc<BaseEvent, ChatState> {
   final WebSocketChannel _channel;
+  final NotificationHelper _notifications;
   late StreamSubscription _channelSubscription;
 
-  ChatBloc({required channel})
+  ChatBloc(
+      {required WebSocketChannel channel,
+      required NotificationHelper notifications})
       : _channel = channel,
+        _notifications = notifications,
         super(const ChatState(
           jwt: null,
           roomsWithMessages: {},
@@ -66,24 +72,27 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
         ...(state.roomsWithMessages[event.roomId])!,
         event.message
       ],
-    }, headsUp: 'New message!'));
+    }));
+    _notifications.createNotification(
+        title: '✉️ New message!', body: event.message.format());
   }
 
   FutureOr<void> _onServerNotifiesClientsInRoomSomeoneHasJoinedRoom(
       ServerNotifiesClientsInRoomSomeoneHasJoinedRoom event,
       Emitter<ChatState> emit) {
     emit(state.copyWith(
-      headsUp: '🧨 New user joined: ${event.userEmail}',
       roomsWithNumberOfConnections: {
         ...state.roomsWithNumberOfConnections,
         event.roomId: state.roomsWithNumberOfConnections[event.roomId]! + 1
       },
     ));
+    _notifications.createNotification(
+        title: "🧨 New user joined!", body: event.userEmail);
   }
 
   FutureOr<void> _onServerSendsErrorMessageToClient(
       ServerSendsErrorMessageToClient event, Emitter<ChatState> emit) {
-    emit(state.copyWith(headsUp: '⚠️ ${event.errorMessage}'));
+    emit(state.copyWith(headsUp: "⚠️ ${event.errorMessage}"));
   }
 
   void enterRoom({required int roomId}) {
