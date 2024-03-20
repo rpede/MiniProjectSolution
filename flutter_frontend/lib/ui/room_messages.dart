@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
-import 'bloc/chat_bloc.dart';
-import 'main.dart';
-import 'models/entities.dart';
+import '../bloc/chat_bloc.dart';
+import '../models/entities.dart';
+import 'common.dart';
 
 class RoomMessages extends StatefulWidget {
   final MapEntry<int, List<Message>> room;
@@ -53,6 +53,7 @@ class _RoomMessagesState extends State<RoomMessages> {
   }
 }
 
+/// Extension method to format Message
 extension ChatMessageX on Message {
   format() {
     final formatter = DateFormat('dd/MM/yy, hh.mm.ss');

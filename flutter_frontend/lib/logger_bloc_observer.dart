@@ -1,8 +1,9 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 
+/// Log changes and errors
 class LoggerBlocObserver extends BlocObserver {
-  final log = Logger('LoggerBlocObserver');
+  final log = Logger((LoggerBlocObserver).toString());
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);

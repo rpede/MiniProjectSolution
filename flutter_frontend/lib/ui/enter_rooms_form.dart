@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/chat_bloc.dart';
+import '../bloc/chat_bloc.dart';
 
 class EnterRoomForm extends StatefulWidget {
   const EnterRoomForm({super.key});
