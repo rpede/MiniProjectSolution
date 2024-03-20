@@ -13,6 +13,7 @@ class ClientEvent extends BaseEvent {}
 @freezed
 class ClientWantsToAuthenticateWithJwt extends ClientEvent
     with _$ClientWantsToAuthenticateWithJwt {
+  static const String name = "ClientWantsToAuthenticateWithJwt";
   const factory ClientWantsToAuthenticateWithJwt({
     required String eventType,
     required String jwt,
@@ -26,6 +27,7 @@ class ClientWantsToAuthenticateWithJwt extends ClientEvent
 @freezed
 class ClientWantsToDetectImageObjects extends ClientEvent
     with _$ClientWantsToDetectImageObjects {
+  static const String name = "ClientWantsToDetectImageObjects";
   const factory ClientWantsToDetectImageObjects({
     required String eventType,
     required String url,
@@ -37,6 +39,7 @@ class ClientWantsToDetectImageObjects extends ClientEvent
 
 @freezed
 class ClientWantsToEnterRoom extends ClientEvent with _$ClientWantsToEnterRoom {
+  static const String name = "ClientWantsToEnterRoom";
   const factory ClientWantsToEnterRoom({
     required String eventType,
     required int roomId,
@@ -48,6 +51,7 @@ class ClientWantsToEnterRoom extends ClientEvent with _$ClientWantsToEnterRoom {
 
 @freezed
 class ClientWantsToRegister extends ClientEvent with _$ClientWantsToRegister {
+  static const String name = "ClientWantsToRegister";
   const factory ClientWantsToRegister({
     required String eventType,
     required String email,
@@ -61,6 +65,7 @@ class ClientWantsToRegister extends ClientEvent with _$ClientWantsToRegister {
 @freezed
 class ClientWantsToSendMessageToRoom extends ClientEvent
     with _$ClientWantsToSendMessageToRoom {
+  static const String name = "ClientWantsToSendMessageToRoom";
   const factory ClientWantsToSendMessageToRoom({
     required String eventType,
     required int roomId,
@@ -73,6 +78,7 @@ class ClientWantsToSendMessageToRoom extends ClientEvent
 
 @freezed
 class ClientWantsToSignIn extends ClientEvent with _$ClientWantsToSignIn {
+  static const String name = "ClientWantsToSignIn";
   const factory ClientWantsToSignIn({
     required String eventType,
     required String email,
@@ -85,18 +91,16 @@ class ClientWantsToSignIn extends ClientEvent with _$ClientWantsToSignIn {
 
 class ServerEvent extends BaseEvent {
   static ServerEvent fromJson(Map<String, Object?> json) {
-    print(json);
     final type = json['eventType'];
     return switch (type) {
-      "ServerSendsErrorMessageToClient" =>
-        ServerAddsClientToRoom.fromJson(json),
-      "ServerNotifiesClientsInRoomSomeoneHasJoinedRoom" =>
-        ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.fromJson(json),
-      "ServerBroadcastsMessageToClientsInRoom" =>
+      ServerAddsClientToRoom.name => ServerAddsClientToRoom.fromJson(json),
+      ServerAuthenticatesUser.name => ServerAuthenticatesUser.fromJson(json),
+      ServerBroadcastsMessageToClientsInRoom.name =>
         ServerBroadcastsMessageToClientsInRoom.fromJson(json),
-      "ServerAuthenticatesUser" => ServerAuthenticatesUser.fromJson(json),
-      "ServerAddsClientToRoom" => ServerAddsClientToRoom.fromJson(json),
-      "ServerSendsErrorMessageToClient" => ServerSendsErrorMessageToClient.fromJson(json),
+      ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.name =>
+        ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.fromJson(json),
+      ServerSendsErrorMessageToClient.name =>
+        ServerAddsClientToRoom.fromJson(json),
       _ => throw "Unknown event type: $type in $json"
     };
   }
@@ -104,6 +108,7 @@ class ServerEvent extends BaseEvent {
 
 @freezed
 class ServerAddsClientToRoom extends ServerEvent with _$ServerAddsClientToRoom {
+  static const String name = "ServerAddsClientToRoom";
   const factory ServerAddsClientToRoom({
     required String eventType,
     required int roomId,
@@ -118,6 +123,7 @@ class ServerAddsClientToRoom extends ServerEvent with _$ServerAddsClientToRoom {
 @freezed
 class ServerAuthenticatesUser extends ServerEvent
     with _$ServerAuthenticatesUser {
+  static const String name = "ServerAuthenticatesUser";
   const factory ServerAuthenticatesUser({
     required String eventType,
     required String jwt,
@@ -130,6 +136,7 @@ class ServerAuthenticatesUser extends ServerEvent
 @freezed
 class ServerBroadcastsMessageToClientsInRoom extends ServerEvent
     with _$ServerBroadcastsMessageToClientsInRoom {
+  static const String name = "ServerBroadcastsMessageToClientsInRoom";
   const factory ServerBroadcastsMessageToClientsInRoom({
     required String eventType,
     required int roomId,
@@ -144,6 +151,7 @@ class ServerBroadcastsMessageToClientsInRoom extends ServerEvent
 @freezed
 class ServerNotifiesClientsInRoomSomeoneHasJoinedRoom extends ServerEvent
     with _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoom {
+  static const String name = "ServerNotifiesClientsInRoomSomeoneHasJoinedRoom";
   const factory ServerNotifiesClientsInRoomSomeoneHasJoinedRoom({
     required String eventType,
     required String userEmail,
@@ -159,6 +167,7 @@ class ServerNotifiesClientsInRoomSomeoneHasJoinedRoom extends ServerEvent
 @freezed
 class ServerSendsErrorMessageToClient extends ServerEvent
     with _$ServerSendsErrorMessageToClient {
+  static const String name = "ServerSendsErrorMessageToClient";
   const factory ServerSendsErrorMessageToClient({
     required String eventType,
     required String errorMessage,

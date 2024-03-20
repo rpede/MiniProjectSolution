@@ -19,6 +19,7 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
           roomsWithNumberOfConnections: {},
           headsUp: null,
         )) {
+    // Handlers for server events
     on<ServerAddsClientToRoom>(_onServerAddsClientToRoom);
     on<ServerAuthenticatesUser>(_onServerAuthenticatesUser);
     on<ServerBroadcastsMessageToClientsInRoom>(
@@ -27,6 +28,7 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
         _onServerNotifiesClientsInRoomSomeoneHasJoinedRoom);
     on<ServerSendsErrorMessageToClient>(_onServerSendsErrorMessageToClient);
 
+    // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
         .map((event) => jsonDecode(event))
         .map((event) => ServerEvent.fromJson(event))
@@ -35,6 +37,7 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
 
   @override
   Future<void> close() async {
+    // Remember to cancel the subscription when no longer needed.
     _channelSubscription.cancel();
     super.close();
   }
@@ -86,33 +89,37 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
     emit(state.copyWith(headsUp: '⚠️ ${event.errorMessage}'));
   }
 
+  /// Sends ClientWantsToEnterRoom event to server
   void enterRoom({required int roomId}) {
     _sendJson(ClientWantsToEnterRoom(
-      eventType: "ClientWantsToEnterRoom",
+      eventType: ClientWantsToEnterRoom.name,
       roomId: roomId,
     ).toJson());
   }
 
+  /// Sends ClientWantsToSignIn event to server
   void signIn({required String password, required String email}) {
     _sendJson(ClientWantsToSignIn(
-      eventType: "ClientWantsToSignIn",
+      eventType: ClientWantsToSignIn.name,
       email: email,
       password: password,
     ).toJson());
   }
 
+  /// Sends ClientWantsToRegister event to server
   void register({required String password, required String email}) {
     _sendJson(ClientWantsToRegister(
-      eventType: "ClientWantsToRegister",
+      eventType: ClientWantsToRegister.name,
       email: email,
       password: password,
     ).toJson());
   }
 
+  /// Sends ClientWantsToSendMessageToRoom event to server
   void sendMessageToRoom(
       {required int roomId, required String messageContent}) {
     _sendJson(ClientWantsToSendMessageToRoom(
-      eventType: "ClientWantsToSendMessageToRoom",
+      eventType: ClientWantsToSendMessageToRoom.name,
       roomId: roomId,
       messageContent: messageContent,
     ).toJson());
