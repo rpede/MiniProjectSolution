@@ -42,12 +42,8 @@ class ChatApp extends StatelessWidget {
                     const AuthenticateForm(),
                     const Header("Pick a room to enter"),
                     const EnterRoomForm(),
-                    for (final room in state.roomsWithMessages.entries)
-                      RoomMessages(
-                        room: room,
-                        liveConnections:
-                            state.roomsWithNumberOfConnections[room.key],
-                      ),
+                    for (final room in state.connectedRooms)
+                      RoomMessages(room: room),
                     const SizedBox(height: 50)
                   ],
                 ),

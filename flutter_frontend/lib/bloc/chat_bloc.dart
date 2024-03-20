@@ -15,8 +15,7 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
       : _channel = channel,
         super(const ChatState(
           jwt: null,
-          roomsWithMessages: {},
-          roomsWithNumberOfConnections: {},
+          connectedRooms: [],
           headsUp: null,
         )) {
     // Handlers for server events
@@ -39,20 +38,22 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
   Future<void> close() async {
     // Remember to cancel the subscription when no longer needed.
     _channelSubscription.cancel();
+    // And close the socket
+    _channel.sink.close();
     super.close();
   }
 
   FutureOr<void> _onServerAddsClientToRoom(
       ServerAddsClientToRoom event, Emitter<ChatState> emit) {
     emit(state.copyWith(
-      roomsWithMessages: {
-        ...state.roomsWithMessages,
-        event.roomId: event.messages,
-      },
-      roomsWithNumberOfConnections: {
-        ...state.roomsWithNumberOfConnections,
-        event.roomId: event.liveConnections,
-      },
+      connectedRooms: [
+        ...state.connectedRooms,
+        ConnectedRoom(
+          roomId: event.roomId,
+          messages: event.messages,
+          numberOfConnections: event.liveConnections,
+        )
+      ],
     ));
   }
 
@@ -63,24 +64,30 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
 
   FutureOr<void> _onServerBroadcastsMessageToClientsInRoom(
       ServerBroadcastsMessageToClientsInRoom event, Emitter<ChatState> emit) {
-    emit(state.copyWith(roomsWithMessages: {
-      ...state.roomsWithMessages,
-      event.roomId: [
-        ...(state.roomsWithMessages[event.roomId])!,
-        event.message
+    emit(state.copyWith(
+      connectedRooms: [
+        for (final room in state.connectedRooms)
+          if (room.roomId == event.roomId)
+            room.copyWith(messages: [...room.messages, event.message])
+          else
+            room
       ],
-    }, headsUp: 'New message!'));
+      headsUp: 'New message!',
+    ));
   }
 
   FutureOr<void> _onServerNotifiesClientsInRoomSomeoneHasJoinedRoom(
       ServerNotifiesClientsInRoomSomeoneHasJoinedRoom event,
       Emitter<ChatState> emit) {
     emit(state.copyWith(
+      connectedRooms: [
+        for (final room in state.connectedRooms)
+          if (room.roomId == event.roomId)
+            room.copyWith(numberOfConnections: room.numberOfConnections + 1)
+          else
+            room
+      ],
       headsUp: '🧨 New user joined: ${event.userEmail}',
-      roomsWithNumberOfConnections: {
-        ...state.roomsWithNumberOfConnections,
-        event.roomId: state.roomsWithNumberOfConnections[event.roomId]! + 1
-      },
     ));
   }
 

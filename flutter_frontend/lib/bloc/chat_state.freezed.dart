@@ -15,12 +15,185 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
+mixin _$ConnectedRoom {
+  int get roomId => throw _privateConstructorUsedError;
+  List<Message> get messages => throw _privateConstructorUsedError;
+  int get numberOfConnections => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $ConnectedRoomCopyWith<ConnectedRoom> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ConnectedRoomCopyWith<$Res> {
+  factory $ConnectedRoomCopyWith(
+          ConnectedRoom value, $Res Function(ConnectedRoom) then) =
+      _$ConnectedRoomCopyWithImpl<$Res, ConnectedRoom>;
+  @useResult
+  $Res call({int roomId, List<Message> messages, int numberOfConnections});
+}
+
+/// @nodoc
+class _$ConnectedRoomCopyWithImpl<$Res, $Val extends ConnectedRoom>
+    implements $ConnectedRoomCopyWith<$Res> {
+  _$ConnectedRoomCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? roomId = null,
+    Object? messages = null,
+    Object? numberOfConnections = null,
+  }) {
+    return _then(_value.copyWith(
+      roomId: null == roomId
+          ? _value.roomId
+          : roomId // ignore: cast_nullable_to_non_nullable
+              as int,
+      messages: null == messages
+          ? _value.messages
+          : messages // ignore: cast_nullable_to_non_nullable
+              as List<Message>,
+      numberOfConnections: null == numberOfConnections
+          ? _value.numberOfConnections
+          : numberOfConnections // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$ConnectedRoomImplCopyWith<$Res>
+    implements $ConnectedRoomCopyWith<$Res> {
+  factory _$$ConnectedRoomImplCopyWith(
+          _$ConnectedRoomImpl value, $Res Function(_$ConnectedRoomImpl) then) =
+      __$$ConnectedRoomImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int roomId, List<Message> messages, int numberOfConnections});
+}
+
+/// @nodoc
+class __$$ConnectedRoomImplCopyWithImpl<$Res>
+    extends _$ConnectedRoomCopyWithImpl<$Res, _$ConnectedRoomImpl>
+    implements _$$ConnectedRoomImplCopyWith<$Res> {
+  __$$ConnectedRoomImplCopyWithImpl(
+      _$ConnectedRoomImpl _value, $Res Function(_$ConnectedRoomImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? roomId = null,
+    Object? messages = null,
+    Object? numberOfConnections = null,
+  }) {
+    return _then(_$ConnectedRoomImpl(
+      roomId: null == roomId
+          ? _value.roomId
+          : roomId // ignore: cast_nullable_to_non_nullable
+              as int,
+      messages: null == messages
+          ? _value._messages
+          : messages // ignore: cast_nullable_to_non_nullable
+              as List<Message>,
+      numberOfConnections: null == numberOfConnections
+          ? _value.numberOfConnections
+          : numberOfConnections // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$ConnectedRoomImpl
+    with DiagnosticableTreeMixin
+    implements _ConnectedRoom {
+  const _$ConnectedRoomImpl(
+      {required this.roomId,
+      required final List<Message> messages,
+      required this.numberOfConnections})
+      : _messages = messages;
+
+  @override
+  final int roomId;
+  final List<Message> _messages;
+  @override
+  List<Message> get messages {
+    if (_messages is EqualUnmodifiableListView) return _messages;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_messages);
+  }
+
+  @override
+  final int numberOfConnections;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'ConnectedRoom(roomId: $roomId, messages: $messages, numberOfConnections: $numberOfConnections)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ConnectedRoom'))
+      ..add(DiagnosticsProperty('roomId', roomId))
+      ..add(DiagnosticsProperty('messages', messages))
+      ..add(DiagnosticsProperty('numberOfConnections', numberOfConnections));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ConnectedRoomImpl &&
+            (identical(other.roomId, roomId) || other.roomId == roomId) &&
+            const DeepCollectionEquality().equals(other._messages, _messages) &&
+            (identical(other.numberOfConnections, numberOfConnections) ||
+                other.numberOfConnections == numberOfConnections));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, roomId,
+      const DeepCollectionEquality().hash(_messages), numberOfConnections);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ConnectedRoomImplCopyWith<_$ConnectedRoomImpl> get copyWith =>
+      __$$ConnectedRoomImplCopyWithImpl<_$ConnectedRoomImpl>(this, _$identity);
+}
+
+abstract class _ConnectedRoom implements ConnectedRoom {
+  const factory _ConnectedRoom(
+      {required final int roomId,
+      required final List<Message> messages,
+      required final int numberOfConnections}) = _$ConnectedRoomImpl;
+
+  @override
+  int get roomId;
+  @override
+  List<Message> get messages;
+  @override
+  int get numberOfConnections;
+  @override
+  @JsonKey(ignore: true)
+  _$$ConnectedRoomImplCopyWith<_$ConnectedRoomImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$ChatState {
   String? get jwt => throw _privateConstructorUsedError;
-  Map<int, List<Message>> get roomsWithMessages =>
-      throw _privateConstructorUsedError;
-  Map<int, int> get roomsWithNumberOfConnections =>
-      throw _privateConstructorUsedError;
+  List<ConnectedRoom> get connectedRooms => throw _privateConstructorUsedError;
   String? get headsUp => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -33,11 +206,7 @@ abstract class $ChatStateCopyWith<$Res> {
   factory $ChatStateCopyWith(ChatState value, $Res Function(ChatState) then) =
       _$ChatStateCopyWithImpl<$Res, ChatState>;
   @useResult
-  $Res call(
-      {String? jwt,
-      Map<int, List<Message>> roomsWithMessages,
-      Map<int, int> roomsWithNumberOfConnections,
-      String? headsUp});
+  $Res call({String? jwt, List<ConnectedRoom> connectedRooms, String? headsUp});
 }
 
 /// @nodoc
@@ -54,8 +223,7 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
   @override
   $Res call({
     Object? jwt = freezed,
-    Object? roomsWithMessages = null,
-    Object? roomsWithNumberOfConnections = null,
+    Object? connectedRooms = null,
     Object? headsUp = freezed,
   }) {
     return _then(_value.copyWith(
@@ -63,14 +231,10 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
           ? _value.jwt
           : jwt // ignore: cast_nullable_to_non_nullable
               as String?,
-      roomsWithMessages: null == roomsWithMessages
-          ? _value.roomsWithMessages
-          : roomsWithMessages // ignore: cast_nullable_to_non_nullable
-              as Map<int, List<Message>>,
-      roomsWithNumberOfConnections: null == roomsWithNumberOfConnections
-          ? _value.roomsWithNumberOfConnections
-          : roomsWithNumberOfConnections // ignore: cast_nullable_to_non_nullable
-              as Map<int, int>,
+      connectedRooms: null == connectedRooms
+          ? _value.connectedRooms
+          : connectedRooms // ignore: cast_nullable_to_non_nullable
+              as List<ConnectedRoom>,
       headsUp: freezed == headsUp
           ? _value.headsUp
           : headsUp // ignore: cast_nullable_to_non_nullable
@@ -87,11 +251,7 @@ abstract class _$$ChatStateImplCopyWith<$Res>
       __$$ChatStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String? jwt,
-      Map<int, List<Message>> roomsWithMessages,
-      Map<int, int> roomsWithNumberOfConnections,
-      String? headsUp});
+  $Res call({String? jwt, List<ConnectedRoom> connectedRooms, String? headsUp});
 }
 
 /// @nodoc
@@ -106,8 +266,7 @@ class __$$ChatStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? jwt = freezed,
-    Object? roomsWithMessages = null,
-    Object? roomsWithNumberOfConnections = null,
+    Object? connectedRooms = null,
     Object? headsUp = freezed,
   }) {
     return _then(_$ChatStateImpl(
@@ -115,14 +274,10 @@ class __$$ChatStateImplCopyWithImpl<$Res>
           ? _value.jwt
           : jwt // ignore: cast_nullable_to_non_nullable
               as String?,
-      roomsWithMessages: null == roomsWithMessages
-          ? _value._roomsWithMessages
-          : roomsWithMessages // ignore: cast_nullable_to_non_nullable
-              as Map<int, List<Message>>,
-      roomsWithNumberOfConnections: null == roomsWithNumberOfConnections
-          ? _value._roomsWithNumberOfConnections
-          : roomsWithNumberOfConnections // ignore: cast_nullable_to_non_nullable
-              as Map<int, int>,
+      connectedRooms: null == connectedRooms
+          ? _value._connectedRooms
+          : connectedRooms // ignore: cast_nullable_to_non_nullable
+              as List<ConnectedRoom>,
       headsUp: freezed == headsUp
           ? _value.headsUp
           : headsUp // ignore: cast_nullable_to_non_nullable
@@ -136,30 +291,18 @@ class __$$ChatStateImplCopyWithImpl<$Res>
 class _$ChatStateImpl with DiagnosticableTreeMixin implements _ChatState {
   const _$ChatStateImpl(
       {required this.jwt,
-      required final Map<int, List<Message>> roomsWithMessages,
-      required final Map<int, int> roomsWithNumberOfConnections,
+      required final List<ConnectedRoom> connectedRooms,
       required this.headsUp})
-      : _roomsWithMessages = roomsWithMessages,
-        _roomsWithNumberOfConnections = roomsWithNumberOfConnections;
+      : _connectedRooms = connectedRooms;
 
   @override
   final String? jwt;
-  final Map<int, List<Message>> _roomsWithMessages;
+  final List<ConnectedRoom> _connectedRooms;
   @override
-  Map<int, List<Message>> get roomsWithMessages {
-    if (_roomsWithMessages is EqualUnmodifiableMapView)
-      return _roomsWithMessages;
+  List<ConnectedRoom> get connectedRooms {
+    if (_connectedRooms is EqualUnmodifiableListView) return _connectedRooms;
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_roomsWithMessages);
-  }
-
-  final Map<int, int> _roomsWithNumberOfConnections;
-  @override
-  Map<int, int> get roomsWithNumberOfConnections {
-    if (_roomsWithNumberOfConnections is EqualUnmodifiableMapView)
-      return _roomsWithNumberOfConnections;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_roomsWithNumberOfConnections);
+    return EqualUnmodifiableListView(_connectedRooms);
   }
 
   @override
@@ -167,7 +310,7 @@ class _$ChatStateImpl with DiagnosticableTreeMixin implements _ChatState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ChatState(jwt: $jwt, roomsWithMessages: $roomsWithMessages, roomsWithNumberOfConnections: $roomsWithNumberOfConnections, headsUp: $headsUp)';
+    return 'ChatState(jwt: $jwt, connectedRooms: $connectedRooms, headsUp: $headsUp)';
   }
 
   @override
@@ -176,9 +319,7 @@ class _$ChatStateImpl with DiagnosticableTreeMixin implements _ChatState {
     properties
       ..add(DiagnosticsProperty('type', 'ChatState'))
       ..add(DiagnosticsProperty('jwt', jwt))
-      ..add(DiagnosticsProperty('roomsWithMessages', roomsWithMessages))
-      ..add(DiagnosticsProperty(
-          'roomsWithNumberOfConnections', roomsWithNumberOfConnections))
+      ..add(DiagnosticsProperty('connectedRooms', connectedRooms))
       ..add(DiagnosticsProperty('headsUp', headsUp));
   }
 
@@ -189,20 +330,13 @@ class _$ChatStateImpl with DiagnosticableTreeMixin implements _ChatState {
             other is _$ChatStateImpl &&
             (identical(other.jwt, jwt) || other.jwt == jwt) &&
             const DeepCollectionEquality()
-                .equals(other._roomsWithMessages, _roomsWithMessages) &&
-            const DeepCollectionEquality().equals(
-                other._roomsWithNumberOfConnections,
-                _roomsWithNumberOfConnections) &&
+                .equals(other._connectedRooms, _connectedRooms) &&
             (identical(other.headsUp, headsUp) || other.headsUp == headsUp));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      jwt,
-      const DeepCollectionEquality().hash(_roomsWithMessages),
-      const DeepCollectionEquality().hash(_roomsWithNumberOfConnections),
-      headsUp);
+  int get hashCode => Object.hash(runtimeType, jwt,
+      const DeepCollectionEquality().hash(_connectedRooms), headsUp);
 
   @JsonKey(ignore: true)
   @override
@@ -214,16 +348,13 @@ class _$ChatStateImpl with DiagnosticableTreeMixin implements _ChatState {
 abstract class _ChatState implements ChatState {
   const factory _ChatState(
       {required final String? jwt,
-      required final Map<int, List<Message>> roomsWithMessages,
-      required final Map<int, int> roomsWithNumberOfConnections,
+      required final List<ConnectedRoom> connectedRooms,
       required final String? headsUp}) = _$ChatStateImpl;
 
   @override
   String? get jwt;
   @override
-  Map<int, List<Message>> get roomsWithMessages;
-  @override
-  Map<int, int> get roomsWithNumberOfConnections;
+  List<ConnectedRoom> get connectedRooms;
   @override
   String? get headsUp;
   @override
