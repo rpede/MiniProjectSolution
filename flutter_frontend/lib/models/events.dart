@@ -8,7 +8,9 @@ part 'events.g.dart';
 
 sealed class BaseEvent {}
 
-class ClientEvent extends BaseEvent {}
+abstract class ClientEvent extends BaseEvent {
+  Map<String, dynamic> toJson();
+}
 
 @freezed
 class ClientWantsToAuthenticateWithJwt extends ClientEvent

@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import '../models/entities.dart';
 part 'chat_state.freezed.dart';
 
-
 @freezed
 class ConnectedRoom with _$ConnectedRoom {
   const factory ConnectedRoom({
@@ -17,8 +16,11 @@ class ConnectedRoom with _$ConnectedRoom {
 @freezed
 class ChatState with _$ChatState {
   const factory ChatState({
-    required String? jwt,
+    required bool authenticated,
     required List<ConnectedRoom> connectedRooms,
     required String? headsUp,
   }) = _ChatState;
+
+  static ChatState empty() =>
+      const ChatState(authenticated: false, connectedRooms: [], headsUp: null);
 }

@@ -192,7 +192,7 @@ abstract class _ConnectedRoom implements ConnectedRoom {
 
 /// @nodoc
 mixin _$ChatState {
-  String? get jwt => throw _privateConstructorUsedError;
+  bool get authenticated => throw _privateConstructorUsedError;
   List<ConnectedRoom> get connectedRooms => throw _privateConstructorUsedError;
   String? get headsUp => throw _privateConstructorUsedError;
 
@@ -206,7 +206,10 @@ abstract class $ChatStateCopyWith<$Res> {
   factory $ChatStateCopyWith(ChatState value, $Res Function(ChatState) then) =
       _$ChatStateCopyWithImpl<$Res, ChatState>;
   @useResult
-  $Res call({String? jwt, List<ConnectedRoom> connectedRooms, String? headsUp});
+  $Res call(
+      {bool authenticated,
+      List<ConnectedRoom> connectedRooms,
+      String? headsUp});
 }
 
 /// @nodoc
@@ -222,15 +225,15 @@ class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? jwt = freezed,
+    Object? authenticated = null,
     Object? connectedRooms = null,
     Object? headsUp = freezed,
   }) {
     return _then(_value.copyWith(
-      jwt: freezed == jwt
-          ? _value.jwt
-          : jwt // ignore: cast_nullable_to_non_nullable
-              as String?,
+      authenticated: null == authenticated
+          ? _value.authenticated
+          : authenticated // ignore: cast_nullable_to_non_nullable
+              as bool,
       connectedRooms: null == connectedRooms
           ? _value.connectedRooms
           : connectedRooms // ignore: cast_nullable_to_non_nullable
@@ -251,7 +254,10 @@ abstract class _$$ChatStateImplCopyWith<$Res>
       __$$ChatStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String? jwt, List<ConnectedRoom> connectedRooms, String? headsUp});
+  $Res call(
+      {bool authenticated,
+      List<ConnectedRoom> connectedRooms,
+      String? headsUp});
 }
 
 /// @nodoc
@@ -265,15 +271,15 @@ class __$$ChatStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? jwt = freezed,
+    Object? authenticated = null,
     Object? connectedRooms = null,
     Object? headsUp = freezed,
   }) {
     return _then(_$ChatStateImpl(
-      jwt: freezed == jwt
-          ? _value.jwt
-          : jwt // ignore: cast_nullable_to_non_nullable
-              as String?,
+      authenticated: null == authenticated
+          ? _value.authenticated
+          : authenticated // ignore: cast_nullable_to_non_nullable
+              as bool,
       connectedRooms: null == connectedRooms
           ? _value._connectedRooms
           : connectedRooms // ignore: cast_nullable_to_non_nullable
@@ -290,13 +296,13 @@ class __$$ChatStateImplCopyWithImpl<$Res>
 
 class _$ChatStateImpl with DiagnosticableTreeMixin implements _ChatState {
   const _$ChatStateImpl(
-      {required this.jwt,
+      {required this.authenticated,
       required final List<ConnectedRoom> connectedRooms,
       required this.headsUp})
       : _connectedRooms = connectedRooms;
 
   @override
-  final String? jwt;
+  final bool authenticated;
   final List<ConnectedRoom> _connectedRooms;
   @override
   List<ConnectedRoom> get connectedRooms {
@@ -310,7 +316,7 @@ class _$ChatStateImpl with DiagnosticableTreeMixin implements _ChatState {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ChatState(jwt: $jwt, connectedRooms: $connectedRooms, headsUp: $headsUp)';
+    return 'ChatState(authenticated: $authenticated, connectedRooms: $connectedRooms, headsUp: $headsUp)';
   }
 
   @override
@@ -318,7 +324,7 @@ class _$ChatStateImpl with DiagnosticableTreeMixin implements _ChatState {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'ChatState'))
-      ..add(DiagnosticsProperty('jwt', jwt))
+      ..add(DiagnosticsProperty('authenticated', authenticated))
       ..add(DiagnosticsProperty('connectedRooms', connectedRooms))
       ..add(DiagnosticsProperty('headsUp', headsUp));
   }
@@ -328,14 +334,15 @@ class _$ChatStateImpl with DiagnosticableTreeMixin implements _ChatState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChatStateImpl &&
-            (identical(other.jwt, jwt) || other.jwt == jwt) &&
+            (identical(other.authenticated, authenticated) ||
+                other.authenticated == authenticated) &&
             const DeepCollectionEquality()
                 .equals(other._connectedRooms, _connectedRooms) &&
             (identical(other.headsUp, headsUp) || other.headsUp == headsUp));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, jwt,
+  int get hashCode => Object.hash(runtimeType, authenticated,
       const DeepCollectionEquality().hash(_connectedRooms), headsUp);
 
   @JsonKey(ignore: true)
@@ -347,12 +354,12 @@ class _$ChatStateImpl with DiagnosticableTreeMixin implements _ChatState {
 
 abstract class _ChatState implements ChatState {
   const factory _ChatState(
-      {required final String? jwt,
+      {required final bool authenticated,
       required final List<ConnectedRoom> connectedRooms,
       required final String? headsUp}) = _$ChatStateImpl;
 
   @override
-  String? get jwt;
+  bool get authenticated;
   @override
   List<ConnectedRoom> get connectedRooms;
   @override
