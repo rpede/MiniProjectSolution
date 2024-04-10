@@ -3,11 +3,17 @@ import 'package:logging/logging.dart';
 
 /// Log changes and errors
 class LoggerBlocObserver extends BlocObserver {
-  final log = Logger((LoggerBlocObserver).toString());
+  final log = Logger('LoggerBlocObserver');
   @override
   void onChange(BlocBase bloc, Change change) {
     super.onChange(bloc, change);
-    log.log(Level.INFO, '${bloc.runtimeType} $change');
+    log.log(Level.INFO, 'Change: ${bloc.runtimeType} $change');
+  }
+
+  @override
+  void onEvent(Bloc<dynamic, dynamic> bloc, Object? event) {
+    super.onEvent(bloc, event);
+    log.log(Level.INFO, 'Event: ${bloc.runtimeType} $event');
   }
 
   @override
