@@ -2,10 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_frontend/bloc/chat_state.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../models/events.dart';
+import 'chat_state.dart';
 
 class ChatBloc extends Bloc<BaseEvent, ChatState> {
   final WebSocketChannel _channel;

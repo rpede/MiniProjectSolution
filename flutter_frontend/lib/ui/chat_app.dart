@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../bloc/chat_bloc.dart';
-import '../bloc/chat_state.dart';
+import '../chat_bloc/chat_bloc.dart';
+import '../chat_bloc/chat_state.dart';
 import 'authenticate_form.dart';
 import 'common.dart';
 import 'enter_rooms_form.dart';

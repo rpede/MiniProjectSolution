@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_frontend/bloc/chat_state.dart';
+import 'package:flutter_frontend/chat_bloc/chat_state.dart';
 import 'package:intl/intl.dart';
 
-import '../bloc/chat_bloc.dart';
+import '../chat_bloc/chat_bloc.dart';
 import '../models/entities.dart';
 import 'common.dart';
 
