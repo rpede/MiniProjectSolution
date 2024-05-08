@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_frontend/broadcast_ws_channel.dart';
+import 'package:flutter_frontend/error_bloc/error_bloc.dart';
 import 'package:flutter_frontend/logger_bloc_observer.dart';
 import 'package:logging_appenders/logging_appenders.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -16,11 +18,14 @@ void main() {
 
   // Connect to WebSocket
   final wsUri = Uri.parse('ws://localhost:8181');
-  final channel = WebSocketChannel.connect(wsUri);
+  final channel = BroadcastWsChannel(wsUri);
 
   // Start app with dependency provider ChatBloc
-  runApp(BlocProvider(
-    create: (context) => ChatBloc(channel: channel),
+  runApp(MultiBlocProvider(
+    providers: [
+      BlocProvider(create: (context) => ChatBloc(channel: channel)),
+      BlocProvider(create: (context) => ErrorBloc(channel: channel))
+    ],
     child: const ChatApp(),
   ));
 }

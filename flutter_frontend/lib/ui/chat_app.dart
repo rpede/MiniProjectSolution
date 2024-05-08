@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_frontend/error_bloc/error_bloc.dart';
+import 'package:flutter_frontend/error_bloc/error_state.dart';
 
 import '../chat_bloc/chat_bloc.dart';
 import '../chat_bloc/chat_state.dart';
@@ -25,33 +27,52 @@ class ChatApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.system,
       home: Scaffold(
-        body: BlocConsumer<ChatBloc, ChatState>(
-          listenWhen: (previous, current) => current.headsUp != null,
-          listener: (context, state) {
-            ScaffoldMessenger.of(context)
-                .showSnackBar(SnackBar(content: Text(state.headsUp!)));
-          },
-          builder: (context, state) => SingleChildScrollView(
-            child: Center(
-              child: Container(
-                constraints: const BoxConstraints(maxWidth: 400),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Header("Authenticate"),
-                    const AuthenticateForm(),
-                    const Header("Pick a room to enter"),
-                    const EnterRoomForm(),
-                    for (final room in state.connectedRooms)
-                      RoomMessages(room: room),
-                    const SizedBox(height: 50)
-                  ],
+        body: ErrorMessageWrapper(
+          child: BlocBuilder<ChatBloc, ChatState>(
+            builder: (context, state) => SingleChildScrollView(
+              child: Center(
+                child: Container(
+                  constraints: const BoxConstraints(maxWidth: 400),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Header("Authenticate"),
+                      const AuthenticateForm(),
+                      const Header("Pick a room to enter"),
+                      const EnterRoomForm(),
+                      for (final room in state.connectedRooms)
+                        RoomMessages(room: room),
+                      const SizedBox(height: 50)
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class ErrorMessageWrapper extends StatelessWidget {
+  const ErrorMessageWrapper({
+    super.key,
+    required this.child,
+  });
+
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocListener<ErrorBloc, BaseErrorState>(
+      listener: (context, state) {
+        if (state is ErrorState) {
+          ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(state.message)));
+        }
+      },
+      child: child,
     );
   }
 }

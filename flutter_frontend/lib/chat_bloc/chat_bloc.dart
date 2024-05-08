@@ -2,13 +2,13 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:flutter_frontend/broadcast_ws_channel.dart';
 
 import '../models/events.dart';
 import 'chat_state.dart';
 
 class ChatBloc extends Bloc<BaseEvent, ChatState> {
-  final WebSocketChannel _channel;
+  final BroadcastWsChannel _channel;
   late StreamSubscription _channelSubscription;
   String? _jwt;
 
@@ -25,7 +25,7 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
         _onServerBroadcastsMessageToClientsInRoom);
     on<ServerNotifiesClientsInRoomSomeoneHasJoinedRoom>(
         _onServerNotifiesClientsInRoomSomeoneHasJoinedRoom);
-    on<ServerSendsErrorMessageToClient>(_onServerSendsErrorMessageToClient);
+    on<ServerEvent>((event, _) => print(event));
 
     // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
@@ -136,10 +136,5 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
       ],
       headsUp: '🧨 New user joined: ${event.userEmail}',
     ));
-  }
-
-  FutureOr<void> _onServerSendsErrorMessageToClient(
-      ServerSendsErrorMessageToClient event, Emitter<ChatState> emit) {
-    emit(state.copyWith(headsUp: '⚠️ ${event.errorMessage}'));
   }
 }

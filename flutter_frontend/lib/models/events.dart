@@ -102,7 +102,7 @@ class ServerEvent extends BaseEvent {
       ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.name =>
         ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.fromJson(json),
       ServerSendsErrorMessageToClient.name =>
-        ServerAddsClientToRoom.fromJson(json),
+        ServerSendsErrorMessageToClient.fromJson(json),
       _ => throw "Unknown event type: $type in $json"
     };
   }
