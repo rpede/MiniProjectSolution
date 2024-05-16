@@ -14,78 +14,141 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-ClientWantsToAuthenticateWithJwt _$ClientWantsToAuthenticateWithJwtFromJson(
-    Map<String, dynamic> json) {
-  return _ClientWantsToAuthenticateWithJwt.fromJson(json);
+ClientEvent _$ClientEventFromJson(Map<String, dynamic> json) {
+  switch (json['eventType']) {
+    case 'ClientWantsToAuthenticateWithJwt':
+      return ClientWantsToAuthenticateWithJwt.fromJson(json);
+    case 'ClientWantsToDetectImageObjects':
+      return ClientWantsToDetectImageObjects.fromJson(json);
+    case 'ClientWantsToEnterRoom':
+      return ClientWantsToEnterRoom.fromJson(json);
+    case 'ClientWantsToRegister':
+      return ClientWantsToRegister.fromJson(json);
+    case 'ClientWantsToSendMessageToRoom':
+      return ClientWantsToSendMessageToRoom.fromJson(json);
+    case 'ClientWantsToSignIn':
+      return ClientWantsToSignIn.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'eventType', 'ClientEvent',
+          'Invalid union type "${json['eventType']}"!');
+  }
 }
 
 /// @nodoc
-mixin _$ClientWantsToAuthenticateWithJwt {
-  String get eventType => throw _privateConstructorUsedError;
-  String get jwt => throw _privateConstructorUsedError;
-
+mixin _$ClientEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String jwt) clientWantsToAuthenticateWithJwt,
+    required TResult Function(String url) clientWantsToDetectImageObjects,
+    required TResult Function(int roomId) clientWantsToEnterRoom,
+    required TResult Function(String email, String password)
+        clientWantsToRegister,
+    required TResult Function(int roomId, String messageContent)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(String email, String password)
+        clientWantsToSignIn,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult? Function(String url)? clientWantsToDetectImageObjects,
+    TResult? Function(int roomId)? clientWantsToEnterRoom,
+    TResult? Function(String email, String password)? clientWantsToRegister,
+    TResult? Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(String email, String password)? clientWantsToSignIn,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult Function(String url)? clientWantsToDetectImageObjects,
+    TResult Function(int roomId)? clientWantsToEnterRoom,
+    TResult Function(String email, String password)? clientWantsToRegister,
+    TResult Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(String email, String password)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClientWantsToAuthenticateWithJwt value)
+        clientWantsToAuthenticateWithJwt,
+    required TResult Function(ClientWantsToDetectImageObjects value)
+        clientWantsToDetectImageObjects,
+    required TResult Function(ClientWantsToEnterRoom value)
+        clientWantsToEnterRoom,
+    required TResult Function(ClientWantsToRegister value)
+        clientWantsToRegister,
+    required TResult Function(ClientWantsToSendMessageToRoom value)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(ClientWantsToSignIn value) clientWantsToSignIn,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult? Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult? Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult? Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult? Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ClientWantsToAuthenticateWithJwtCopyWith<ClientWantsToAuthenticateWithJwt>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ClientWantsToAuthenticateWithJwtCopyWith<$Res> {
-  factory $ClientWantsToAuthenticateWithJwtCopyWith(
-          ClientWantsToAuthenticateWithJwt value,
-          $Res Function(ClientWantsToAuthenticateWithJwt) then) =
-      _$ClientWantsToAuthenticateWithJwtCopyWithImpl<$Res,
-          ClientWantsToAuthenticateWithJwt>;
-  @useResult
-  $Res call({String eventType, String jwt});
+abstract class $ClientEventCopyWith<$Res> {
+  factory $ClientEventCopyWith(
+          ClientEvent value, $Res Function(ClientEvent) then) =
+      _$ClientEventCopyWithImpl<$Res, ClientEvent>;
 }
 
 /// @nodoc
-class _$ClientWantsToAuthenticateWithJwtCopyWithImpl<$Res,
-        $Val extends ClientWantsToAuthenticateWithJwt>
-    implements $ClientWantsToAuthenticateWithJwtCopyWith<$Res> {
-  _$ClientWantsToAuthenticateWithJwtCopyWithImpl(this._value, this._then);
+class _$ClientEventCopyWithImpl<$Res, $Val extends ClientEvent>
+    implements $ClientEventCopyWith<$Res> {
+  _$ClientEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? jwt = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      jwt: null == jwt
-          ? _value.jwt
-          : jwt // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$ClientWantsToAuthenticateWithJwtImplCopyWith<$Res>
-    implements $ClientWantsToAuthenticateWithJwtCopyWith<$Res> {
+abstract class _$$ClientWantsToAuthenticateWithJwtImplCopyWith<$Res> {
   factory _$$ClientWantsToAuthenticateWithJwtImplCopyWith(
           _$ClientWantsToAuthenticateWithJwtImpl value,
           $Res Function(_$ClientWantsToAuthenticateWithJwtImpl) then) =
       __$$ClientWantsToAuthenticateWithJwtImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String eventType, String jwt});
+  $Res call({String jwt});
 }
 
 /// @nodoc
 class __$$ClientWantsToAuthenticateWithJwtImplCopyWithImpl<$Res>
-    extends _$ClientWantsToAuthenticateWithJwtCopyWithImpl<$Res,
+    extends _$ClientEventCopyWithImpl<$Res,
         _$ClientWantsToAuthenticateWithJwtImpl>
     implements _$$ClientWantsToAuthenticateWithJwtImplCopyWith<$Res> {
   __$$ClientWantsToAuthenticateWithJwtImplCopyWithImpl(
@@ -96,14 +159,9 @@ class __$$ClientWantsToAuthenticateWithJwtImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventType = null,
     Object? jwt = null,
   }) {
     return _then(_$ClientWantsToAuthenticateWithJwtImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
       jwt: null == jwt
           ? _value.jwt
           : jwt // ignore: cast_nullable_to_non_nullable
@@ -116,30 +174,32 @@ class __$$ClientWantsToAuthenticateWithJwtImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClientWantsToAuthenticateWithJwtImpl
     with DiagnosticableTreeMixin
-    implements _ClientWantsToAuthenticateWithJwt {
-  const _$ClientWantsToAuthenticateWithJwtImpl(
-      {required this.eventType, required this.jwt});
+    implements ClientWantsToAuthenticateWithJwt {
+  _$ClientWantsToAuthenticateWithJwtImpl(
+      {required this.jwt, final String? $type})
+      : $type = $type ?? 'ClientWantsToAuthenticateWithJwt';
 
   factory _$ClientWantsToAuthenticateWithJwtImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ClientWantsToAuthenticateWithJwtImplFromJson(json);
 
   @override
-  final String eventType;
-  @override
   final String jwt;
+
+  @JsonKey(name: 'eventType')
+  final String $type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToAuthenticateWithJwt(eventType: $eventType, jwt: $jwt)';
+    return 'ClientEvent.clientWantsToAuthenticateWithJwt(jwt: $jwt)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'ClientWantsToAuthenticateWithJwt'))
-      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty(
+          'type', 'ClientEvent.clientWantsToAuthenticateWithJwt'))
       ..add(DiagnosticsProperty('jwt', jwt));
   }
 
@@ -148,14 +208,12 @@ class _$ClientWantsToAuthenticateWithJwtImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToAuthenticateWithJwtImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
             (identical(other.jwt, jwt) || other.jwt == jwt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, eventType, jwt);
+  int get hashCode => Object.hash(runtimeType, jwt);
 
   @JsonKey(ignore: true)
   @override
@@ -166,6 +224,108 @@ class _$ClientWantsToAuthenticateWithJwtImpl
           _$ClientWantsToAuthenticateWithJwtImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String jwt) clientWantsToAuthenticateWithJwt,
+    required TResult Function(String url) clientWantsToDetectImageObjects,
+    required TResult Function(int roomId) clientWantsToEnterRoom,
+    required TResult Function(String email, String password)
+        clientWantsToRegister,
+    required TResult Function(int roomId, String messageContent)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(String email, String password)
+        clientWantsToSignIn,
+  }) {
+    return clientWantsToAuthenticateWithJwt(jwt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult? Function(String url)? clientWantsToDetectImageObjects,
+    TResult? Function(int roomId)? clientWantsToEnterRoom,
+    TResult? Function(String email, String password)? clientWantsToRegister,
+    TResult? Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(String email, String password)? clientWantsToSignIn,
+  }) {
+    return clientWantsToAuthenticateWithJwt?.call(jwt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult Function(String url)? clientWantsToDetectImageObjects,
+    TResult Function(int roomId)? clientWantsToEnterRoom,
+    TResult Function(String email, String password)? clientWantsToRegister,
+    TResult Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(String email, String password)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToAuthenticateWithJwt != null) {
+      return clientWantsToAuthenticateWithJwt(jwt);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClientWantsToAuthenticateWithJwt value)
+        clientWantsToAuthenticateWithJwt,
+    required TResult Function(ClientWantsToDetectImageObjects value)
+        clientWantsToDetectImageObjects,
+    required TResult Function(ClientWantsToEnterRoom value)
+        clientWantsToEnterRoom,
+    required TResult Function(ClientWantsToRegister value)
+        clientWantsToRegister,
+    required TResult Function(ClientWantsToSendMessageToRoom value)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(ClientWantsToSignIn value) clientWantsToSignIn,
+  }) {
+    return clientWantsToAuthenticateWithJwt(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult? Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult? Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult? Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult? Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+  }) {
+    return clientWantsToAuthenticateWithJwt?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToAuthenticateWithJwt != null) {
+      return clientWantsToAuthenticateWithJwt(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$ClientWantsToAuthenticateWithJwtImplToJson(
       this,
@@ -173,99 +333,33 @@ class _$ClientWantsToAuthenticateWithJwtImpl
   }
 }
 
-abstract class _ClientWantsToAuthenticateWithJwt
-    implements ClientWantsToAuthenticateWithJwt {
-  const factory _ClientWantsToAuthenticateWithJwt(
-      {required final String eventType,
-      required final String jwt}) = _$ClientWantsToAuthenticateWithJwtImpl;
+abstract class ClientWantsToAuthenticateWithJwt implements ClientEvent {
+  factory ClientWantsToAuthenticateWithJwt({required final String jwt}) =
+      _$ClientWantsToAuthenticateWithJwtImpl;
 
-  factory _ClientWantsToAuthenticateWithJwt.fromJson(
-          Map<String, dynamic> json) =
+  factory ClientWantsToAuthenticateWithJwt.fromJson(Map<String, dynamic> json) =
       _$ClientWantsToAuthenticateWithJwtImpl.fromJson;
 
-  @override
-  String get eventType;
-  @override
   String get jwt;
-  @override
   @JsonKey(ignore: true)
   _$$ClientWantsToAuthenticateWithJwtImplCopyWith<
           _$ClientWantsToAuthenticateWithJwtImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ClientWantsToDetectImageObjects _$ClientWantsToDetectImageObjectsFromJson(
-    Map<String, dynamic> json) {
-  return _ClientWantsToDetectImageObjects.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ClientWantsToDetectImageObjects {
-  String get eventType => throw _privateConstructorUsedError;
-  String get url => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ClientWantsToDetectImageObjectsCopyWith<ClientWantsToDetectImageObjects>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ClientWantsToDetectImageObjectsCopyWith<$Res> {
-  factory $ClientWantsToDetectImageObjectsCopyWith(
-          ClientWantsToDetectImageObjects value,
-          $Res Function(ClientWantsToDetectImageObjects) then) =
-      _$ClientWantsToDetectImageObjectsCopyWithImpl<$Res,
-          ClientWantsToDetectImageObjects>;
-  @useResult
-  $Res call({String eventType, String url});
-}
-
-/// @nodoc
-class _$ClientWantsToDetectImageObjectsCopyWithImpl<$Res,
-        $Val extends ClientWantsToDetectImageObjects>
-    implements $ClientWantsToDetectImageObjectsCopyWith<$Res> {
-  _$ClientWantsToDetectImageObjectsCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? url = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      url: null == url
-          ? _value.url
-          : url // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ClientWantsToDetectImageObjectsImplCopyWith<$Res>
-    implements $ClientWantsToDetectImageObjectsCopyWith<$Res> {
+abstract class _$$ClientWantsToDetectImageObjectsImplCopyWith<$Res> {
   factory _$$ClientWantsToDetectImageObjectsImplCopyWith(
           _$ClientWantsToDetectImageObjectsImpl value,
           $Res Function(_$ClientWantsToDetectImageObjectsImpl) then) =
       __$$ClientWantsToDetectImageObjectsImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String eventType, String url});
+  $Res call({String url});
 }
 
 /// @nodoc
 class __$$ClientWantsToDetectImageObjectsImplCopyWithImpl<$Res>
-    extends _$ClientWantsToDetectImageObjectsCopyWithImpl<$Res,
+    extends _$ClientEventCopyWithImpl<$Res,
         _$ClientWantsToDetectImageObjectsImpl>
     implements _$$ClientWantsToDetectImageObjectsImplCopyWith<$Res> {
   __$$ClientWantsToDetectImageObjectsImplCopyWithImpl(
@@ -276,14 +370,9 @@ class __$$ClientWantsToDetectImageObjectsImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventType = null,
     Object? url = null,
   }) {
     return _then(_$ClientWantsToDetectImageObjectsImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
       url: null == url
           ? _value.url
           : url // ignore: cast_nullable_to_non_nullable
@@ -296,30 +385,32 @@ class __$$ClientWantsToDetectImageObjectsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClientWantsToDetectImageObjectsImpl
     with DiagnosticableTreeMixin
-    implements _ClientWantsToDetectImageObjects {
-  const _$ClientWantsToDetectImageObjectsImpl(
-      {required this.eventType, required this.url});
+    implements ClientWantsToDetectImageObjects {
+  _$ClientWantsToDetectImageObjectsImpl(
+      {required this.url, final String? $type})
+      : $type = $type ?? 'ClientWantsToDetectImageObjects';
 
   factory _$ClientWantsToDetectImageObjectsImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ClientWantsToDetectImageObjectsImplFromJson(json);
 
   @override
-  final String eventType;
-  @override
   final String url;
+
+  @JsonKey(name: 'eventType')
+  final String $type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToDetectImageObjects(eventType: $eventType, url: $url)';
+    return 'ClientEvent.clientWantsToDetectImageObjects(url: $url)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'ClientWantsToDetectImageObjects'))
-      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty(
+          'type', 'ClientEvent.clientWantsToDetectImageObjects'))
       ..add(DiagnosticsProperty('url', url));
   }
 
@@ -328,14 +419,12 @@ class _$ClientWantsToDetectImageObjectsImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToDetectImageObjectsImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
             (identical(other.url, url) || other.url == url));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, eventType, url);
+  int get hashCode => Object.hash(runtimeType, url);
 
   @JsonKey(ignore: true)
   @override
@@ -346,6 +435,108 @@ class _$ClientWantsToDetectImageObjectsImpl
           _$ClientWantsToDetectImageObjectsImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String jwt) clientWantsToAuthenticateWithJwt,
+    required TResult Function(String url) clientWantsToDetectImageObjects,
+    required TResult Function(int roomId) clientWantsToEnterRoom,
+    required TResult Function(String email, String password)
+        clientWantsToRegister,
+    required TResult Function(int roomId, String messageContent)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(String email, String password)
+        clientWantsToSignIn,
+  }) {
+    return clientWantsToDetectImageObjects(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult? Function(String url)? clientWantsToDetectImageObjects,
+    TResult? Function(int roomId)? clientWantsToEnterRoom,
+    TResult? Function(String email, String password)? clientWantsToRegister,
+    TResult? Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(String email, String password)? clientWantsToSignIn,
+  }) {
+    return clientWantsToDetectImageObjects?.call(url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult Function(String url)? clientWantsToDetectImageObjects,
+    TResult Function(int roomId)? clientWantsToEnterRoom,
+    TResult Function(String email, String password)? clientWantsToRegister,
+    TResult Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(String email, String password)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToDetectImageObjects != null) {
+      return clientWantsToDetectImageObjects(url);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClientWantsToAuthenticateWithJwt value)
+        clientWantsToAuthenticateWithJwt,
+    required TResult Function(ClientWantsToDetectImageObjects value)
+        clientWantsToDetectImageObjects,
+    required TResult Function(ClientWantsToEnterRoom value)
+        clientWantsToEnterRoom,
+    required TResult Function(ClientWantsToRegister value)
+        clientWantsToRegister,
+    required TResult Function(ClientWantsToSendMessageToRoom value)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(ClientWantsToSignIn value) clientWantsToSignIn,
+  }) {
+    return clientWantsToDetectImageObjects(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult? Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult? Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult? Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult? Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+  }) {
+    return clientWantsToDetectImageObjects?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToDetectImageObjects != null) {
+      return clientWantsToDetectImageObjects(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$ClientWantsToDetectImageObjectsImplToJson(
       this,
@@ -353,97 +544,33 @@ class _$ClientWantsToDetectImageObjectsImpl
   }
 }
 
-abstract class _ClientWantsToDetectImageObjects
-    implements ClientWantsToDetectImageObjects {
-  const factory _ClientWantsToDetectImageObjects(
-      {required final String eventType,
-      required final String url}) = _$ClientWantsToDetectImageObjectsImpl;
+abstract class ClientWantsToDetectImageObjects implements ClientEvent {
+  factory ClientWantsToDetectImageObjects({required final String url}) =
+      _$ClientWantsToDetectImageObjectsImpl;
 
-  factory _ClientWantsToDetectImageObjects.fromJson(Map<String, dynamic> json) =
+  factory ClientWantsToDetectImageObjects.fromJson(Map<String, dynamic> json) =
       _$ClientWantsToDetectImageObjectsImpl.fromJson;
 
-  @override
-  String get eventType;
-  @override
   String get url;
-  @override
   @JsonKey(ignore: true)
   _$$ClientWantsToDetectImageObjectsImplCopyWith<
           _$ClientWantsToDetectImageObjectsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ClientWantsToEnterRoom _$ClientWantsToEnterRoomFromJson(
-    Map<String, dynamic> json) {
-  return _ClientWantsToEnterRoom.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ClientWantsToEnterRoom {
-  String get eventType => throw _privateConstructorUsedError;
-  int get roomId => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ClientWantsToEnterRoomCopyWith<ClientWantsToEnterRoom> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ClientWantsToEnterRoomCopyWith<$Res> {
-  factory $ClientWantsToEnterRoomCopyWith(ClientWantsToEnterRoom value,
-          $Res Function(ClientWantsToEnterRoom) then) =
-      _$ClientWantsToEnterRoomCopyWithImpl<$Res, ClientWantsToEnterRoom>;
-  @useResult
-  $Res call({String eventType, int roomId});
-}
-
-/// @nodoc
-class _$ClientWantsToEnterRoomCopyWithImpl<$Res,
-        $Val extends ClientWantsToEnterRoom>
-    implements $ClientWantsToEnterRoomCopyWith<$Res> {
-  _$ClientWantsToEnterRoomCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? roomId = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      roomId: null == roomId
-          ? _value.roomId
-          : roomId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ClientWantsToEnterRoomImplCopyWith<$Res>
-    implements $ClientWantsToEnterRoomCopyWith<$Res> {
+abstract class _$$ClientWantsToEnterRoomImplCopyWith<$Res> {
   factory _$$ClientWantsToEnterRoomImplCopyWith(
           _$ClientWantsToEnterRoomImpl value,
           $Res Function(_$ClientWantsToEnterRoomImpl) then) =
       __$$ClientWantsToEnterRoomImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String eventType, int roomId});
+  $Res call({int roomId});
 }
 
 /// @nodoc
 class __$$ClientWantsToEnterRoomImplCopyWithImpl<$Res>
-    extends _$ClientWantsToEnterRoomCopyWithImpl<$Res,
-        _$ClientWantsToEnterRoomImpl>
+    extends _$ClientEventCopyWithImpl<$Res, _$ClientWantsToEnterRoomImpl>
     implements _$$ClientWantsToEnterRoomImplCopyWith<$Res> {
   __$$ClientWantsToEnterRoomImplCopyWithImpl(
       _$ClientWantsToEnterRoomImpl _value,
@@ -453,14 +580,9 @@ class __$$ClientWantsToEnterRoomImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventType = null,
     Object? roomId = null,
   }) {
     return _then(_$ClientWantsToEnterRoomImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -473,29 +595,30 @@ class __$$ClientWantsToEnterRoomImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClientWantsToEnterRoomImpl
     with DiagnosticableTreeMixin
-    implements _ClientWantsToEnterRoom {
+    implements ClientWantsToEnterRoom {
   const _$ClientWantsToEnterRoomImpl(
-      {required this.eventType, required this.roomId});
+      {required this.roomId, final String? $type})
+      : $type = $type ?? 'ClientWantsToEnterRoom';
 
   factory _$ClientWantsToEnterRoomImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClientWantsToEnterRoomImplFromJson(json);
 
   @override
-  final String eventType;
-  @override
   final int roomId;
+
+  @JsonKey(name: 'eventType')
+  final String $type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToEnterRoom(eventType: $eventType, roomId: $roomId)';
+    return 'ClientEvent.clientWantsToEnterRoom(roomId: $roomId)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'ClientWantsToEnterRoom'))
-      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('type', 'ClientEvent.clientWantsToEnterRoom'))
       ..add(DiagnosticsProperty('roomId', roomId));
   }
 
@@ -504,14 +627,12 @@ class _$ClientWantsToEnterRoomImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToEnterRoomImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
             (identical(other.roomId, roomId) || other.roomId == roomId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, eventType, roomId);
+  int get hashCode => Object.hash(runtimeType, roomId);
 
   @JsonKey(ignore: true)
   @override
@@ -521,6 +642,108 @@ class _$ClientWantsToEnterRoomImpl
           _$ClientWantsToEnterRoomImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String jwt) clientWantsToAuthenticateWithJwt,
+    required TResult Function(String url) clientWantsToDetectImageObjects,
+    required TResult Function(int roomId) clientWantsToEnterRoom,
+    required TResult Function(String email, String password)
+        clientWantsToRegister,
+    required TResult Function(int roomId, String messageContent)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(String email, String password)
+        clientWantsToSignIn,
+  }) {
+    return clientWantsToEnterRoom(roomId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult? Function(String url)? clientWantsToDetectImageObjects,
+    TResult? Function(int roomId)? clientWantsToEnterRoom,
+    TResult? Function(String email, String password)? clientWantsToRegister,
+    TResult? Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(String email, String password)? clientWantsToSignIn,
+  }) {
+    return clientWantsToEnterRoom?.call(roomId);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult Function(String url)? clientWantsToDetectImageObjects,
+    TResult Function(int roomId)? clientWantsToEnterRoom,
+    TResult Function(String email, String password)? clientWantsToRegister,
+    TResult Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(String email, String password)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToEnterRoom != null) {
+      return clientWantsToEnterRoom(roomId);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClientWantsToAuthenticateWithJwt value)
+        clientWantsToAuthenticateWithJwt,
+    required TResult Function(ClientWantsToDetectImageObjects value)
+        clientWantsToDetectImageObjects,
+    required TResult Function(ClientWantsToEnterRoom value)
+        clientWantsToEnterRoom,
+    required TResult Function(ClientWantsToRegister value)
+        clientWantsToRegister,
+    required TResult Function(ClientWantsToSendMessageToRoom value)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(ClientWantsToSignIn value) clientWantsToSignIn,
+  }) {
+    return clientWantsToEnterRoom(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult? Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult? Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult? Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult? Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+  }) {
+    return clientWantsToEnterRoom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToEnterRoom != null) {
+      return clientWantsToEnterRoom(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$ClientWantsToEnterRoomImplToJson(
       this,
@@ -528,101 +751,32 @@ class _$ClientWantsToEnterRoomImpl
   }
 }
 
-abstract class _ClientWantsToEnterRoom implements ClientWantsToEnterRoom {
-  const factory _ClientWantsToEnterRoom(
-      {required final String eventType,
-      required final int roomId}) = _$ClientWantsToEnterRoomImpl;
+abstract class ClientWantsToEnterRoom implements ClientEvent {
+  const factory ClientWantsToEnterRoom({required final int roomId}) =
+      _$ClientWantsToEnterRoomImpl;
 
-  factory _ClientWantsToEnterRoom.fromJson(Map<String, dynamic> json) =
+  factory ClientWantsToEnterRoom.fromJson(Map<String, dynamic> json) =
       _$ClientWantsToEnterRoomImpl.fromJson;
 
-  @override
-  String get eventType;
-  @override
   int get roomId;
-  @override
   @JsonKey(ignore: true)
   _$$ClientWantsToEnterRoomImplCopyWith<_$ClientWantsToEnterRoomImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ClientWantsToRegister _$ClientWantsToRegisterFromJson(
-    Map<String, dynamic> json) {
-  return _ClientWantsToRegister.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ClientWantsToRegister {
-  String get eventType => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ClientWantsToRegisterCopyWith<ClientWantsToRegister> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ClientWantsToRegisterCopyWith<$Res> {
-  factory $ClientWantsToRegisterCopyWith(ClientWantsToRegister value,
-          $Res Function(ClientWantsToRegister) then) =
-      _$ClientWantsToRegisterCopyWithImpl<$Res, ClientWantsToRegister>;
-  @useResult
-  $Res call({String eventType, String email, String password});
-}
-
-/// @nodoc
-class _$ClientWantsToRegisterCopyWithImpl<$Res,
-        $Val extends ClientWantsToRegister>
-    implements $ClientWantsToRegisterCopyWith<$Res> {
-  _$ClientWantsToRegisterCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? email = null,
-    Object? password = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ClientWantsToRegisterImplCopyWith<$Res>
-    implements $ClientWantsToRegisterCopyWith<$Res> {
+abstract class _$$ClientWantsToRegisterImplCopyWith<$Res> {
   factory _$$ClientWantsToRegisterImplCopyWith(
           _$ClientWantsToRegisterImpl value,
           $Res Function(_$ClientWantsToRegisterImpl) then) =
       __$$ClientWantsToRegisterImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String eventType, String email, String password});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
 class __$$ClientWantsToRegisterImplCopyWithImpl<$Res>
-    extends _$ClientWantsToRegisterCopyWithImpl<$Res,
-        _$ClientWantsToRegisterImpl>
+    extends _$ClientEventCopyWithImpl<$Res, _$ClientWantsToRegisterImpl>
     implements _$$ClientWantsToRegisterImplCopyWith<$Res> {
   __$$ClientWantsToRegisterImplCopyWithImpl(_$ClientWantsToRegisterImpl _value,
       $Res Function(_$ClientWantsToRegisterImpl) _then)
@@ -631,15 +785,10 @@ class __$$ClientWantsToRegisterImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventType = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_$ClientWantsToRegisterImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -656,31 +805,32 @@ class __$$ClientWantsToRegisterImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClientWantsToRegisterImpl
     with DiagnosticableTreeMixin
-    implements _ClientWantsToRegister {
-  const _$ClientWantsToRegisterImpl(
-      {required this.eventType, required this.email, required this.password});
+    implements ClientWantsToRegister {
+  _$ClientWantsToRegisterImpl(
+      {required this.email, required this.password, final String? $type})
+      : $type = $type ?? 'ClientWantsToRegister';
 
   factory _$ClientWantsToRegisterImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClientWantsToRegisterImplFromJson(json);
 
   @override
-  final String eventType;
-  @override
   final String email;
   @override
   final String password;
 
+  @JsonKey(name: 'eventType')
+  final String $type;
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToRegister(eventType: $eventType, email: $email, password: $password)';
+    return 'ClientEvent.clientWantsToRegister(email: $email, password: $password)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'ClientWantsToRegister'))
-      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('type', 'ClientEvent.clientWantsToRegister'))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('password', password));
   }
@@ -690,8 +840,6 @@ class _$ClientWantsToRegisterImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToRegisterImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -699,7 +847,7 @@ class _$ClientWantsToRegisterImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, eventType, email, password);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -709,6 +857,108 @@ class _$ClientWantsToRegisterImpl
           _$ClientWantsToRegisterImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String jwt) clientWantsToAuthenticateWithJwt,
+    required TResult Function(String url) clientWantsToDetectImageObjects,
+    required TResult Function(int roomId) clientWantsToEnterRoom,
+    required TResult Function(String email, String password)
+        clientWantsToRegister,
+    required TResult Function(int roomId, String messageContent)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(String email, String password)
+        clientWantsToSignIn,
+  }) {
+    return clientWantsToRegister(email, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult? Function(String url)? clientWantsToDetectImageObjects,
+    TResult? Function(int roomId)? clientWantsToEnterRoom,
+    TResult? Function(String email, String password)? clientWantsToRegister,
+    TResult? Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(String email, String password)? clientWantsToSignIn,
+  }) {
+    return clientWantsToRegister?.call(email, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult Function(String url)? clientWantsToDetectImageObjects,
+    TResult Function(int roomId)? clientWantsToEnterRoom,
+    TResult Function(String email, String password)? clientWantsToRegister,
+    TResult Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(String email, String password)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToRegister != null) {
+      return clientWantsToRegister(email, password);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClientWantsToAuthenticateWithJwt value)
+        clientWantsToAuthenticateWithJwt,
+    required TResult Function(ClientWantsToDetectImageObjects value)
+        clientWantsToDetectImageObjects,
+    required TResult Function(ClientWantsToEnterRoom value)
+        clientWantsToEnterRoom,
+    required TResult Function(ClientWantsToRegister value)
+        clientWantsToRegister,
+    required TResult Function(ClientWantsToSendMessageToRoom value)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(ClientWantsToSignIn value) clientWantsToSignIn,
+  }) {
+    return clientWantsToRegister(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult? Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult? Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult? Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult? Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+  }) {
+    return clientWantsToRegister?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToRegister != null) {
+      return clientWantsToRegister(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$ClientWantsToRegisterImplToJson(
       this,
@@ -716,105 +966,34 @@ class _$ClientWantsToRegisterImpl
   }
 }
 
-abstract class _ClientWantsToRegister implements ClientWantsToRegister {
-  const factory _ClientWantsToRegister(
-      {required final String eventType,
-      required final String email,
+abstract class ClientWantsToRegister implements ClientEvent {
+  factory ClientWantsToRegister(
+      {required final String email,
       required final String password}) = _$ClientWantsToRegisterImpl;
 
-  factory _ClientWantsToRegister.fromJson(Map<String, dynamic> json) =
+  factory ClientWantsToRegister.fromJson(Map<String, dynamic> json) =
       _$ClientWantsToRegisterImpl.fromJson;
 
-  @override
-  String get eventType;
-  @override
   String get email;
-  @override
   String get password;
-  @override
   @JsonKey(ignore: true)
   _$$ClientWantsToRegisterImplCopyWith<_$ClientWantsToRegisterImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ClientWantsToSendMessageToRoom _$ClientWantsToSendMessageToRoomFromJson(
-    Map<String, dynamic> json) {
-  return _ClientWantsToSendMessageToRoom.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ClientWantsToSendMessageToRoom {
-  String get eventType => throw _privateConstructorUsedError;
-  int get roomId => throw _privateConstructorUsedError;
-  String get messageContent => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ClientWantsToSendMessageToRoomCopyWith<ClientWantsToSendMessageToRoom>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ClientWantsToSendMessageToRoomCopyWith<$Res> {
-  factory $ClientWantsToSendMessageToRoomCopyWith(
-          ClientWantsToSendMessageToRoom value,
-          $Res Function(ClientWantsToSendMessageToRoom) then) =
-      _$ClientWantsToSendMessageToRoomCopyWithImpl<$Res,
-          ClientWantsToSendMessageToRoom>;
-  @useResult
-  $Res call({String eventType, int roomId, String messageContent});
-}
-
-/// @nodoc
-class _$ClientWantsToSendMessageToRoomCopyWithImpl<$Res,
-        $Val extends ClientWantsToSendMessageToRoom>
-    implements $ClientWantsToSendMessageToRoomCopyWith<$Res> {
-  _$ClientWantsToSendMessageToRoomCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? roomId = null,
-    Object? messageContent = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      roomId: null == roomId
-          ? _value.roomId
-          : roomId // ignore: cast_nullable_to_non_nullable
-              as int,
-      messageContent: null == messageContent
-          ? _value.messageContent
-          : messageContent // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ClientWantsToSendMessageToRoomImplCopyWith<$Res>
-    implements $ClientWantsToSendMessageToRoomCopyWith<$Res> {
+abstract class _$$ClientWantsToSendMessageToRoomImplCopyWith<$Res> {
   factory _$$ClientWantsToSendMessageToRoomImplCopyWith(
           _$ClientWantsToSendMessageToRoomImpl value,
           $Res Function(_$ClientWantsToSendMessageToRoomImpl) then) =
       __$$ClientWantsToSendMessageToRoomImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String eventType, int roomId, String messageContent});
+  $Res call({int roomId, String messageContent});
 }
 
 /// @nodoc
 class __$$ClientWantsToSendMessageToRoomImplCopyWithImpl<$Res>
-    extends _$ClientWantsToSendMessageToRoomCopyWithImpl<$Res,
+    extends _$ClientEventCopyWithImpl<$Res,
         _$ClientWantsToSendMessageToRoomImpl>
     implements _$$ClientWantsToSendMessageToRoomImplCopyWith<$Res> {
   __$$ClientWantsToSendMessageToRoomImplCopyWithImpl(
@@ -825,15 +1004,10 @@ class __$$ClientWantsToSendMessageToRoomImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventType = null,
     Object? roomId = null,
     Object? messageContent = null,
   }) {
     return _then(_$ClientWantsToSendMessageToRoomImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -850,34 +1024,34 @@ class __$$ClientWantsToSendMessageToRoomImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClientWantsToSendMessageToRoomImpl
     with DiagnosticableTreeMixin
-    implements _ClientWantsToSendMessageToRoom {
-  const _$ClientWantsToSendMessageToRoomImpl(
-      {required this.eventType,
-      required this.roomId,
-      required this.messageContent});
+    implements ClientWantsToSendMessageToRoom {
+  _$ClientWantsToSendMessageToRoomImpl(
+      {required this.roomId, required this.messageContent, final String? $type})
+      : $type = $type ?? 'ClientWantsToSendMessageToRoom';
 
   factory _$ClientWantsToSendMessageToRoomImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ClientWantsToSendMessageToRoomImplFromJson(json);
 
   @override
-  final String eventType;
-  @override
   final int roomId;
   @override
   final String messageContent;
 
+  @JsonKey(name: 'eventType')
+  final String $type;
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToSendMessageToRoom(eventType: $eventType, roomId: $roomId, messageContent: $messageContent)';
+    return 'ClientEvent.clientWantsToSendMessageToRoom(roomId: $roomId, messageContent: $messageContent)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'ClientWantsToSendMessageToRoom'))
-      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty(
+          'type', 'ClientEvent.clientWantsToSendMessageToRoom'))
       ..add(DiagnosticsProperty('roomId', roomId))
       ..add(DiagnosticsProperty('messageContent', messageContent));
   }
@@ -887,8 +1061,6 @@ class _$ClientWantsToSendMessageToRoomImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToSendMessageToRoomImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
             (identical(other.roomId, roomId) || other.roomId == roomId) &&
             (identical(other.messageContent, messageContent) ||
                 other.messageContent == messageContent));
@@ -896,8 +1068,7 @@ class _$ClientWantsToSendMessageToRoomImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, eventType, roomId, messageContent);
+  int get hashCode => Object.hash(runtimeType, roomId, messageContent);
 
   @JsonKey(ignore: true)
   @override
@@ -908,6 +1079,108 @@ class _$ClientWantsToSendMessageToRoomImpl
           _$ClientWantsToSendMessageToRoomImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String jwt) clientWantsToAuthenticateWithJwt,
+    required TResult Function(String url) clientWantsToDetectImageObjects,
+    required TResult Function(int roomId) clientWantsToEnterRoom,
+    required TResult Function(String email, String password)
+        clientWantsToRegister,
+    required TResult Function(int roomId, String messageContent)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(String email, String password)
+        clientWantsToSignIn,
+  }) {
+    return clientWantsToSendMessageToRoom(roomId, messageContent);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult? Function(String url)? clientWantsToDetectImageObjects,
+    TResult? Function(int roomId)? clientWantsToEnterRoom,
+    TResult? Function(String email, String password)? clientWantsToRegister,
+    TResult? Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(String email, String password)? clientWantsToSignIn,
+  }) {
+    return clientWantsToSendMessageToRoom?.call(roomId, messageContent);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult Function(String url)? clientWantsToDetectImageObjects,
+    TResult Function(int roomId)? clientWantsToEnterRoom,
+    TResult Function(String email, String password)? clientWantsToRegister,
+    TResult Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(String email, String password)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToSendMessageToRoom != null) {
+      return clientWantsToSendMessageToRoom(roomId, messageContent);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClientWantsToAuthenticateWithJwt value)
+        clientWantsToAuthenticateWithJwt,
+    required TResult Function(ClientWantsToDetectImageObjects value)
+        clientWantsToDetectImageObjects,
+    required TResult Function(ClientWantsToEnterRoom value)
+        clientWantsToEnterRoom,
+    required TResult Function(ClientWantsToRegister value)
+        clientWantsToRegister,
+    required TResult Function(ClientWantsToSendMessageToRoom value)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(ClientWantsToSignIn value) clientWantsToSignIn,
+  }) {
+    return clientWantsToSendMessageToRoom(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult? Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult? Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult? Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult? Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+  }) {
+    return clientWantsToSendMessageToRoom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToSendMessageToRoom != null) {
+      return clientWantsToSendMessageToRoom(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$ClientWantsToSendMessageToRoomImplToJson(
       this,
@@ -915,103 +1188,34 @@ class _$ClientWantsToSendMessageToRoomImpl
   }
 }
 
-abstract class _ClientWantsToSendMessageToRoom
-    implements ClientWantsToSendMessageToRoom {
-  const factory _ClientWantsToSendMessageToRoom(
-          {required final String eventType,
-          required final int roomId,
-          required final String messageContent}) =
+abstract class ClientWantsToSendMessageToRoom implements ClientEvent {
+  factory ClientWantsToSendMessageToRoom(
+          {required final int roomId, required final String messageContent}) =
       _$ClientWantsToSendMessageToRoomImpl;
 
-  factory _ClientWantsToSendMessageToRoom.fromJson(Map<String, dynamic> json) =
+  factory ClientWantsToSendMessageToRoom.fromJson(Map<String, dynamic> json) =
       _$ClientWantsToSendMessageToRoomImpl.fromJson;
 
-  @override
-  String get eventType;
-  @override
   int get roomId;
-  @override
   String get messageContent;
-  @override
   @JsonKey(ignore: true)
   _$$ClientWantsToSendMessageToRoomImplCopyWith<
           _$ClientWantsToSendMessageToRoomImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ClientWantsToSignIn _$ClientWantsToSignInFromJson(Map<String, dynamic> json) {
-  return _ClientWantsToSignIn.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ClientWantsToSignIn {
-  String get eventType => throw _privateConstructorUsedError;
-  String get email => throw _privateConstructorUsedError;
-  String get password => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ClientWantsToSignInCopyWith<ClientWantsToSignIn> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ClientWantsToSignInCopyWith<$Res> {
-  factory $ClientWantsToSignInCopyWith(
-          ClientWantsToSignIn value, $Res Function(ClientWantsToSignIn) then) =
-      _$ClientWantsToSignInCopyWithImpl<$Res, ClientWantsToSignIn>;
-  @useResult
-  $Res call({String eventType, String email, String password});
-}
-
-/// @nodoc
-class _$ClientWantsToSignInCopyWithImpl<$Res, $Val extends ClientWantsToSignIn>
-    implements $ClientWantsToSignInCopyWith<$Res> {
-  _$ClientWantsToSignInCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? email = null,
-    Object? password = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      email: null == email
-          ? _value.email
-          : email // ignore: cast_nullable_to_non_nullable
-              as String,
-      password: null == password
-          ? _value.password
-          : password // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ClientWantsToSignInImplCopyWith<$Res>
-    implements $ClientWantsToSignInCopyWith<$Res> {
+abstract class _$$ClientWantsToSignInImplCopyWith<$Res> {
   factory _$$ClientWantsToSignInImplCopyWith(_$ClientWantsToSignInImpl value,
           $Res Function(_$ClientWantsToSignInImpl) then) =
       __$$ClientWantsToSignInImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String eventType, String email, String password});
+  $Res call({String email, String password});
 }
 
 /// @nodoc
 class __$$ClientWantsToSignInImplCopyWithImpl<$Res>
-    extends _$ClientWantsToSignInCopyWithImpl<$Res, _$ClientWantsToSignInImpl>
+    extends _$ClientEventCopyWithImpl<$Res, _$ClientWantsToSignInImpl>
     implements _$$ClientWantsToSignInImplCopyWith<$Res> {
   __$$ClientWantsToSignInImplCopyWithImpl(_$ClientWantsToSignInImpl _value,
       $Res Function(_$ClientWantsToSignInImpl) _then)
@@ -1020,15 +1224,10 @@ class __$$ClientWantsToSignInImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventType = null,
     Object? email = null,
     Object? password = null,
   }) {
     return _then(_$ClientWantsToSignInImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -1045,31 +1244,32 @@ class __$$ClientWantsToSignInImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ClientWantsToSignInImpl
     with DiagnosticableTreeMixin
-    implements _ClientWantsToSignIn {
-  const _$ClientWantsToSignInImpl(
-      {required this.eventType, required this.email, required this.password});
+    implements ClientWantsToSignIn {
+  _$ClientWantsToSignInImpl(
+      {required this.email, required this.password, final String? $type})
+      : $type = $type ?? 'ClientWantsToSignIn';
 
   factory _$ClientWantsToSignInImpl.fromJson(Map<String, dynamic> json) =>
       _$$ClientWantsToSignInImplFromJson(json);
 
   @override
-  final String eventType;
-  @override
   final String email;
   @override
   final String password;
 
+  @JsonKey(name: 'eventType')
+  final String $type;
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ClientWantsToSignIn(eventType: $eventType, email: $email, password: $password)';
+    return 'ClientEvent.clientWantsToSignIn(email: $email, password: $password)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'ClientWantsToSignIn'))
-      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('type', 'ClientEvent.clientWantsToSignIn'))
       ..add(DiagnosticsProperty('email', email))
       ..add(DiagnosticsProperty('password', password));
   }
@@ -1079,8 +1279,6 @@ class _$ClientWantsToSignInImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ClientWantsToSignInImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.password, password) ||
                 other.password == password));
@@ -1088,7 +1286,7 @@ class _$ClientWantsToSignInImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, eventType, email, password);
+  int get hashCode => Object.hash(runtimeType, email, password);
 
   @JsonKey(ignore: true)
   @override
@@ -1098,6 +1296,108 @@ class _$ClientWantsToSignInImpl
           this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String jwt) clientWantsToAuthenticateWithJwt,
+    required TResult Function(String url) clientWantsToDetectImageObjects,
+    required TResult Function(int roomId) clientWantsToEnterRoom,
+    required TResult Function(String email, String password)
+        clientWantsToRegister,
+    required TResult Function(int roomId, String messageContent)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(String email, String password)
+        clientWantsToSignIn,
+  }) {
+    return clientWantsToSignIn(email, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult? Function(String url)? clientWantsToDetectImageObjects,
+    TResult? Function(int roomId)? clientWantsToEnterRoom,
+    TResult? Function(String email, String password)? clientWantsToRegister,
+    TResult? Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(String email, String password)? clientWantsToSignIn,
+  }) {
+    return clientWantsToSignIn?.call(email, password);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String jwt)? clientWantsToAuthenticateWithJwt,
+    TResult Function(String url)? clientWantsToDetectImageObjects,
+    TResult Function(int roomId)? clientWantsToEnterRoom,
+    TResult Function(String email, String password)? clientWantsToRegister,
+    TResult Function(int roomId, String messageContent)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(String email, String password)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToSignIn != null) {
+      return clientWantsToSignIn(email, password);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ClientWantsToAuthenticateWithJwt value)
+        clientWantsToAuthenticateWithJwt,
+    required TResult Function(ClientWantsToDetectImageObjects value)
+        clientWantsToDetectImageObjects,
+    required TResult Function(ClientWantsToEnterRoom value)
+        clientWantsToEnterRoom,
+    required TResult Function(ClientWantsToRegister value)
+        clientWantsToRegister,
+    required TResult Function(ClientWantsToSendMessageToRoom value)
+        clientWantsToSendMessageToRoom,
+    required TResult Function(ClientWantsToSignIn value) clientWantsToSignIn,
+  }) {
+    return clientWantsToSignIn(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult? Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult? Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult? Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult? Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult? Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+  }) {
+    return clientWantsToSignIn?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ClientWantsToAuthenticateWithJwt value)?
+        clientWantsToAuthenticateWithJwt,
+    TResult Function(ClientWantsToDetectImageObjects value)?
+        clientWantsToDetectImageObjects,
+    TResult Function(ClientWantsToEnterRoom value)? clientWantsToEnterRoom,
+    TResult Function(ClientWantsToRegister value)? clientWantsToRegister,
+    TResult Function(ClientWantsToSendMessageToRoom value)?
+        clientWantsToSendMessageToRoom,
+    TResult Function(ClientWantsToSignIn value)? clientWantsToSignIn,
+    required TResult orElse(),
+  }) {
+    if (clientWantsToSignIn != null) {
+      return clientWantsToSignIn(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$ClientWantsToSignInImplToJson(
       this,
@@ -1105,118 +1405,157 @@ class _$ClientWantsToSignInImpl
   }
 }
 
-abstract class _ClientWantsToSignIn implements ClientWantsToSignIn {
-  const factory _ClientWantsToSignIn(
-      {required final String eventType,
-      required final String email,
+abstract class ClientWantsToSignIn implements ClientEvent {
+  factory ClientWantsToSignIn(
+      {required final String email,
       required final String password}) = _$ClientWantsToSignInImpl;
 
-  factory _ClientWantsToSignIn.fromJson(Map<String, dynamic> json) =
+  factory ClientWantsToSignIn.fromJson(Map<String, dynamic> json) =
       _$ClientWantsToSignInImpl.fromJson;
 
-  @override
-  String get eventType;
-  @override
   String get email;
-  @override
   String get password;
-  @override
   @JsonKey(ignore: true)
   _$$ClientWantsToSignInImplCopyWith<_$ClientWantsToSignInImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-ServerAddsClientToRoom _$ServerAddsClientToRoomFromJson(
-    Map<String, dynamic> json) {
-  return _ServerAddsClientToRoom.fromJson(json);
+ServerEvent _$ServerEventFromJson(Map<String, dynamic> json) {
+  switch (json['eventType']) {
+    case 'ServerAddsClientToRoom':
+      return ServerAddsClientToRoom.fromJson(json);
+    case 'ServerAuthenticatesUser':
+      return ServerAuthenticatesUser.fromJson(json);
+    case 'ServerBroadcastsMessageToClientsInRoom':
+      return ServerBroadcastsMessageToClientsInRoom.fromJson(json);
+    case 'ServerNotifiesClientsInRoomSomeoneHasJoinedRoom':
+      return ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.fromJson(json);
+    case 'ServerSendsErrorMessageToClient':
+      return ServerSendsErrorMessageToClient.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'eventType', 'ServerEvent',
+          'Invalid union type "${json['eventType']}"!');
+  }
 }
 
 /// @nodoc
-mixin _$ServerAddsClientToRoom {
-  String get eventType => throw _privateConstructorUsedError;
-  int get roomId => throw _privateConstructorUsedError;
-  int get liveConnections => throw _privateConstructorUsedError;
-  List<Message> get messages => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ServerAddsClientToRoomCopyWith<ServerAddsClientToRoom> get copyWith =>
+mixin _$ServerEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int roomId, int liveConnections, List<Message> messages)
+        serverAddsClientToRoom,
+    required TResult Function(String jwt) serverAuthenticatesUser,
+    required TResult Function(int roomId, Message message)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(String userEmail, int roomId, String message)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(String errorMessage, String receivedMessage)
+        serverSendsErrorMessageToClient,
+  }) =>
       throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult? Function(String jwt)? serverAuthenticatesUser,
+    TResult? Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult Function(String jwt)? serverAuthenticatesUser,
+    TResult Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerAddsClientToRoom value)
+        serverAddsClientToRoom,
+    required TResult Function(ServerAuthenticatesUser value)
+        serverAuthenticatesUser,
+    required TResult Function(ServerBroadcastsMessageToClientsInRoom value)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(
+            ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(ServerSendsErrorMessageToClient value)
+        serverSendsErrorMessageToClient,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult? Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult? Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $ServerAddsClientToRoomCopyWith<$Res> {
-  factory $ServerAddsClientToRoomCopyWith(ServerAddsClientToRoom value,
-          $Res Function(ServerAddsClientToRoom) then) =
-      _$ServerAddsClientToRoomCopyWithImpl<$Res, ServerAddsClientToRoom>;
-  @useResult
-  $Res call(
-      {String eventType,
-      int roomId,
-      int liveConnections,
-      List<Message> messages});
+abstract class $ServerEventCopyWith<$Res> {
+  factory $ServerEventCopyWith(
+          ServerEvent value, $Res Function(ServerEvent) then) =
+      _$ServerEventCopyWithImpl<$Res, ServerEvent>;
 }
 
 /// @nodoc
-class _$ServerAddsClientToRoomCopyWithImpl<$Res,
-        $Val extends ServerAddsClientToRoom>
-    implements $ServerAddsClientToRoomCopyWith<$Res> {
-  _$ServerAddsClientToRoomCopyWithImpl(this._value, this._then);
+class _$ServerEventCopyWithImpl<$Res, $Val extends ServerEvent>
+    implements $ServerEventCopyWith<$Res> {
+  _$ServerEventCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? roomId = null,
-    Object? liveConnections = null,
-    Object? messages = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      roomId: null == roomId
-          ? _value.roomId
-          : roomId // ignore: cast_nullable_to_non_nullable
-              as int,
-      liveConnections: null == liveConnections
-          ? _value.liveConnections
-          : liveConnections // ignore: cast_nullable_to_non_nullable
-              as int,
-      messages: null == messages
-          ? _value.messages
-          : messages // ignore: cast_nullable_to_non_nullable
-              as List<Message>,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$ServerAddsClientToRoomImplCopyWith<$Res>
-    implements $ServerAddsClientToRoomCopyWith<$Res> {
+abstract class _$$ServerAddsClientToRoomImplCopyWith<$Res> {
   factory _$$ServerAddsClientToRoomImplCopyWith(
           _$ServerAddsClientToRoomImpl value,
           $Res Function(_$ServerAddsClientToRoomImpl) then) =
       __$$ServerAddsClientToRoomImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call(
-      {String eventType,
-      int roomId,
-      int liveConnections,
-      List<Message> messages});
+  $Res call({int roomId, int liveConnections, List<Message> messages});
 }
 
 /// @nodoc
 class __$$ServerAddsClientToRoomImplCopyWithImpl<$Res>
-    extends _$ServerAddsClientToRoomCopyWithImpl<$Res,
-        _$ServerAddsClientToRoomImpl>
+    extends _$ServerEventCopyWithImpl<$Res, _$ServerAddsClientToRoomImpl>
     implements _$$ServerAddsClientToRoomImplCopyWith<$Res> {
   __$$ServerAddsClientToRoomImplCopyWithImpl(
       _$ServerAddsClientToRoomImpl _value,
@@ -1226,16 +1565,11 @@ class __$$ServerAddsClientToRoomImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventType = null,
     Object? roomId = null,
     Object? liveConnections = null,
     Object? messages = null,
   }) {
     return _then(_$ServerAddsClientToRoomImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -1256,19 +1590,18 @@ class __$$ServerAddsClientToRoomImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ServerAddsClientToRoomImpl
     with DiagnosticableTreeMixin
-    implements _ServerAddsClientToRoom {
-  const _$ServerAddsClientToRoomImpl(
-      {required this.eventType,
-      required this.roomId,
+    implements ServerAddsClientToRoom {
+  _$ServerAddsClientToRoomImpl(
+      {required this.roomId,
       required this.liveConnections,
-      required final List<Message> messages})
-      : _messages = messages;
+      required final List<Message> messages,
+      final String? $type})
+      : _messages = messages,
+        $type = $type ?? 'ServerAddsClientToRoom';
 
   factory _$ServerAddsClientToRoomImpl.fromJson(Map<String, dynamic> json) =>
       _$$ServerAddsClientToRoomImplFromJson(json);
 
-  @override
-  final String eventType;
   @override
   final int roomId;
   @override
@@ -1281,17 +1614,19 @@ class _$ServerAddsClientToRoomImpl
     return EqualUnmodifiableListView(_messages);
   }
 
+  @JsonKey(name: 'eventType')
+  final String $type;
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerAddsClientToRoom(eventType: $eventType, roomId: $roomId, liveConnections: $liveConnections, messages: $messages)';
+    return 'ServerEvent.serverAddsClientToRoom(roomId: $roomId, liveConnections: $liveConnections, messages: $messages)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'ServerAddsClientToRoom'))
-      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('type', 'ServerEvent.serverAddsClientToRoom'))
       ..add(DiagnosticsProperty('roomId', roomId))
       ..add(DiagnosticsProperty('liveConnections', liveConnections))
       ..add(DiagnosticsProperty('messages', messages));
@@ -1302,8 +1637,6 @@ class _$ServerAddsClientToRoomImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerAddsClientToRoomImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
             (identical(other.roomId, roomId) || other.roomId == roomId) &&
             (identical(other.liveConnections, liveConnections) ||
                 other.liveConnections == liveConnections) &&
@@ -1312,8 +1645,8 @@ class _$ServerAddsClientToRoomImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, eventType, roomId,
-      liveConnections, const DeepCollectionEquality().hash(_messages));
+  int get hashCode => Object.hash(runtimeType, roomId, liveConnections,
+      const DeepCollectionEquality().hash(_messages));
 
   @JsonKey(ignore: true)
   @override
@@ -1323,6 +1656,111 @@ class _$ServerAddsClientToRoomImpl
           _$ServerAddsClientToRoomImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int roomId, int liveConnections, List<Message> messages)
+        serverAddsClientToRoom,
+    required TResult Function(String jwt) serverAuthenticatesUser,
+    required TResult Function(int roomId, Message message)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(String userEmail, int roomId, String message)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(String errorMessage, String receivedMessage)
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverAddsClientToRoom(roomId, liveConnections, messages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult? Function(String jwt)? serverAuthenticatesUser,
+    TResult? Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverAddsClientToRoom?.call(roomId, liveConnections, messages);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult Function(String jwt)? serverAuthenticatesUser,
+    TResult Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) {
+    if (serverAddsClientToRoom != null) {
+      return serverAddsClientToRoom(roomId, liveConnections, messages);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerAddsClientToRoom value)
+        serverAddsClientToRoom,
+    required TResult Function(ServerAuthenticatesUser value)
+        serverAuthenticatesUser,
+    required TResult Function(ServerBroadcastsMessageToClientsInRoom value)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(
+            ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(ServerSendsErrorMessageToClient value)
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverAddsClientToRoom(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult? Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult? Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverAddsClientToRoom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) {
+    if (serverAddsClientToRoom != null) {
+      return serverAddsClientToRoom(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$ServerAddsClientToRoomImplToJson(
       this,
@@ -1330,101 +1768,36 @@ class _$ServerAddsClientToRoomImpl
   }
 }
 
-abstract class _ServerAddsClientToRoom implements ServerAddsClientToRoom {
-  const factory _ServerAddsClientToRoom(
-      {required final String eventType,
-      required final int roomId,
+abstract class ServerAddsClientToRoom implements ServerEvent {
+  factory ServerAddsClientToRoom(
+      {required final int roomId,
       required final int liveConnections,
       required final List<Message> messages}) = _$ServerAddsClientToRoomImpl;
 
-  factory _ServerAddsClientToRoom.fromJson(Map<String, dynamic> json) =
+  factory ServerAddsClientToRoom.fromJson(Map<String, dynamic> json) =
       _$ServerAddsClientToRoomImpl.fromJson;
 
-  @override
-  String get eventType;
-  @override
   int get roomId;
-  @override
   int get liveConnections;
-  @override
   List<Message> get messages;
-  @override
   @JsonKey(ignore: true)
   _$$ServerAddsClientToRoomImplCopyWith<_$ServerAddsClientToRoomImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ServerAuthenticatesUser _$ServerAuthenticatesUserFromJson(
-    Map<String, dynamic> json) {
-  return _ServerAuthenticatesUser.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ServerAuthenticatesUser {
-  String get eventType => throw _privateConstructorUsedError;
-  String get jwt => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ServerAuthenticatesUserCopyWith<ServerAuthenticatesUser> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ServerAuthenticatesUserCopyWith<$Res> {
-  factory $ServerAuthenticatesUserCopyWith(ServerAuthenticatesUser value,
-          $Res Function(ServerAuthenticatesUser) then) =
-      _$ServerAuthenticatesUserCopyWithImpl<$Res, ServerAuthenticatesUser>;
-  @useResult
-  $Res call({String eventType, String jwt});
-}
-
-/// @nodoc
-class _$ServerAuthenticatesUserCopyWithImpl<$Res,
-        $Val extends ServerAuthenticatesUser>
-    implements $ServerAuthenticatesUserCopyWith<$Res> {
-  _$ServerAuthenticatesUserCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? jwt = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      jwt: null == jwt
-          ? _value.jwt
-          : jwt // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ServerAuthenticatesUserImplCopyWith<$Res>
-    implements $ServerAuthenticatesUserCopyWith<$Res> {
+abstract class _$$ServerAuthenticatesUserImplCopyWith<$Res> {
   factory _$$ServerAuthenticatesUserImplCopyWith(
           _$ServerAuthenticatesUserImpl value,
           $Res Function(_$ServerAuthenticatesUserImpl) then) =
       __$$ServerAuthenticatesUserImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String eventType, String jwt});
+  $Res call({String jwt});
 }
 
 /// @nodoc
 class __$$ServerAuthenticatesUserImplCopyWithImpl<$Res>
-    extends _$ServerAuthenticatesUserCopyWithImpl<$Res,
-        _$ServerAuthenticatesUserImpl>
+    extends _$ServerEventCopyWithImpl<$Res, _$ServerAuthenticatesUserImpl>
     implements _$$ServerAuthenticatesUserImplCopyWith<$Res> {
   __$$ServerAuthenticatesUserImplCopyWithImpl(
       _$ServerAuthenticatesUserImpl _value,
@@ -1434,14 +1807,9 @@ class __$$ServerAuthenticatesUserImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventType = null,
     Object? jwt = null,
   }) {
     return _then(_$ServerAuthenticatesUserImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
       jwt: null == jwt
           ? _value.jwt
           : jwt // ignore: cast_nullable_to_non_nullable
@@ -1454,29 +1822,29 @@ class __$$ServerAuthenticatesUserImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ServerAuthenticatesUserImpl
     with DiagnosticableTreeMixin
-    implements _ServerAuthenticatesUser {
-  const _$ServerAuthenticatesUserImpl(
-      {required this.eventType, required this.jwt});
+    implements ServerAuthenticatesUser {
+  _$ServerAuthenticatesUserImpl({required this.jwt, final String? $type})
+      : $type = $type ?? 'ServerAuthenticatesUser';
 
   factory _$ServerAuthenticatesUserImpl.fromJson(Map<String, dynamic> json) =>
       _$$ServerAuthenticatesUserImplFromJson(json);
 
   @override
-  final String eventType;
-  @override
   final String jwt;
+
+  @JsonKey(name: 'eventType')
+  final String $type;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerAuthenticatesUser(eventType: $eventType, jwt: $jwt)';
+    return 'ServerEvent.serverAuthenticatesUser(jwt: $jwt)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'ServerAuthenticatesUser'))
-      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('type', 'ServerEvent.serverAuthenticatesUser'))
       ..add(DiagnosticsProperty('jwt', jwt));
   }
 
@@ -1485,14 +1853,12 @@ class _$ServerAuthenticatesUserImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerAuthenticatesUserImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
             (identical(other.jwt, jwt) || other.jwt == jwt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, eventType, jwt);
+  int get hashCode => Object.hash(runtimeType, jwt);
 
   @JsonKey(ignore: true)
   @override
@@ -1502,6 +1868,111 @@ class _$ServerAuthenticatesUserImpl
           _$ServerAuthenticatesUserImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int roomId, int liveConnections, List<Message> messages)
+        serverAddsClientToRoom,
+    required TResult Function(String jwt) serverAuthenticatesUser,
+    required TResult Function(int roomId, Message message)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(String userEmail, int roomId, String message)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(String errorMessage, String receivedMessage)
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverAuthenticatesUser(jwt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult? Function(String jwt)? serverAuthenticatesUser,
+    TResult? Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverAuthenticatesUser?.call(jwt);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult Function(String jwt)? serverAuthenticatesUser,
+    TResult Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) {
+    if (serverAuthenticatesUser != null) {
+      return serverAuthenticatesUser(jwt);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerAddsClientToRoom value)
+        serverAddsClientToRoom,
+    required TResult Function(ServerAuthenticatesUser value)
+        serverAuthenticatesUser,
+    required TResult Function(ServerBroadcastsMessageToClientsInRoom value)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(
+            ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(ServerSendsErrorMessageToClient value)
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverAuthenticatesUser(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult? Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult? Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverAuthenticatesUser?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) {
+    if (serverAuthenticatesUser != null) {
+      return serverAuthenticatesUser(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$ServerAuthenticatesUserImplToJson(
       this,
@@ -1509,117 +1980,34 @@ class _$ServerAuthenticatesUserImpl
   }
 }
 
-abstract class _ServerAuthenticatesUser implements ServerAuthenticatesUser {
-  const factory _ServerAuthenticatesUser(
-      {required final String eventType,
-      required final String jwt}) = _$ServerAuthenticatesUserImpl;
+abstract class ServerAuthenticatesUser implements ServerEvent {
+  factory ServerAuthenticatesUser({required final String jwt}) =
+      _$ServerAuthenticatesUserImpl;
 
-  factory _ServerAuthenticatesUser.fromJson(Map<String, dynamic> json) =
+  factory ServerAuthenticatesUser.fromJson(Map<String, dynamic> json) =
       _$ServerAuthenticatesUserImpl.fromJson;
 
-  @override
-  String get eventType;
-  @override
   String get jwt;
-  @override
   @JsonKey(ignore: true)
   _$$ServerAuthenticatesUserImplCopyWith<_$ServerAuthenticatesUserImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ServerBroadcastsMessageToClientsInRoom
-    _$ServerBroadcastsMessageToClientsInRoomFromJson(
-        Map<String, dynamic> json) {
-  return _ServerBroadcastsMessageToClientsInRoom.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ServerBroadcastsMessageToClientsInRoom {
-  String get eventType => throw _privateConstructorUsedError;
-  int get roomId => throw _privateConstructorUsedError;
-  Message get message => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ServerBroadcastsMessageToClientsInRoomCopyWith<
-          ServerBroadcastsMessageToClientsInRoom>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ServerBroadcastsMessageToClientsInRoomCopyWith<$Res> {
-  factory $ServerBroadcastsMessageToClientsInRoomCopyWith(
-          ServerBroadcastsMessageToClientsInRoom value,
-          $Res Function(ServerBroadcastsMessageToClientsInRoom) then) =
-      _$ServerBroadcastsMessageToClientsInRoomCopyWithImpl<$Res,
-          ServerBroadcastsMessageToClientsInRoom>;
-  @useResult
-  $Res call({String eventType, int roomId, Message message});
-
-  $MessageCopyWith<$Res> get message;
-}
-
-/// @nodoc
-class _$ServerBroadcastsMessageToClientsInRoomCopyWithImpl<$Res,
-        $Val extends ServerBroadcastsMessageToClientsInRoom>
-    implements $ServerBroadcastsMessageToClientsInRoomCopyWith<$Res> {
-  _$ServerBroadcastsMessageToClientsInRoomCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? roomId = null,
-    Object? message = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      roomId: null == roomId
-          ? _value.roomId
-          : roomId // ignore: cast_nullable_to_non_nullable
-              as int,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as Message,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $MessageCopyWith<$Res> get message {
-    return $MessageCopyWith<$Res>(_value.message, (value) {
-      return _then(_value.copyWith(message: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$ServerBroadcastsMessageToClientsInRoomImplCopyWith<$Res>
-    implements $ServerBroadcastsMessageToClientsInRoomCopyWith<$Res> {
+abstract class _$$ServerBroadcastsMessageToClientsInRoomImplCopyWith<$Res> {
   factory _$$ServerBroadcastsMessageToClientsInRoomImplCopyWith(
           _$ServerBroadcastsMessageToClientsInRoomImpl value,
           $Res Function(_$ServerBroadcastsMessageToClientsInRoomImpl) then) =
       __$$ServerBroadcastsMessageToClientsInRoomImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String eventType, int roomId, Message message});
+  $Res call({int roomId, Message message});
 
-  @override
   $MessageCopyWith<$Res> get message;
 }
 
 /// @nodoc
 class __$$ServerBroadcastsMessageToClientsInRoomImplCopyWithImpl<$Res>
-    extends _$ServerBroadcastsMessageToClientsInRoomCopyWithImpl<$Res,
+    extends _$ServerEventCopyWithImpl<$Res,
         _$ServerBroadcastsMessageToClientsInRoomImpl>
     implements _$$ServerBroadcastsMessageToClientsInRoomImplCopyWith<$Res> {
   __$$ServerBroadcastsMessageToClientsInRoomImplCopyWithImpl(
@@ -1630,15 +2018,10 @@ class __$$ServerBroadcastsMessageToClientsInRoomImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventType = null,
     Object? roomId = null,
     Object? message = null,
   }) {
     return _then(_$ServerBroadcastsMessageToClientsInRoomImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
       roomId: null == roomId
           ? _value.roomId
           : roomId // ignore: cast_nullable_to_non_nullable
@@ -1649,39 +2032,48 @@ class __$$ServerBroadcastsMessageToClientsInRoomImplCopyWithImpl<$Res>
               as Message,
     ));
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MessageCopyWith<$Res> get message {
+    return $MessageCopyWith<$Res>(_value.message, (value) {
+      return _then(_value.copyWith(message: value));
+    });
+  }
 }
 
 /// @nodoc
 @JsonSerializable()
 class _$ServerBroadcastsMessageToClientsInRoomImpl
     with DiagnosticableTreeMixin
-    implements _ServerBroadcastsMessageToClientsInRoom {
-  const _$ServerBroadcastsMessageToClientsInRoomImpl(
-      {required this.eventType, required this.roomId, required this.message});
+    implements ServerBroadcastsMessageToClientsInRoom {
+  _$ServerBroadcastsMessageToClientsInRoomImpl(
+      {required this.roomId, required this.message, final String? $type})
+      : $type = $type ?? 'ServerBroadcastsMessageToClientsInRoom';
 
   factory _$ServerBroadcastsMessageToClientsInRoomImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ServerBroadcastsMessageToClientsInRoomImplFromJson(json);
 
   @override
-  final String eventType;
-  @override
   final int roomId;
   @override
   final Message message;
 
+  @JsonKey(name: 'eventType')
+  final String $type;
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerBroadcastsMessageToClientsInRoom(eventType: $eventType, roomId: $roomId, message: $message)';
+    return 'ServerEvent.serverBroadcastsMessageToClientsInRoom(roomId: $roomId, message: $message)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(
-          DiagnosticsProperty('type', 'ServerBroadcastsMessageToClientsInRoom'))
-      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty(
+          'type', 'ServerEvent.serverBroadcastsMessageToClientsInRoom'))
       ..add(DiagnosticsProperty('roomId', roomId))
       ..add(DiagnosticsProperty('message', message));
   }
@@ -1691,15 +2083,13 @@ class _$ServerBroadcastsMessageToClientsInRoomImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerBroadcastsMessageToClientsInRoomImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
             (identical(other.roomId, roomId) || other.roomId == roomId) &&
             (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, eventType, roomId, message);
+  int get hashCode => Object.hash(runtimeType, roomId, message);
 
   @JsonKey(ignore: true)
   @override
@@ -1711,6 +2101,111 @@ class _$ServerBroadcastsMessageToClientsInRoomImpl
               _$ServerBroadcastsMessageToClientsInRoomImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int roomId, int liveConnections, List<Message> messages)
+        serverAddsClientToRoom,
+    required TResult Function(String jwt) serverAuthenticatesUser,
+    required TResult Function(int roomId, Message message)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(String userEmail, int roomId, String message)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(String errorMessage, String receivedMessage)
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverBroadcastsMessageToClientsInRoom(roomId, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult? Function(String jwt)? serverAuthenticatesUser,
+    TResult? Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverBroadcastsMessageToClientsInRoom?.call(roomId, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult Function(String jwt)? serverAuthenticatesUser,
+    TResult Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) {
+    if (serverBroadcastsMessageToClientsInRoom != null) {
+      return serverBroadcastsMessageToClientsInRoom(roomId, message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerAddsClientToRoom value)
+        serverAddsClientToRoom,
+    required TResult Function(ServerAuthenticatesUser value)
+        serverAuthenticatesUser,
+    required TResult Function(ServerBroadcastsMessageToClientsInRoom value)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(
+            ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(ServerSendsErrorMessageToClient value)
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverBroadcastsMessageToClientsInRoom(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult? Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult? Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverBroadcastsMessageToClientsInRoom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) {
+    if (serverBroadcastsMessageToClientsInRoom != null) {
+      return serverBroadcastsMessageToClientsInRoom(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$ServerBroadcastsMessageToClientsInRoomImplToJson(
       this,
@@ -1718,120 +2213,38 @@ class _$ServerBroadcastsMessageToClientsInRoomImpl
   }
 }
 
-abstract class _ServerBroadcastsMessageToClientsInRoom
-    implements ServerBroadcastsMessageToClientsInRoom {
-  const factory _ServerBroadcastsMessageToClientsInRoom(
-          {required final String eventType,
-          required final int roomId,
-          required final Message message}) =
+abstract class ServerBroadcastsMessageToClientsInRoom implements ServerEvent {
+  factory ServerBroadcastsMessageToClientsInRoom(
+          {required final int roomId, required final Message message}) =
       _$ServerBroadcastsMessageToClientsInRoomImpl;
 
-  factory _ServerBroadcastsMessageToClientsInRoom.fromJson(
+  factory ServerBroadcastsMessageToClientsInRoom.fromJson(
           Map<String, dynamic> json) =
       _$ServerBroadcastsMessageToClientsInRoomImpl.fromJson;
 
-  @override
-  String get eventType;
-  @override
   int get roomId;
-  @override
   Message get message;
-  @override
   @JsonKey(ignore: true)
   _$$ServerBroadcastsMessageToClientsInRoomImplCopyWith<
           _$ServerBroadcastsMessageToClientsInRoomImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ServerNotifiesClientsInRoomSomeoneHasJoinedRoom
-    _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomFromJson(
-        Map<String, dynamic> json) {
-  return _ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoom {
-  String get eventType => throw _privateConstructorUsedError;
-  String get userEmail => throw _privateConstructorUsedError;
-  int get roomId => throw _privateConstructorUsedError;
-  String get message => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWith<
-          ServerNotifiesClientsInRoomSomeoneHasJoinedRoom>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWith<$Res> {
-  factory $ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWith(
-          ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value,
-          $Res Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom) then) =
-      _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWithImpl<$Res,
-          ServerNotifiesClientsInRoomSomeoneHasJoinedRoom>;
-  @useResult
-  $Res call({String eventType, String userEmail, int roomId, String message});
-}
-
-/// @nodoc
-class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWithImpl<$Res,
-        $Val extends ServerNotifiesClientsInRoomSomeoneHasJoinedRoom>
-    implements $ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWith<$Res> {
-  _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWithImpl(
-      this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? userEmail = null,
-    Object? roomId = null,
-    Object? message = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      userEmail: null == userEmail
-          ? _value.userEmail
-          : userEmail // ignore: cast_nullable_to_non_nullable
-              as String,
-      roomId: null == roomId
-          ? _value.roomId
-          : roomId // ignore: cast_nullable_to_non_nullable
-              as int,
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
 /// @nodoc
 abstract class _$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplCopyWith<
-        $Res>
-    implements $ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWith<$Res> {
+    $Res> {
   factory _$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplCopyWith(
           _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl value,
           $Res Function(_$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl)
               then) =
       __$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String eventType, String userEmail, int roomId, String message});
+  $Res call({String userEmail, int roomId, String message});
 }
 
 /// @nodoc
 class __$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplCopyWithImpl<$Res>
-    extends _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomCopyWithImpl<$Res,
+    extends _$ServerEventCopyWithImpl<$Res,
         _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl>
     implements
         _$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplCopyWith<$Res> {
@@ -1844,16 +2257,11 @@ class __$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventType = null,
     Object? userEmail = null,
     Object? roomId = null,
     Object? message = null,
   }) {
     return _then(_$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
       userEmail: null == userEmail
           ? _value.userEmail
           : userEmail // ignore: cast_nullable_to_non_nullable
@@ -1874,19 +2282,18 @@ class __$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
     with DiagnosticableTreeMixin
-    implements _ServerNotifiesClientsInRoomSomeoneHasJoinedRoom {
-  const _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl(
-      {required this.eventType,
-      required this.userEmail,
+    implements ServerNotifiesClientsInRoomSomeoneHasJoinedRoom {
+  _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl(
+      {required this.userEmail,
       required this.roomId,
-      required this.message});
+      required this.message,
+      final String? $type})
+      : $type = $type ?? 'ServerNotifiesClientsInRoomSomeoneHasJoinedRoom';
 
   factory _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplFromJson(json);
 
-  @override
-  final String eventType;
   @override
   final String userEmail;
   @override
@@ -1894,18 +2301,20 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
   @override
   final String message;
 
+  @JsonKey(name: 'eventType')
+  final String $type;
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerNotifiesClientsInRoomSomeoneHasJoinedRoom(eventType: $eventType, userEmail: $userEmail, roomId: $roomId, message: $message)';
+    return 'ServerEvent.serverNotifiesClientsInRoomSomeoneHasJoinedRoom(userEmail: $userEmail, roomId: $roomId, message: $message)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty(
-          'type', 'ServerNotifiesClientsInRoomSomeoneHasJoinedRoom'))
-      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty('type',
+          'ServerEvent.serverNotifiesClientsInRoomSomeoneHasJoinedRoom'))
       ..add(DiagnosticsProperty('userEmail', userEmail))
       ..add(DiagnosticsProperty('roomId', roomId))
       ..add(DiagnosticsProperty('message', message));
@@ -1916,8 +2325,6 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
             (identical(other.userEmail, userEmail) ||
                 other.userEmail == userEmail) &&
             (identical(other.roomId, roomId) || other.roomId == roomId) &&
@@ -1926,8 +2333,7 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, eventType, userEmail, roomId, message);
+  int get hashCode => Object.hash(runtimeType, userEmail, roomId, message);
 
   @JsonKey(ignore: true)
   @override
@@ -1940,6 +2346,114 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
               this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int roomId, int liveConnections, List<Message> messages)
+        serverAddsClientToRoom,
+    required TResult Function(String jwt) serverAuthenticatesUser,
+    required TResult Function(int roomId, Message message)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(String userEmail, int roomId, String message)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(String errorMessage, String receivedMessage)
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverNotifiesClientsInRoomSomeoneHasJoinedRoom(
+        userEmail, roomId, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult? Function(String jwt)? serverAuthenticatesUser,
+    TResult? Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverNotifiesClientsInRoomSomeoneHasJoinedRoom?.call(
+        userEmail, roomId, message);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult Function(String jwt)? serverAuthenticatesUser,
+    TResult Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) {
+    if (serverNotifiesClientsInRoomSomeoneHasJoinedRoom != null) {
+      return serverNotifiesClientsInRoomSomeoneHasJoinedRoom(
+          userEmail, roomId, message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerAddsClientToRoom value)
+        serverAddsClientToRoom,
+    required TResult Function(ServerAuthenticatesUser value)
+        serverAuthenticatesUser,
+    required TResult Function(ServerBroadcastsMessageToClientsInRoom value)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(
+            ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(ServerSendsErrorMessageToClient value)
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverNotifiesClientsInRoomSomeoneHasJoinedRoom(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult? Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult? Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverNotifiesClientsInRoomSomeoneHasJoinedRoom?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) {
+    if (serverNotifiesClientsInRoomSomeoneHasJoinedRoom != null) {
+      return serverNotifiesClientsInRoomSomeoneHasJoinedRoom(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplToJson(
       this,
@@ -1947,112 +2461,40 @@ class _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl
   }
 }
 
-abstract class _ServerNotifiesClientsInRoomSomeoneHasJoinedRoom
-    implements ServerNotifiesClientsInRoomSomeoneHasJoinedRoom {
-  const factory _ServerNotifiesClientsInRoomSomeoneHasJoinedRoom(
-          {required final String eventType,
-          required final String userEmail,
+abstract class ServerNotifiesClientsInRoomSomeoneHasJoinedRoom
+    implements ServerEvent {
+  factory ServerNotifiesClientsInRoomSomeoneHasJoinedRoom(
+          {required final String userEmail,
           required final int roomId,
           required final String message}) =
       _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl;
 
-  factory _ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.fromJson(
+  factory ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.fromJson(
           Map<String, dynamic> json) =
       _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl.fromJson;
 
-  @override
-  String get eventType;
-  @override
   String get userEmail;
-  @override
   int get roomId;
-  @override
   String get message;
-  @override
   @JsonKey(ignore: true)
   _$$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImplCopyWith<
           _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-ServerSendsErrorMessageToClient _$ServerSendsErrorMessageToClientFromJson(
-    Map<String, dynamic> json) {
-  return _ServerSendsErrorMessageToClient.fromJson(json);
-}
-
 /// @nodoc
-mixin _$ServerSendsErrorMessageToClient {
-  String get eventType => throw _privateConstructorUsedError;
-  String get errorMessage => throw _privateConstructorUsedError;
-  String get receivedMessage => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ServerSendsErrorMessageToClientCopyWith<ServerSendsErrorMessageToClient>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ServerSendsErrorMessageToClientCopyWith<$Res> {
-  factory $ServerSendsErrorMessageToClientCopyWith(
-          ServerSendsErrorMessageToClient value,
-          $Res Function(ServerSendsErrorMessageToClient) then) =
-      _$ServerSendsErrorMessageToClientCopyWithImpl<$Res,
-          ServerSendsErrorMessageToClient>;
-  @useResult
-  $Res call({String eventType, String errorMessage, String receivedMessage});
-}
-
-/// @nodoc
-class _$ServerSendsErrorMessageToClientCopyWithImpl<$Res,
-        $Val extends ServerSendsErrorMessageToClient>
-    implements $ServerSendsErrorMessageToClientCopyWith<$Res> {
-  _$ServerSendsErrorMessageToClientCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? eventType = null,
-    Object? errorMessage = null,
-    Object? receivedMessage = null,
-  }) {
-    return _then(_value.copyWith(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
-      errorMessage: null == errorMessage
-          ? _value.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      receivedMessage: null == receivedMessage
-          ? _value.receivedMessage
-          : receivedMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$ServerSendsErrorMessageToClientImplCopyWith<$Res>
-    implements $ServerSendsErrorMessageToClientCopyWith<$Res> {
+abstract class _$$ServerSendsErrorMessageToClientImplCopyWith<$Res> {
   factory _$$ServerSendsErrorMessageToClientImplCopyWith(
           _$ServerSendsErrorMessageToClientImpl value,
           $Res Function(_$ServerSendsErrorMessageToClientImpl) then) =
       __$$ServerSendsErrorMessageToClientImplCopyWithImpl<$Res>;
-  @override
   @useResult
-  $Res call({String eventType, String errorMessage, String receivedMessage});
+  $Res call({String errorMessage, String receivedMessage});
 }
 
 /// @nodoc
 class __$$ServerSendsErrorMessageToClientImplCopyWithImpl<$Res>
-    extends _$ServerSendsErrorMessageToClientCopyWithImpl<$Res,
+    extends _$ServerEventCopyWithImpl<$Res,
         _$ServerSendsErrorMessageToClientImpl>
     implements _$$ServerSendsErrorMessageToClientImplCopyWith<$Res> {
   __$$ServerSendsErrorMessageToClientImplCopyWithImpl(
@@ -2063,15 +2505,10 @@ class __$$ServerSendsErrorMessageToClientImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? eventType = null,
     Object? errorMessage = null,
     Object? receivedMessage = null,
   }) {
     return _then(_$ServerSendsErrorMessageToClientImpl(
-      eventType: null == eventType
-          ? _value.eventType
-          : eventType // ignore: cast_nullable_to_non_nullable
-              as String,
       errorMessage: null == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -2088,34 +2525,36 @@ class __$$ServerSendsErrorMessageToClientImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ServerSendsErrorMessageToClientImpl
     with DiagnosticableTreeMixin
-    implements _ServerSendsErrorMessageToClient {
-  const _$ServerSendsErrorMessageToClientImpl(
-      {required this.eventType,
-      required this.errorMessage,
-      required this.receivedMessage});
+    implements ServerSendsErrorMessageToClient {
+  _$ServerSendsErrorMessageToClientImpl(
+      {required this.errorMessage,
+      required this.receivedMessage,
+      final String? $type})
+      : $type = $type ?? 'ServerSendsErrorMessageToClient';
 
   factory _$ServerSendsErrorMessageToClientImpl.fromJson(
           Map<String, dynamic> json) =>
       _$$ServerSendsErrorMessageToClientImplFromJson(json);
 
   @override
-  final String eventType;
-  @override
   final String errorMessage;
   @override
   final String receivedMessage;
 
+  @JsonKey(name: 'eventType')
+  final String $type;
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ServerSendsErrorMessageToClient(eventType: $eventType, errorMessage: $errorMessage, receivedMessage: $receivedMessage)';
+    return 'ServerEvent.serverSendsErrorMessageToClient(errorMessage: $errorMessage, receivedMessage: $receivedMessage)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'ServerSendsErrorMessageToClient'))
-      ..add(DiagnosticsProperty('eventType', eventType))
+      ..add(DiagnosticsProperty(
+          'type', 'ServerEvent.serverSendsErrorMessageToClient'))
       ..add(DiagnosticsProperty('errorMessage', errorMessage))
       ..add(DiagnosticsProperty('receivedMessage', receivedMessage));
   }
@@ -2125,8 +2564,6 @@ class _$ServerSendsErrorMessageToClientImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ServerSendsErrorMessageToClientImpl &&
-            (identical(other.eventType, eventType) ||
-                other.eventType == eventType) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage) &&
             (identical(other.receivedMessage, receivedMessage) ||
@@ -2135,8 +2572,7 @@ class _$ServerSendsErrorMessageToClientImpl
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, eventType, errorMessage, receivedMessage);
+  int get hashCode => Object.hash(runtimeType, errorMessage, receivedMessage);
 
   @JsonKey(ignore: true)
   @override
@@ -2147,6 +2583,111 @@ class _$ServerSendsErrorMessageToClientImpl
           _$ServerSendsErrorMessageToClientImpl>(this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            int roomId, int liveConnections, List<Message> messages)
+        serverAddsClientToRoom,
+    required TResult Function(String jwt) serverAuthenticatesUser,
+    required TResult Function(int roomId, Message message)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(String userEmail, int roomId, String message)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(String errorMessage, String receivedMessage)
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverSendsErrorMessageToClient(errorMessage, receivedMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult? Function(String jwt)? serverAuthenticatesUser,
+    TResult? Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverSendsErrorMessageToClient?.call(errorMessage, receivedMessage);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int roomId, int liveConnections, List<Message> messages)?
+        serverAddsClientToRoom,
+    TResult Function(String jwt)? serverAuthenticatesUser,
+    TResult Function(int roomId, Message message)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(String userEmail, int roomId, String message)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(String errorMessage, String receivedMessage)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) {
+    if (serverSendsErrorMessageToClient != null) {
+      return serverSendsErrorMessageToClient(errorMessage, receivedMessage);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ServerAddsClientToRoom value)
+        serverAddsClientToRoom,
+    required TResult Function(ServerAuthenticatesUser value)
+        serverAuthenticatesUser,
+    required TResult Function(ServerBroadcastsMessageToClientsInRoom value)
+        serverBroadcastsMessageToClientsInRoom,
+    required TResult Function(
+            ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    required TResult Function(ServerSendsErrorMessageToClient value)
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverSendsErrorMessageToClient(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult? Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult? Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult? Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult? Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+  }) {
+    return serverSendsErrorMessageToClient?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ServerAddsClientToRoom value)? serverAddsClientToRoom,
+    TResult Function(ServerAuthenticatesUser value)? serverAuthenticatesUser,
+    TResult Function(ServerBroadcastsMessageToClientsInRoom value)?
+        serverBroadcastsMessageToClientsInRoom,
+    TResult Function(ServerNotifiesClientsInRoomSomeoneHasJoinedRoom value)?
+        serverNotifiesClientsInRoomSomeoneHasJoinedRoom,
+    TResult Function(ServerSendsErrorMessageToClient value)?
+        serverSendsErrorMessageToClient,
+    required TResult orElse(),
+  }) {
+    if (serverSendsErrorMessageToClient != null) {
+      return serverSendsErrorMessageToClient(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
     return _$$ServerSendsErrorMessageToClientImplToJson(
       this,
@@ -2154,24 +2695,17 @@ class _$ServerSendsErrorMessageToClientImpl
   }
 }
 
-abstract class _ServerSendsErrorMessageToClient
-    implements ServerSendsErrorMessageToClient {
-  const factory _ServerSendsErrorMessageToClient(
-          {required final String eventType,
-          required final String errorMessage,
+abstract class ServerSendsErrorMessageToClient implements ServerEvent {
+  factory ServerSendsErrorMessageToClient(
+          {required final String errorMessage,
           required final String receivedMessage}) =
       _$ServerSendsErrorMessageToClientImpl;
 
-  factory _ServerSendsErrorMessageToClient.fromJson(Map<String, dynamic> json) =
+  factory ServerSendsErrorMessageToClient.fromJson(Map<String, dynamic> json) =
       _$ServerSendsErrorMessageToClientImpl.fromJson;
 
-  @override
-  String get eventType;
-  @override
   String get errorMessage;
-  @override
   String get receivedMessage;
-  @override
   @JsonKey(ignore: true)
   _$$ServerSendsErrorMessageToClientImplCopyWith<
           _$ServerSendsErrorMessageToClientImpl>

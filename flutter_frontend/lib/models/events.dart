@@ -6,176 +6,69 @@ import 'entities.dart';
 part 'events.freezed.dart';
 part 'events.g.dart';
 
-sealed class BaseEvent {}
+interface class BaseEvent {}
 
-abstract class ClientEvent extends BaseEvent {
-  Map<String, dynamic> toJson();
-}
-
-@freezed
-class ClientWantsToAuthenticateWithJwt extends ClientEvent
-    with _$ClientWantsToAuthenticateWithJwt {
-  static const String name = "ClientWantsToAuthenticateWithJwt";
-  const factory ClientWantsToAuthenticateWithJwt({
-    required String eventType,
+@Freezed(unionKey: 'eventType', unionValueCase: FreezedUnionCase.pascal)
+sealed class ClientEvent with _$ClientEvent implements BaseEvent {
+  factory ClientEvent.clientWantsToAuthenticateWithJwt({
     required String jwt,
-  }) = _ClientWantsToAuthenticateWithJwt;
+  }) = ClientWantsToAuthenticateWithJwt;
 
-  factory ClientWantsToAuthenticateWithJwt.fromJson(
-          Map<String, Object?> json) =>
-      _$ClientWantsToAuthenticateWithJwtFromJson(json);
-}
-
-@freezed
-class ClientWantsToDetectImageObjects extends ClientEvent
-    with _$ClientWantsToDetectImageObjects {
-  static const String name = "ClientWantsToDetectImageObjects";
-  const factory ClientWantsToDetectImageObjects({
-    required String eventType,
+  factory ClientEvent.clientWantsToDetectImageObjects({
     required String url,
-  }) = _ClientWantsToDetectImageObjects;
+  }) = ClientWantsToDetectImageObjects;
 
-  factory ClientWantsToDetectImageObjects.fromJson(Map<String, Object?> json) =>
-      _$ClientWantsToDetectImageObjectsFromJson(json);
-}
-
-@freezed
-class ClientWantsToEnterRoom extends ClientEvent with _$ClientWantsToEnterRoom {
-  static const String name = "ClientWantsToEnterRoom";
-  const factory ClientWantsToEnterRoom({
-    required String eventType,
+  const factory ClientEvent.clientWantsToEnterRoom({
     required int roomId,
-  }) = _ClientWantsToEnterRoom;
+  }) = ClientWantsToEnterRoom;
 
-  factory ClientWantsToEnterRoom.fromJson(Map<String, Object?> json) =>
-      _$ClientWantsToEnterRoomFromJson(json);
-}
-
-@freezed
-class ClientWantsToRegister extends ClientEvent with _$ClientWantsToRegister {
-  static const String name = "ClientWantsToRegister";
-  const factory ClientWantsToRegister({
-    required String eventType,
+  factory ClientEvent.clientWantsToRegister({
     required String email,
     required String password,
-  }) = _ClientWantsToRegister;
+  }) = ClientWantsToRegister;
 
-  factory ClientWantsToRegister.fromJson(Map<String, Object?> json) =>
-      _$ClientWantsToRegisterFromJson(json);
-}
-
-@freezed
-class ClientWantsToSendMessageToRoom extends ClientEvent
-    with _$ClientWantsToSendMessageToRoom {
-  static const String name = "ClientWantsToSendMessageToRoom";
-  const factory ClientWantsToSendMessageToRoom({
-    required String eventType,
+  factory ClientEvent.clientWantsToSendMessageToRoom({
     required int roomId,
     required String messageContent,
-  }) = _ClientWantsToSendMessageToRoom;
+  }) = ClientWantsToSendMessageToRoom;
 
-  factory ClientWantsToSendMessageToRoom.fromJson(Map<String, Object?> json) =>
-      _$ClientWantsToSendMessageToRoomFromJson(json);
-}
-
-@freezed
-class ClientWantsToSignIn extends ClientEvent with _$ClientWantsToSignIn {
-  static const String name = "ClientWantsToSignIn";
-  const factory ClientWantsToSignIn({
-    required String eventType,
+  factory ClientEvent.clientWantsToSignIn({
     required String email,
     required String password,
-  }) = _ClientWantsToSignIn;
+  }) = ClientWantsToSignIn;
 
-  factory ClientWantsToSignIn.fromJson(Map<String, Object?> json) =>
-      _$ClientWantsToSignInFromJson(json);
+  factory ClientEvent.fromJson(Map<String, dynamic> json) =>
+      _$ClientEventFromJson(json);
 }
 
-class ServerEvent extends BaseEvent {
-  static ServerEvent fromJson(Map<String, Object?> json) {
-    final type = json['eventType'];
-    return switch (type) {
-      ServerAddsClientToRoom.name => ServerAddsClientToRoom.fromJson(json),
-      ServerAuthenticatesUser.name => ServerAuthenticatesUser.fromJson(json),
-      ServerBroadcastsMessageToClientsInRoom.name =>
-        ServerBroadcastsMessageToClientsInRoom.fromJson(json),
-      ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.name =>
-        ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.fromJson(json),
-      ServerSendsErrorMessageToClient.name =>
-        ServerAddsClientToRoom.fromJson(json),
-      _ => throw "Unknown event type: $type in $json"
-    };
-  }
-}
-
-@freezed
-class ServerAddsClientToRoom extends ServerEvent with _$ServerAddsClientToRoom {
-  static const String name = "ServerAddsClientToRoom";
-  const factory ServerAddsClientToRoom({
-    required String eventType,
+@Freezed(unionKey: 'eventType', unionValueCase: FreezedUnionCase.pascal)
+class ServerEvent with _$ServerEvent implements BaseEvent {
+  factory ServerEvent.serverAddsClientToRoom({
     required int roomId,
     required int liveConnections,
     required List<Message> messages,
-  }) = _ServerAddsClientToRoom;
+  }) = ServerAddsClientToRoom;
 
-  factory ServerAddsClientToRoom.fromJson(Map<String, Object?> json) =>
-      _$ServerAddsClientToRoomFromJson(json);
-}
-
-@freezed
-class ServerAuthenticatesUser extends ServerEvent
-    with _$ServerAuthenticatesUser {
-  static const String name = "ServerAuthenticatesUser";
-  const factory ServerAuthenticatesUser({
-    required String eventType,
+  factory ServerEvent.serverAuthenticatesUser({
     required String jwt,
-  }) = _ServerAuthenticatesUser;
+  }) = ServerAuthenticatesUser;
 
-  factory ServerAuthenticatesUser.fromJson(Map<String, Object?> json) =>
-      _$ServerAuthenticatesUserFromJson(json);
-}
-
-@freezed
-class ServerBroadcastsMessageToClientsInRoom extends ServerEvent
-    with _$ServerBroadcastsMessageToClientsInRoom {
-  static const String name = "ServerBroadcastsMessageToClientsInRoom";
-  const factory ServerBroadcastsMessageToClientsInRoom({
-    required String eventType,
+  factory ServerEvent.serverBroadcastsMessageToClientsInRoom({
     required int roomId,
     required Message message,
-  }) = _ServerBroadcastsMessageToClientsInRoom;
+  }) = ServerBroadcastsMessageToClientsInRoom;
 
-  factory ServerBroadcastsMessageToClientsInRoom.fromJson(
-          Map<String, Object?> json) =>
-      _$ServerBroadcastsMessageToClientsInRoomFromJson(json);
-}
-
-@freezed
-class ServerNotifiesClientsInRoomSomeoneHasJoinedRoom extends ServerEvent
-    with _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoom {
-  static const String name = "ServerNotifiesClientsInRoomSomeoneHasJoinedRoom";
-  const factory ServerNotifiesClientsInRoomSomeoneHasJoinedRoom({
-    required String eventType,
+  factory ServerEvent.serverNotifiesClientsInRoomSomeoneHasJoinedRoom({
     required String userEmail,
     required int roomId,
     required String message,
-  }) = _ServerNotifiesClientsInRoomSomeoneHasJoinedRoom;
+  }) = ServerNotifiesClientsInRoomSomeoneHasJoinedRoom;
 
-  factory ServerNotifiesClientsInRoomSomeoneHasJoinedRoom.fromJson(
-          Map<String, Object?> json) =>
-      _$ServerNotifiesClientsInRoomSomeoneHasJoinedRoomFromJson(json);
-}
-
-@freezed
-class ServerSendsErrorMessageToClient extends ServerEvent
-    with _$ServerSendsErrorMessageToClient {
-  static const String name = "ServerSendsErrorMessageToClient";
-  const factory ServerSendsErrorMessageToClient({
-    required String eventType,
+  factory ServerEvent.serverSendsErrorMessageToClient({
     required String errorMessage,
     required String receivedMessage,
-  }) = _ServerSendsErrorMessageToClient;
+  }) = ServerSendsErrorMessageToClient;
 
-  factory ServerSendsErrorMessageToClient.fromJson(Map<String, Object?> json) =>
-      _$ServerSendsErrorMessageToClientFromJson(json);
+  factory ServerEvent.fromJson(Map<String, dynamic> json) =>
+      _$ServerEventFromJson(json);
 }

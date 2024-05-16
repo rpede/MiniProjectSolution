@@ -49,7 +49,6 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
       return;
     }
     add(ClientWantsToEnterRoom(
-      eventType: ClientWantsToEnterRoom.name,
       roomId: roomId,
     ));
   }
@@ -57,7 +56,6 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
   /// Sends ClientWantsToSignIn event to server
   void signIn({required String password, required String email}) {
     add(ClientWantsToSignIn(
-      eventType: ClientWantsToSignIn.name,
       email: email,
       password: password,
     ));
@@ -66,7 +64,6 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
   /// Sends ClientWantsToRegister event to server
   void register({required String password, required String email}) {
     add(ClientWantsToRegister(
-      eventType: ClientWantsToRegister.name,
       email: email,
       password: password,
     ));
@@ -76,7 +73,6 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
   void sendMessageToRoom(
       {required int roomId, required String messageContent}) {
     add(ClientWantsToSendMessageToRoom(
-      eventType: ClientWantsToSendMessageToRoom.name,
       roomId: roomId,
       messageContent: messageContent,
     ));
