@@ -1,25 +1,32 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
-
+import 'package:dart_mappable/dart_mappable.dart';
 import '../models/entities.dart';
-part 'chat_state.freezed.dart';
 
-@freezed
-class ConnectedRoom with _$ConnectedRoom {
-  const factory ConnectedRoom({
-    required int roomId,
-    required List<Message> messages,
-    required int numberOfConnections,
-  }) = _ConnectedRoom;
+part 'chat_state.mapper.dart';
+
+@MappableClass()
+class ConnectedRoom with ConnectedRoomMappable {
+  final int roomId;
+  final List<Message> messages;
+  final int numberOfConnections;
+
+  const ConnectedRoom({
+    required this.roomId,
+    required this.messages,
+    required this.numberOfConnections,
+  });
 }
 
-@freezed
-class ChatState with _$ChatState {
-  const factory ChatState({
-    required bool authenticated,
-    required List<ConnectedRoom> connectedRooms,
-    required String? headsUp,
-  }) = _ChatState;
+@MappableClass()
+class ChatState with ChatStateMappable {
+  final bool authenticated;
+  final List<ConnectedRoom> connectedRooms;
+  final String? headsUp;
+
+  const ChatState({
+    required this.authenticated,
+    required this.connectedRooms,
+    required this.headsUp,
+  });
 
   static ChatState empty() =>
       const ChatState(authenticated: false, connectedRooms: [], headsUp: null);

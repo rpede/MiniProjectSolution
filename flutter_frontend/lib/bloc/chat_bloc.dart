@@ -16,7 +16,12 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
       : _channel = channel,
         super(ChatState.empty()) {
     // Handler for client events
-    on<ClientEvent>(_onClientEvent);
+    on<ClientWantsToAuthenticateWithJwt>(_onClientEvent);
+    on<ClientWantsToDetectImageObjects>(_onClientEvent);
+    on<ClientWantsToEnterRoom>(_onClientEvent);
+    on<ClientWantsToRegister>(_onClientEvent);
+    on<ClientWantsToSendMessageToRoom>(_onClientEvent);
+    on<ClientWantsToSignIn>(_onClientEvent);
 
     // Handlers for server events
     on<ServerAddsClientToRoom>(_onServerAddsClientToRoom);
@@ -29,8 +34,7 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
 
     // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
-        .map((event) => jsonDecode(event))
-        .map((event) => ServerEvent.fromJson(event))
+        .map((event) => BaseEventMapper.fromJson(event))
         .listen(add, onError: addError);
   }
 
@@ -82,8 +86,8 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
     ));
   }
 
-  FutureOr<void> _onClientEvent(ClientEvent event, Emitter<ChatState> emit) {
-    _channel.sink.add(jsonEncode(event.toJson()));
+  FutureOr<void> _onClientEvent(BaseEvent event, Emitter<ChatState> emit) {
+    _channel.sink.add(event.toJson());
   }
 
   FutureOr<void> _onServerAddsClientToRoom(

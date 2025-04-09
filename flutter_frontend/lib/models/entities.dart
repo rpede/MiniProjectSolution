@@ -1,41 +1,42 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
+import 'package:dart_mappable/dart_mappable.dart';
 
-part 'entities.freezed.dart';
-part 'entities.g.dart';
+part 'entities.mapper.dart';
 
-@freezed
-class Message with _$Message {
-  const factory Message({
-    required int sender,
-    required DateTime timestamp,
-    required int id,
-    required String messageContent,
-    required String email,
-  }) = _ChatMessage;
-  
-  factory Message.fromJson(Map<String, Object?> json) =>
-      _$MessageFromJson(json);
+@MappableClass()
+class Message with MessageMappable {
+  final int sender;
+  final DateTime timestamp;
+  final int id;
+  final String messageContent;
+  final String email;
+
+  const Message({
+    required this.sender,
+    required this.timestamp,
+    required this.id,
+    required this.messageContent,
+    required this.email,
+  });
 }
 
-@freezed
-class EndUser with _$EndUser {
-  const factory EndUser({
-    required int id,
-    required String email,
-  }) = _EndUser;
+@MappableClass()
+class EndUser with EndUserMappable {
+  final int id;
+  final String email;
 
-  factory EndUser.fromJson(Map<String, Object?> json) =>
-      _$EndUserFromJson(json);
+  const EndUser({
+    required this.id,
+    required this.email,
+  });
 }
 
-@freezed
-class Room with _$Room {
-  const factory Room({
-    required int id,
-    required String title,
-  }) = _Room;
+@MappableClass()
+class Room with RoomMappable {
+  final int id;
+  final String title;
 
-  factory Room.fromJson(Map<String, Object?> json) =>
-      _$RoomFromJson(json);
+  const Room({
+    required this.id,
+    required this.title,
+  });
 }
