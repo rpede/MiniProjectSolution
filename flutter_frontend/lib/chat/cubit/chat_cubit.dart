@@ -2,27 +2,21 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_frontend/bloc/chat_state.dart';
-import 'package:web_socket_channel/web_socket_channel.dart';
+import 'package:flutter_frontend/server_channel.dart';
 
-import '../models/events.dart';
+import '../../models/events.dart';
+import 'chat_state.dart';
 
 class ChatCubit extends Cubit<ChatState> {
-  final WebSocketChannel _channel;
-  late StreamSubscription _channelSubscription;
+  final ServerChannel _server;
+  late StreamSubscription _subscription;
 
-  ChatCubit({required channel})
-      : _channel = channel,
-        super(ChatState.empty()) {
+  ChatCubit(this._server) : super(ChatState.empty()) {
     // Feed deserialized events from server into this bloc
-    _channelSubscription = _channel.stream
-        .map((event) => BaseEventMapper.fromJson(event))
-        .listen((event) {
+    _subscription = _server.stream.listen((event) {
       switch (event) {
         case ServerAddsClientToRoom e:
           _onServerAddsClientToRoom(e);
-        case ServerAuthenticatesUser e:
-          _onServerAuthenticatesUser(e);
         case ServerBroadcastsMessageToClientsInRoom e:
           _onServerBroadcastsMessageToClientsInRoom(e);
         case ServerNotifiesClientsInRoomSomeoneHasJoinedRoom e:
@@ -41,9 +35,7 @@ class ChatCubit extends Cubit<ChatState> {
   @override
   Future<void> close() async {
     // Remember to cancel the subscription when no longer needed.
-    _channelSubscription.cancel();
-    // And close the socket
-    _channel.sink.close();
+    _subscription.cancel();
     super.close();
   }
 
@@ -52,38 +44,20 @@ class ChatCubit extends Cubit<ChatState> {
     if (state.connectedRooms.any((room) => roomId == roomId)) {
       return;
     }
-    _channel.sink.add(ClientWantsToEnterRoom(
+    _server.send(ClientWantsToEnterRoom(
       eventType: ClientWantsToEnterRoom.name,
       roomId: roomId,
-    ).toJson());
-  }
-
-  /// Sends ClientWantsToSignIn event to server
-  void signIn({required String password, required String email}) {
-    _channel.sink.add(ClientWantsToSignIn(
-      eventType: ClientWantsToSignIn.name,
-      email: email,
-      password: password,
-    ).toJson());
-  }
-
-  /// Sends ClientWantsToRegister event to server
-  void register({required String password, required String email}) {
-    _channel.sink.add(ClientWantsToRegister(
-      eventType: ClientWantsToRegister.name,
-      email: email,
-      password: password,
-    ).toJson());
+    ));
   }
 
   /// Sends ClientWantsToSendMessageToRoom event to server
   void sendMessageToRoom(
       {required int roomId, required String messageContent}) {
-    _channel.sink.add(ClientWantsToSendMessageToRoom(
+    _server.send(ClientWantsToSendMessageToRoom(
       eventType: ClientWantsToSendMessageToRoom.name,
       roomId: roomId,
       messageContent: messageContent,
-    ).toJson());
+    ));
   }
 
   FutureOr<void> _onServerAddsClientToRoom(ServerAddsClientToRoom event) {
@@ -96,13 +70,6 @@ class ChatCubit extends Cubit<ChatState> {
           numberOfConnections: event.liveConnections,
         )
       ],
-    ));
-  }
-
-  FutureOr<void> _onServerAuthenticatesUser(ServerAuthenticatesUser event) {
-    emit(state.copyWith(
-      authenticated: true,
-      headsUp: 'Authentication successful!',
     ));
   }
 

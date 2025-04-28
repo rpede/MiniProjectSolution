@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_frontend/bloc/chat_cubit.dart';
-import 'package:flutter_frontend/bloc/chat_state.dart';
 import 'package:intl/intl.dart';
 
 import '../models/entities.dart';
-import 'common.dart';
+import '../ui/common.dart';
+import 'cubit/chat_cubit.dart';
+import 'cubit/chat_state.dart';
 
 class RoomMessages extends StatefulWidget {
   final ConnectedRoom room;

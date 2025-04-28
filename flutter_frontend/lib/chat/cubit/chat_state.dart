@@ -1,5 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
-import '../models/entities.dart';
+import '../../models/entities.dart';
 
 part 'chat_state.mapper.dart';
 

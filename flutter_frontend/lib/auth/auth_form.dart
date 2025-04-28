@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../bloc/chat_cubit.dart';
+import 'package:flutter_frontend/auth/auth_cubit.dart';
 
 class AuthenticateForm extends StatefulWidget {
   const AuthenticateForm({super.key});
@@ -24,13 +23,13 @@ class _AuthenticateFormState extends State<AuthenticateForm> {
 
   _onSignIn() {
     if (!_authFormKey.currentState!.validate()) return;
-    context.read<ChatCubit>().signIn(
+    context.read<AuthCubit>().signIn(
         password: _passwordController.text, email: _usernameController.text);
   }
 
   _onRegister() {
     if (!_authFormKey.currentState!.validate()) return;
-    context.read<ChatCubit>().register(
+    context.read<AuthCubit>().register(
         password: _passwordController.text, email: _usernameController.text);
   }
 
