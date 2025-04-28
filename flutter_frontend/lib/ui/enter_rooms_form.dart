@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../bloc/chat_bloc.dart';
+import 'package:flutter_frontend/bloc/chat_cubit.dart';
 
 class EnterRoomForm extends StatefulWidget {
   const EnterRoomForm({super.key});
@@ -24,7 +23,7 @@ class _EnterRoomFormState extends State<EnterRoomForm> {
     if (!_roomsFormKey.currentState!.validate()) return;
     final roomId = int.tryParse(_roomsController.text);
     if (roomId == null) return;
-    context.read<ChatBloc>().enterRoom(roomId: roomId);
+    context.read<ChatCubit>().enterRoom(roomId: roomId);
   }
 
   @override

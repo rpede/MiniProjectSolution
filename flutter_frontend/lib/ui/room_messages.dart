@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_frontend/bloc/chat_cubit.dart';
 import 'package:flutter_frontend/bloc/chat_state.dart';
 import 'package:intl/intl.dart';
 
-import '../bloc/chat_bloc.dart';
 import '../models/entities.dart';
 import 'common.dart';
 
@@ -27,7 +27,7 @@ class _RoomMessagesState extends State<RoomMessages> {
   _onSend() {
     final text = _messageController.text;
     if (text.isEmpty) return;
-    context.read<ChatBloc>().sendMessageToRoom(
+    context.read<ChatCubit>().sendMessageToRoom(
           roomId: widget.room.roomId,
           messageContent: text,
         );

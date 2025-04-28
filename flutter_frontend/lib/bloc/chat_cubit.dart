@@ -1,41 +1,41 @@
 import 'dart:async';
-import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_frontend/bloc/chat_state.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import '../models/events.dart';
 
-class ChatBloc extends Bloc<BaseEvent, ChatState> {
+class ChatCubit extends Cubit<ChatState> {
   final WebSocketChannel _channel;
   late StreamSubscription _channelSubscription;
-  String? _jwt;
 
-  ChatBloc({required channel})
+  ChatCubit({required channel})
       : _channel = channel,
         super(ChatState.empty()) {
-    // Handler for client events
-    on<ClientWantsToAuthenticateWithJwt>(_onClientEvent);
-    on<ClientWantsToDetectImageObjects>(_onClientEvent);
-    on<ClientWantsToEnterRoom>(_onClientEvent);
-    on<ClientWantsToRegister>(_onClientEvent);
-    on<ClientWantsToSendMessageToRoom>(_onClientEvent);
-    on<ClientWantsToSignIn>(_onClientEvent);
-
-    // Handlers for server events
-    on<ServerAddsClientToRoom>(_onServerAddsClientToRoom);
-    on<ServerAuthenticatesUser>(_onServerAuthenticatesUser);
-    on<ServerBroadcastsMessageToClientsInRoom>(
-        _onServerBroadcastsMessageToClientsInRoom);
-    on<ServerNotifiesClientsInRoomSomeoneHasJoinedRoom>(
-        _onServerNotifiesClientsInRoomSomeoneHasJoinedRoom);
-    on<ServerSendsErrorMessageToClient>(_onServerSendsErrorMessageToClient);
-
     // Feed deserialized events from server into this bloc
     _channelSubscription = _channel.stream
         .map((event) => BaseEventMapper.fromJson(event))
-        .listen(add, onError: addError);
+        .listen((event) {
+      switch (event) {
+        case ServerAddsClientToRoom e:
+          _onServerAddsClientToRoom(e);
+        case ServerAuthenticatesUser e:
+          _onServerAuthenticatesUser(e);
+        case ServerBroadcastsMessageToClientsInRoom e:
+          _onServerBroadcastsMessageToClientsInRoom(e);
+        case ServerNotifiesClientsInRoomSomeoneHasJoinedRoom e:
+          _onServerNotifiesClientsInRoomSomeoneHasJoinedRoom(e);
+        case ServerSendsErrorMessageToClient e:
+          _onServerSendsErrorMessageToClient(e);
+        default:
+          if (kDebugMode) {
+            print(
+                "ChatCubit: retrieved ${event.runtimeType} event, which it doesn't care about");
+          }
+      }
+    }, onError: addError);
   }
 
   @override
@@ -52,46 +52,41 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
     if (state.connectedRooms.any((room) => roomId == roomId)) {
       return;
     }
-    add(ClientWantsToEnterRoom(
+    _channel.sink.add(ClientWantsToEnterRoom(
       eventType: ClientWantsToEnterRoom.name,
       roomId: roomId,
-    ));
+    ).toJson());
   }
 
   /// Sends ClientWantsToSignIn event to server
   void signIn({required String password, required String email}) {
-    add(ClientWantsToSignIn(
+    _channel.sink.add(ClientWantsToSignIn(
       eventType: ClientWantsToSignIn.name,
       email: email,
       password: password,
-    ));
+    ).toJson());
   }
 
   /// Sends ClientWantsToRegister event to server
   void register({required String password, required String email}) {
-    add(ClientWantsToRegister(
+    _channel.sink.add(ClientWantsToRegister(
       eventType: ClientWantsToRegister.name,
       email: email,
       password: password,
-    ));
+    ).toJson());
   }
 
   /// Sends ClientWantsToSendMessageToRoom event to server
   void sendMessageToRoom(
       {required int roomId, required String messageContent}) {
-    add(ClientWantsToSendMessageToRoom(
+    _channel.sink.add(ClientWantsToSendMessageToRoom(
       eventType: ClientWantsToSendMessageToRoom.name,
       roomId: roomId,
       messageContent: messageContent,
-    ));
+    ).toJson());
   }
 
-  FutureOr<void> _onClientEvent(BaseEvent event, Emitter<ChatState> emit) {
-    _channel.sink.add(event.toJson());
-  }
-
-  FutureOr<void> _onServerAddsClientToRoom(
-      ServerAddsClientToRoom event, Emitter<ChatState> emit) {
+  FutureOr<void> _onServerAddsClientToRoom(ServerAddsClientToRoom event) {
     emit(state.copyWith(
       connectedRooms: [
         ...state.connectedRooms,
@@ -104,9 +99,7 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
     ));
   }
 
-  FutureOr<void> _onServerAuthenticatesUser(
-      ServerAuthenticatesUser event, Emitter<ChatState> emit) {
-    _jwt = event.jwt;
+  FutureOr<void> _onServerAuthenticatesUser(ServerAuthenticatesUser event) {
     emit(state.copyWith(
       authenticated: true,
       headsUp: 'Authentication successful!',
@@ -114,7 +107,7 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
   }
 
   FutureOr<void> _onServerBroadcastsMessageToClientsInRoom(
-      ServerBroadcastsMessageToClientsInRoom event, Emitter<ChatState> emit) {
+      ServerBroadcastsMessageToClientsInRoom event) {
     emit(state.copyWith(
       connectedRooms: [
         for (final room in state.connectedRooms)
@@ -128,8 +121,8 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
   }
 
   FutureOr<void> _onServerNotifiesClientsInRoomSomeoneHasJoinedRoom(
-      ServerNotifiesClientsInRoomSomeoneHasJoinedRoom event,
-      Emitter<ChatState> emit) {
+    ServerNotifiesClientsInRoomSomeoneHasJoinedRoom event,
+  ) {
     emit(state.copyWith(
       connectedRooms: [
         for (final room in state.connectedRooms)
@@ -143,7 +136,7 @@ class ChatBloc extends Bloc<BaseEvent, ChatState> {
   }
 
   FutureOr<void> _onServerSendsErrorMessageToClient(
-      ServerSendsErrorMessageToClient event, Emitter<ChatState> emit) {
+      ServerSendsErrorMessageToClient event) {
     emit(state.copyWith(headsUp: '⚠️ ${event.errorMessage}'));
   }
 }

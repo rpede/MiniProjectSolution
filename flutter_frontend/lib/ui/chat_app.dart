@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_frontend/bloc/chat_cubit.dart';
 
-import '../bloc/chat_bloc.dart';
 import '../bloc/chat_state.dart';
 import 'authenticate_form.dart';
 import 'common.dart';
@@ -25,7 +25,7 @@ class ChatApp extends StatelessWidget {
       ),
       themeMode: ThemeMode.system,
       home: Scaffold(
-        body: BlocConsumer<ChatBloc, ChatState>(
+        body: BlocConsumer<ChatCubit, ChatState>(
           listenWhen: (previous, current) => current.headsUp != null,
           listener: (context, state) {
             ScaffoldMessenger.of(context)
